@@ -1,0 +1,628 @@
+/* style.css */
+
+body {
+    font-family: sans-serif;
+    background: #111;
+    color: #eee;
+    padding: 8px;
+    margin: 0;
+}
+
+h1 { font-size: 1.3em; }
+h2 { font-size: 1.05em; margin-top: 1em; }
+
+button {
+    padding: 8px 16px;
+    margin: 6px 4px;
+    border-radius: 6px;
+    border: none;
+    background: #4a5578;
+    color: #fff;
+    font-size: 1em;
+}
+button:disabled {
+    background: #333;
+    color: #888;
+}
+
+/* --- デッキ構築画面 --- */
+
+#character-select-list { display: flex; flex-direction: column; gap: 6px; }
+.character-select-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #1c1f2e;
+    padding: 6px;
+    border-radius: 6px;
+}
+.character-select-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+.character-select-thumb {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+.concept-deck-btn {
+    font-size: 0.75em;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid #b98cff;
+    background: rgba(185, 140, 255, 0.15);
+    color: #d8bfff;
+    white-space: nowrap;
+}
+
+#deck-select-list { max-height: 40vh; overflow-y: auto; }
+.deck-sort-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+    font-size: 0.9em;
+}
+.deck-sort-bar select {
+    background: #1c1f2e;
+    color: #eee;
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 4px;
+}
+.deck-select-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 0;
+    border-bottom: 1px solid #333;
+    font-size: 0.9em;
+}
+.deck-select-thumb {
+    width: 28px;
+    height: 28px;
+    object-fit: cover;
+    border-radius: 3px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.deck-select-label {
+    flex: 1;
+    cursor: pointer;
+}
+.deck-qty-stepper {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+.qty-btn {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    font-size: 1.1em;
+}
+.qty-value {
+    display: inline-block;
+    min-width: 1.4em;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* --- 戦闘画面 --- */
+
+#turn-indicator {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+#battlefield {
+    background-image: url("images/battle_bg/battle_bg.jpg");
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.zone-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.opponent-zone-row { flex-direction: row-reverse; }
+.my-zone-row { flex-direction: row; }
+
+.character-row {
+    justify-content: space-between;
+}
+
+.trap-slot-container {
+    display: flex;
+    gap: 4px;
+}
+
+.trap-slot {
+    width: 34px;
+    height: 46px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid #666;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.trap-slot-empty { background: rgba(0, 0, 0, 0.2); }
+.trap-art { width: 100%; height: 100%; object-fit: cover; }
+
+/* 対象選択モード中のトラップスロット（破壊・公開などの効果でどれを対象にするか選ぶ） */
+.trap-slot-selectable {
+    cursor: pointer;
+    box-shadow: 0 0 0 2px #f5c542 inset;
+}
+.trap-slot-selected {
+    box-shadow: 0 0 0 3px #ff5555 inset;
+    background: rgba(255, 85, 85, 0.25);
+}
+
+.deck-slot, .graveyard-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 46px;
+    cursor: pointer;
+}
+.deck-art, .graveyard-art {
+    width: 40px;
+    height: 54px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #888;
+}
+/* 墓地に2枚以上ある時、後ろにもう1枚控えているようなスタック風の見た目にする */
+.graveyard-slot-stacked .graveyard-art {
+    box-shadow: 3px 3px 0 -1px #16181f, 3px 3px 0 0 #666,
+                6px 6px 0 -1px #16181f, 6px 6px 0 0 #444;
+    margin-right: 6px;
+    margin-bottom: 6px;
+}
+.zone-count { font-size: 0.85em; margin-top: 2px; }
+.zone-label { font-size: 0.7em; color: #ccc; }
+
+/* エリアカード（場に展開すると基本ゲーム終了まで残り続ける、1人1枠） */
+.area-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 46px;
+}
+.area-slot-empty {
+    opacity: 0.35;
+}
+.area-art {
+    width: 40px;
+    height: 54px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #b98cff;
+    box-shadow: 0 0 6px rgba(185, 140, 255, 0.6);
+}
+.area-label {
+    font-size: 0.65em;
+    color: #d8bfff;
+    text-align: center;
+    line-height: 1.1;
+    margin-top: 2px;
+}
+
+.character-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 8px;
+    padding: 6px;
+    width: 42%;
+}
+.character-art {
+    width: 100%;
+    max-width: 130px;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 2px solid #aaa;
+    cursor: pointer;
+}
+.character-name { font-weight: bold; margin-top: 4px; text-align: center; font-size: 0.9em; }
+.character-status { font-size: 0.8em; text-align: center; }
+.ability-area {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 6px;
+    width: 100%;
+}
+.ability-area button {
+    font-size: 0.75em;
+    padding: 6px;
+    margin: 0;
+    white-space: normal;
+    text-align: left;
+}
+.ability-area button.ability-used {
+    background: #2a2a2a;
+    color: #777;
+}
+
+/* 相手キャラクターの能力表示（ボタンではなく、参照用の一覧） */
+.ability-area-readonly .ability-readonly-row {
+    font-size: 0.75em;
+    padding: 6px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid #555;
+    border-radius: 6px;
+    text-align: left;
+}
+
+#hand-area { margin-top: 10px; }
+.hand-area-label { font-size: 0.85em; color: #ccc; margin-bottom: 4px; }
+.hand-card-strip {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+}
+.hand-card-mini {
+    flex: 0 0 auto;
+    width: 96px;
+    background: #1c1f2e;
+    border: 1px solid #555;
+    border-radius: 8px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+.hand-card-mini:active { border-color: #f5c542; }
+.hand-card-name {
+    font-size: 0.72em;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.15;
+    margin-bottom: 4px;
+    min-height: 2.3em;
+}
+.hand-card-art {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #444;
+}
+.hand-card-text {
+    font-size: 0.62em;
+    text-align: center;
+    line-height: 1.2;
+    color: #ccc;
+    margin-top: 4px;
+}
+
+#card-detail-panel {
+    position: sticky;
+    bottom: 0;
+    z-index: 20;
+    margin-top: 12px;
+    padding: 10px;
+    background: #1c1f2e;
+    border-top: 2px solid #4a5578;
+    border-radius: 8px 8px 0 0;
+    max-height: 42vh;
+    overflow-y: auto;
+    box-shadow: 0 -6px 14px rgba(0, 0, 0, 0.5);
+}
+#card-detail-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#card-detail-header h3 { margin: 0; }
+#card-detail-close {
+    padding: 4px 12px;
+    margin: 0;
+    font-size: 1.1em;
+    line-height: 1;
+    background: #4a5578;
+}
+
+/* --- モーダル背景・アクション確認プロンプト（無効化するか等の選択、対象選択の決定ボタンなど） --- */
+#modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 40;
+}
+#action-prompt-panel {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 41;
+    width: min(90vw, 380px);
+    max-height: 70vh;
+    overflow-y: auto;
+    background: #1c1f2e;
+    border: 2px solid #4a5578;
+    border-radius: 10px;
+    padding: 14px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+#action-prompt-message {
+    font-size: 0.95em;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+#action-prompt-options {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+#action-prompt-options button {
+    margin: 0;
+    width: 100%;
+    text-align: left;
+    white-space: normal;
+}
+.list-select-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    padding: 4px 0;
+    border-bottom: 1px solid #333;
+    font-size: 0.85em;
+}
+.list-select-label { flex: 1; }
+.list-select-stepper {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+.list-select-stepper .qty-btn {
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    font-size: 1em;
+}
+.list-select-stepper .qty-value {
+    display: inline-block;
+    min-width: 2.2em;
+    text-align: center;
+}
+
+/* --- 勝敗確定パネル（再戦／デッキ構築へ戻る） --- */
+#game-over-panel {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 42;
+    width: min(90vw, 380px);
+    background: #1c1f2e;
+    border: 2px solid #f5c542;
+    border-radius: 10px;
+    padding: 18px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+#game-over-message {
+    font-size: 1.15em;
+    font-weight: bold;
+    margin-bottom: 14px;
+}
+#game-over-panel button {
+    display: block;
+    width: 100%;
+    margin: 8px 0 0;
+}
+.detail-art {
+    width: 100px;
+    border-radius: 6px;
+    float: left;
+    margin-right: 10px;
+}
+
+/* 墓地一覧（カード詳細パネルを流用して表示するグリッド） */
+.graveyard-list-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 8px;
+    clear: both;
+}
+.graveyard-list-item {
+    cursor: pointer;
+    text-align: center;
+}
+.graveyard-list-item img {
+    width: 100%;
+    aspect-ratio: 5 / 7;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #666;
+}
+.graveyard-list-item-name {
+    font-size: 0.65em;
+    color: #ccc;
+    margin-top: 2px;
+    line-height: 1.1;
+}
+.detail-qty-control {
+    clear: both;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #444;
+}
+.detail-qty-control .qty-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 1.3em;
+}
+.detail-qty-control #detail-qty-value {
+    font-size: 1.2em;
+    font-weight: bold;
+    min-width: 1.6em;
+    text-align: center;
+}
+
+#output {
+    margin-top: 4px;
+    padding: 8px;
+    background: #000;
+    border-radius: 6px;
+    font-size: 0.85em;
+    max-height: 30vh;
+    overflow-y: auto;
+}
+.log-line { padding: 1px 0; }
+
+/* --- モード選択画面 --- */
+#mode-select-screen { text-align: center; padding-top: 20vh; }
+#mode-select-screen button {
+    display: block;
+    width: 100%;
+    max-width: 340px;
+    margin: 10px auto;
+    padding: 14px;
+    font-size: 1.05em;
+}
+
+/* --- デッキ構築画面：上部リンク・覚醒警告・保存/読み込み --- */
+.deckbuilder-topbar { margin-bottom: 4px; }
+.link-btn {
+    background: none;
+    color: #9db4ff;
+    padding: 4px 0;
+    margin: 0;
+    text-decoration: underline;
+    font-size: 0.85em;
+}
+
+.warning-box {
+    margin: 6px 0;
+    padding: 8px;
+    background: rgba(245, 197, 66, 0.15);
+    border: 1px solid #f5c542;
+    border-radius: 6px;
+    font-size: 0.8em;
+    color: #f5c542;
+}
+
+#deck-management {
+    background: #1c1f2e;
+    border-radius: 8px;
+    padding: 8px;
+    margin-top: 6px;
+}
+.deck-save-row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+.deck-save-row input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #444;
+    background: #111;
+    color: #eee;
+}
+.saved-deck-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 0;
+    border-bottom: 1px solid #333;
+    font-size: 0.85em;
+}
+.saved-deck-label { flex: 1; }
+.saved-deck-row button { padding: 6px 10px; margin: 0; font-size: 0.85em; }
+
+/* --- バトルログの表示モード切り替え --- */
+#battle-log-controls {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 10px;
+    font-size: 0.8em;
+    flex-wrap: wrap;
+}
+.log-mode-label { color: #aaa; }
+.log-mode-btn {
+    padding: 4px 10px;
+    margin: 0;
+    font-size: 0.85em;
+    background: #2a2e42;
+}
+.log-mode-btn-active {
+    background: #4a5578;
+    font-weight: bold;
+}
+
+/* --- パス画面（ローカル2人対戦：端末を渡すタイミングを挟む全画面オーバーレイ） --- */
+#pass-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: #0a0a12;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+#pass-screen-message {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+#pass-screen-button {
+    padding: 14px 28px;
+    font-size: 1.05em;
+}
+
+/* --- ネット対戦ロビー画面（テスト版） --- */
+#network-lobby-screen h3 { font-size: 0.95em; margin-top: 1.2em; }
+.room-code-display {
+    margin: 10px 0;
+    padding: 14px;
+    background: #1c1f2e;
+    border: 2px solid #f5c542;
+    border-radius: 8px;
+    font-size: 1.4em;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 0.1em;
+}
+.network-status {
+    margin-top: 12px;
+    padding: 8px;
+    font-size: 0.85em;
+    color: #9db4ff;
+    min-height: 1.2em;
+}

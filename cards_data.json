@@ -1,0 +1,6160 @@
+{
+  "101": {
+    "id": "101",
+    "name": "博麗霊夢",
+    "level": 1,
+    "hp": 12,
+    "od": 5,
+    "motif": "博麗霊夢",
+    "flavor": "博麗神社の巫女。妖怪が起こす事件を、面倒くさそうにしながらも必ず解決する。",
+    "abilities": [
+      {
+        "abilityId": "101_a1",
+        "type": "active",
+        "cost": 3,
+        "effectId": "DRAW_N",
+        "params": {
+          "n": 1
+        },
+        "text": "お祓い棒で不要な気を祓い、カードを1枚ドローする。"
+      },
+      {
+        "abilityId": "101_a2",
+        "type": "active",
+        "cost": 4,
+        "effectId": "SEAL_ABILITY",
+        "params": {
+          "duration": 2
+        },
+        "text": "「夢想封印」で相手のキャラクター能力を2ターンの間封印する。"
+      }
+    ],
+    "awakening": {
+      "materials": [
+        "Mat101A",
+        "Mat101B",
+        "Mat101C"
+      ],
+      "keyCard": "XKEY101",
+      "resultId": "EX101"
+    }
+  },
+  "EX101": {
+    "id": "EX101",
+    "name": "永遠の巫女・博麗霊夢",
+    "level": null,
+    "hp": 22,
+    "od": 9,
+    "motif": "博麗霊夢",
+    "flavor": "煮え切らない態度もそこまで。本気を出した博麗の巫女に、逃げ場はない。",
+    "abilities": [
+      {
+        "abilityId": "ex101_a1",
+        "type": "active",
+        "cost": 0,
+        "effectId": "DAMAGE_ALL_ENEMY",
+        "params": {
+          "amount": 3
+        },
+        "text": "「夢想封印」全開放。相手に3ダメージを与える。"
+      },
+      {
+        "abilityId": "ex101_a2",
+        "type": "active",
+        "cost": 0,
+        "effectId": "DESTROY_TRAP",
+        "params": {
+          "n": 2
+        },
+        "text": "結界を全開放し、相手のカウンタースペルを2枚破壊する。"
+      },
+      {
+        "abilityId": "ex101_a3",
+        "type": "triggered",
+        "trigger": "opponentActivatesTrap",
+        "effectId": "NEGATE_TRAP_ONCE",
+        "params": {
+          "uses": 1
+        },
+        "text": "相手がカウンタースペルを発動する時、1度だけ無効化する。"
+      }
+    ]
+  },
+  "Mat101A": {
+    "id": "Mat101A",
+    "name": "御幣",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "101",
+    "text": "「博麗霊夢」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "祓い清めの杖。振るえば、大抵の厄介事はどうにかなる。"
+  },
+  "Mat101B": {
+    "id": "Mat101B",
+    "name": "陰陽玉",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "101",
+    "text": "「博麗霊夢」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "陰と陽、二つの気を宿した珠。投げても浮かべても強い。"
+  },
+  "Mat101C": {
+    "id": "Mat101C",
+    "name": "神々の加護のお札",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "101",
+    "text": "「博麗霊夢」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "貼っておけば、大体の悪いものは近寄らない……はず。"
+  },
+  "XKEY101": {
+    "id": "XKEY101",
+    "name": "「これより先、幻想郷の意地を見せてもらう」",
+    "type": "キー",
+    "cost": 3,
+    "parentCharacterId": "101",
+    "resultId": "EX101",
+    "materials": [
+      "Mat101A",
+      "Mat101B",
+      "Mat101C"
+    ],
+    "text": "覚醒に必要な証が3つ揃っている時のみ使用可能。使用すると覚醒する。",
+    "flavor": "全ての証が揃った時、博麗霊夢の真の力が解き放たれる。"
+  },
+  "102": {
+    "id": "102",
+    "name": "霧雨魔理沙",
+    "level": 1,
+    "hp": 9,
+    "od": 6,
+    "motif": "霧雨魔理沙",
+    "flavor": "人間の魔法使い。「借りていくぜ！」を口癖に、なんでも自分のものにしてしまう。",
+    "abilities": [
+      {
+        "abilityId": "102_a1",
+        "type": "active",
+        "cost": 0,
+        "effectId": "OD_BOOST",
+        "params": {
+          "amount": 2
+        },
+        "text": "「弾幕の型」でオドを2回復する（次の一撃のために魔力を溜める）。"
+      },
+      {
+        "abilityId": "102_a2",
+        "type": "active",
+        "cost": 5,
+        "effectId": "STEAL_CARD",
+        "params": {
+          "n": 1
+        },
+        "text": "「借りていくぜ！」コストを5使用し、相手の手札を1枚ランダムに奪い自分の手札に加える。"
+      }
+    ],
+    "awakening": {
+      "materials": [
+        "Mat102A",
+        "Mat102B",
+        "Mat102C"
+      ],
+      "keyCard": "XKEY102",
+      "resultId": "EX102"
+    }
+  },
+  "EX102": {
+    "id": "EX102",
+    "name": "奇妙な魔法使い・霧雨魔理沙",
+    "level": null,
+    "hp": 20,
+    "od": 11,
+    "motif": "霧雨魔理沙",
+    "flavor": "溜め込んだ魔力を、迷いなく一直線に叩き込む。それが魔理沙の本物の魔法。",
+    "abilities": [
+      {
+        "abilityId": "ex102_a1",
+        "type": "active",
+        "cost": 0,
+        "effectId": "PIERCE_DAMAGE",
+        "params": {
+          "amount": 6
+        },
+        "text": "「マスタースパーク」相手に6ダメージを与える（軽減効果を貫通する）。"
+      },
+      {
+        "abilityId": "ex102_a2",
+        "type": "active",
+        "cost": 0,
+        "effectId": "OD_BOOST",
+        "params": {
+          "amount": 3
+        },
+        "text": "魔力を練り上げ、オドを3回復する。"
+      },
+      {
+        "abilityId": "ex102_a3",
+        "type": "active",
+        "cost": 0,
+        "effectId": "STEAL_CARD",
+        "params": {
+          "n": 1
+        },
+        "text": "「戦利品」相手の手札を1枚奪う。"
+      }
+    ]
+  },
+  "Mat102A": {
+    "id": "Mat102A",
+    "name": "ミニ八卦炉",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "102",
+    "text": "「霧雨魔理沙」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "小さいくせに、とんでもない魔力を吐き出す。愛用の魔法発動機。"
+  },
+  "Mat102B": {
+    "id": "Mat102B",
+    "name": "使い込まれた箒",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "102",
+    "text": "「霧雨魔理沙」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "飛ぶための道具であり、時には武器にもなる相棒。"
+  },
+  "Mat102C": {
+    "id": "Mat102C",
+    "name": "禁忌の魔導書",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "102",
+    "text": "「霧雨魔理沙」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "図書館から「借りた」まま、まだ返していない一冊。"
+  },
+  "XKEY102": {
+    "id": "XKEY102",
+    "name": "「星の全部、頂いていくぜ」",
+    "type": "キー",
+    "cost": 3,
+    "parentCharacterId": "102",
+    "resultId": "EX102",
+    "materials": [
+      "Mat102A",
+      "Mat102B",
+      "Mat102C"
+    ],
+    "text": "覚醒に必要な証が3つ揃っている時のみ使用可能。使用すると覚醒する。",
+    "flavor": "全ての証が揃った時、霧雨魔理沙の真の力が解き放たれる。"
+  },
+  "103": {
+    "id": "103",
+    "name": "ルーミア",
+    "level": 1,
+    "hp": 7,
+    "od": 4,
+    "motif": "ルーミア",
+    "flavor": "闇に紛れる正体不明の妖怪。無邪気だが、その正体を知る者はいない。",
+    "abilities": [
+      {
+        "abilityId": "103_a1",
+        "type": "active",
+        "cost": 2,
+        "effectId": "DISCARD_OPPONENT",
+        "params": {
+          "n": 1
+        },
+        "text": "「闇に隠れて」コストを2使用し、相手の手札を1枚見えないまま捨てさせる。"
+      },
+      {
+        "abilityId": "103_a2",
+        "type": "active",
+        "cost": 3,
+        "effectId": "LIFESTEAL_DAMAGE",
+        "params": {
+          "amount": 2,
+          "healRatio": 1.0
+        },
+        "text": "「宵闇の食事」コストを3使用し、相手に2ダメージを与え自分は同量回復する。"
+      }
+    ],
+    "awakening": {
+      "materials": [
+        "Mat103A",
+        "Mat103B",
+        "Mat103C"
+      ],
+      "keyCard": "XKEY103",
+      "resultId": "EX103"
+    }
+  },
+  "EX103": {
+    "id": "EX103",
+    "name": "宵闇の妖怪・ルーミア",
+    "level": null,
+    "hp": 14,
+    "od": 7,
+    "motif": "ルーミア",
+    "flavor": "正体を知ってはいけない、と言われる本当の理由。闇そのものと化した姿。",
+    "abilities": [
+      {
+        "abilityId": "ex103_a1",
+        "type": "active",
+        "cost": 0,
+        "effectId": "LIFESTEAL_DAMAGE",
+        "params": {
+          "amount": 4,
+          "healRatio": 1.0
+        },
+        "text": "「デーモンズディスコーム」相手に4ダメージ、自分は4回復する。"
+      },
+      {
+        "abilityId": "ex103_a2",
+        "type": "active",
+        "cost": 0,
+        "effectId": "DISCARD_OPPONENT",
+        "params": {
+          "n": 1
+        },
+        "text": "闇が視界を奪い、相手の手札を1枚捨てさせる。"
+      },
+      {
+        "abilityId": "ex103_a3",
+        "type": "triggered",
+        "trigger": "opponentDraws",
+        "effectId": "REPLACE_DRAW_WITH_DISCARD",
+        "params": {},
+        "text": "相手が追加ドローする時、闇に飲まれ代わりに手札を1枚捨てる。"
+      }
+    ]
+  },
+  "Mat103A": {
+    "id": "Mat103A",
+    "name": "千切れたリボン",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "103",
+    "text": "「ルーミア」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "闇に紛れて動く時、いつも揺れているもの。"
+  },
+  "Mat103B": {
+    "id": "Mat103B",
+    "name": "正体不明の残り香",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "103",
+    "text": "「ルーミア」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "近づいた者だけが気づく、ほのかな気配。"
+  },
+  "Mat103C": {
+    "id": "Mat103C",
+    "name": "人喰いの記憶",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "103",
+    "text": "「ルーミア」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "思い出したくないのに、ふと蘇る昔の記憶。"
+  },
+  "XKEY103": {
+    "id": "XKEY103",
+    "name": "「見えないなら、怖くもないでしょう？」",
+    "type": "キー",
+    "cost": 3,
+    "parentCharacterId": "103",
+    "resultId": "EX103",
+    "materials": [
+      "Mat103A",
+      "Mat103B",
+      "Mat103C"
+    ],
+    "text": "覚醒に必要な証が3つ揃っている時のみ使用可能。使用すると覚醒する。",
+    "flavor": "全ての証が揃った時、ルーミアの真の力が解き放たれる。"
+  },
+  "104": {
+    "id": "104",
+    "name": "チルノ",
+    "level": 1,
+    "hp": 8,
+    "od": 4,
+    "motif": "チルノ",
+    "flavor": "湖に住む妖精。自称・最強。九set九分は無鉄砲だが、たまに本当に強い。",
+    "abilities": [
+      {
+        "abilityId": "104_a1",
+        "type": "active",
+        "cost": 2,
+        "effectId": "OD_DRAIN",
+        "params": {
+          "amount": 2
+        },
+        "text": "「アイシクルフォール」コストを2使用し、相手のオドを2凍らせて減らす。"
+      },
+      {
+        "abilityId": "104_a2",
+        "type": "active",
+        "cost": 0,
+        "effectId": "RANDOM_BURST",
+        "params": {
+          "min": 1,
+          "max": 5
+        },
+        "text": "「私は最強！」1〜5のランダムなダメージを相手に与える。"
+      }
+    ],
+    "awakening": {
+      "materials": [
+        "Mat104A",
+        "Mat104B",
+        "Mat104C"
+      ],
+      "keyCard": "XKEY104",
+      "resultId": "EX104"
+    }
+  },
+  "EX104": {
+    "id": "EX104",
+    "name": "湖上の氷精・チルノ",
+    "level": null,
+    "hp": 16,
+    "od": 8,
+    "motif": "チルノ",
+    "flavor": "9割9分は運任せ。だが残りの1分に賭けた時のチルノは、本当に「完全」になる。",
+    "abilities": [
+      {
+        "abilityId": "ex104_a1",
+        "type": "active",
+        "cost": 0,
+        "effectId": "SEAL_ABILITY",
+        "params": {
+          "duration": 2
+        },
+        "text": "「パーフェクトフリーズ」相手のキャラクター能力を2ターン凍結封印する。"
+      },
+      {
+        "abilityId": "ex104_a2",
+        "type": "active",
+        "cost": 0,
+        "effectId": "RANDOM_BURST",
+        "params": {
+          "min": 3,
+          "max": 9
+        },
+        "text": "「ダイヤモンドブリザード」3〜9のランダムなダメージを相手に与える。"
+      },
+      {
+        "abilityId": "ex104_a3",
+        "type": "active",
+        "cost": 0,
+        "effectId": "SEAL_TRAP",
+        "params": {
+          "duration": 2
+        },
+        "text": "周囲を凍らせ、相手のカウンタースペルを2ターン封印する。"
+      }
+    ]
+  },
+  "Mat104A": {
+    "id": "Mat104A",
+    "name": "妖精の羽根",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "104",
+    "text": "「チルノ」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "湖の上を飛び回るための、小さくも自慢の羽根。"
+  },
+  "Mat104B": {
+    "id": "Mat104B",
+    "name": "砕けぬ大氷柱",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "104",
+    "text": "「チルノ」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "どれだけ本気を出しても壊れない、自慢の一本。"
+  },
+  "Mat104C": {
+    "id": "Mat104C",
+    "name": "⑨のブローチ",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "104",
+    "text": "「チルノ」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "「最強」の証として、いつも胸に着けている。"
+  },
+  "XKEY104": {
+    "id": "XKEY104",
+    "name": "「私は、九割九分本気だ」",
+    "type": "キー",
+    "cost": 3,
+    "parentCharacterId": "104",
+    "resultId": "EX104",
+    "materials": [
+      "Mat104A",
+      "Mat104B",
+      "Mat104C"
+    ],
+    "text": "覚醒に必要な証が3つ揃っている時のみ使用可能。使用すると覚醒する。",
+    "flavor": "全ての証が揃った時、チルノの真の力が解き放たれる。"
+  },
+  "105": {
+    "id": "105",
+    "name": "紅美鈴",
+    "level": 1,
+    "hp": 14,
+    "od": 4,
+    "motif": "紅美鈴",
+    "flavor": "紅魔館の門番。中国拳法の使い手で、打たれ強さは館随一。たまに居眠りする。",
+    "abilities": [
+      {
+        "abilityId": "105_a1",
+        "type": "active",
+        "cost": 2,
+        "effectId": "REDUCE_DAMAGE",
+        "params": {
+          "amount": 3
+        },
+        "text": "「ノック・アウト」コストを2使用し、次に受けるダメージを3軽減する構えを取る。"
+      },
+      {
+        "abilityId": "105_a2",
+        "type": "active",
+        "cost": 3,
+        "effectId": "DAMAGE_ALL_ENEMY",
+        "params": {
+          "amount": 2
+        },
+        "text": "「紅色の脚」コストを3使用し、相手に2ダメージの反撃を叩き込む。"
+      }
+    ],
+    "awakening": {
+      "materials": [
+        "Mat105A",
+        "Mat105B",
+        "Mat105C"
+      ],
+      "keyCard": "XKEY105",
+      "resultId": "EX105"
+    }
+  },
+  "EX105": {
+    "id": "EX105",
+    "name": "華人小娘・紅美鈴",
+    "level": null,
+    "hp": 24,
+    "od": 7,
+    "motif": "紅美鈴",
+    "flavor": "門番を舐めるな。本気の紅美鈴は、紅魔館そのものより硬い。",
+    "abilities": [
+      {
+        "abilityId": "ex105_a1",
+        "type": "active",
+        "cost": 0,
+        "effectId": "REFLECT_SHIELD",
+        "params": {
+          "uses": 2
+        },
+        "text": "「紅色満月」破壊を2回無効化する構えを取る。"
+      },
+      {
+        "abilityId": "ex105_a2",
+        "type": "active",
+        "cost": 0,
+        "effectId": "DAMAGE_ALL_ENEMY",
+        "params": {
+          "amount": 4
+        },
+        "text": "渾身の気功掌打。相手に4ダメージを与える。"
+      },
+      {
+        "abilityId": "ex105_a3",
+        "type": "passive",
+        "effectId": "FREE_TRAP_COST",
+        "params": {
+          "maxRank": 3
+        },
+        "text": "門番の心得。ランク3以下のカウンタースペルの発動コストを消費しない。"
+      }
+    ]
+  },
+  "Mat105A": {
+    "id": "Mat105A",
+    "name": "拳法着の帯",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "105",
+    "text": "「紅美鈴」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "何百回と締め直した、使い込まれた武の証。"
+  },
+  "Mat105B": {
+    "id": "Mat105B",
+    "name": "陽だまりの記憶",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "105",
+    "text": "「紅美鈴」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "門の前でうたた寝した、穏やかな午後の記憶。"
+  },
+  "Mat105C": {
+    "id": "Mat105C",
+    "name": "気功奥義の書",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "105",
+    "text": "「紅美鈴」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "師から譲り受けた、門番としての心得が記された書。"
+  },
+  "XKEY105": {
+    "id": "XKEY105",
+    "name": "「居眠りしてても、負ける気はしない」",
+    "type": "キー",
+    "cost": 3,
+    "parentCharacterId": "105",
+    "resultId": "EX105",
+    "materials": [
+      "Mat105A",
+      "Mat105B",
+      "Mat105C"
+    ],
+    "text": "覚醒に必要な証が3つ揃っている時のみ使用可能。使用すると覚醒する。",
+    "flavor": "全ての証が揃った時、紅美鈴の真の力が解き放たれる。"
+  },
+  "106": {
+    "id": "106",
+    "name": "パチュリー・ノーレッジ",
+    "level": 1,
+    "hp": 6,
+    "od": 7,
+    "motif": "パチュリー・ノーレッジ",
+    "flavor": "紅魔館に住む魔法使い。動かない大図書館の異名を持つ。病弱で、部屋から出ない。",
+    "abilities": [
+      {
+        "abilityId": "106_a1",
+        "type": "active",
+        "cost": 3,
+        "effectId": "FETCH_FROM_DECK",
+        "params": {
+          "n": 1,
+          "types": [
+            "スペル"
+          ]
+        },
+        "text": "「マジックライブラリー」コストを3使用し、山札からスペルを1枚手札に加える。"
+      },
+      {
+        "abilityId": "106_a2",
+        "type": "active",
+        "cost": 2,
+        "effectId": "DRAW_N",
+        "params": {
+          "n": 1
+        },
+        "text": "禁書の知識を紐解き、カードを1枚ドローする。"
+      }
+    ],
+    "awakening": {
+      "materials": [
+        "Mat106A",
+        "Mat106B",
+        "Mat106C"
+      ],
+      "keyCard": "XKEY106",
+      "resultId": "EX106"
+    }
+  },
+  "EX106": {
+    "id": "EX106",
+    "name": "知識と日陰の少女・パチュリー",
+    "level": null,
+    "hp": 13,
+    "od": 13,
+    "motif": "パチュリー・ノーレッジ",
+    "flavor": "五行の魔法、その全てを操る時。動かずとも、館の誰よりも遠くへ届く。",
+    "abilities": [
+      {
+        "abilityId": "ex106_a1",
+        "type": "active",
+        "cost": 0,
+        "effectId": "FETCH_FROM_DECK",
+        "params": {
+          "n": 2,
+          "types": [
+            "スペル",
+            "カウンタースペル"
+          ]
+        },
+        "text": "「エレメンタルハーヴェスト」山札からスペル/カウンタースペルを2枚まで手札に加える。"
+      },
+      {
+        "abilityId": "ex106_a2",
+        "type": "active",
+        "cost": 0,
+        "effectId": "DAMAGE_ALL_ENEMY",
+        "params": {
+          "amount": 5
+        },
+        "text": "五行の力を解放し、相手に5ダメージを与える。"
+      },
+      {
+        "abilityId": "ex106_a3",
+        "type": "passive",
+        "effectId": "DISCOUNT_SPELL_COST",
+        "params": {
+          "maxRank": 2,
+          "discount": 1
+        },
+        "text": "深遠なる知識。ランク2以下のスペルの発動コストを1軽減する。"
+      }
+    ]
+  },
+  "Mat106A": {
+    "id": "Mat106A",
+    "name": "賢者の石",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "106",
+    "text": "「パチュリー・ノーレッジ」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "五行の魔法を極めた者だけが手にできるという石。"
+  },
+  "Mat106B": {
+    "id": "Mat106B",
+    "name": "魔法書の落丁ページ",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "106",
+    "text": "「パチュリー・ノーレッジ」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "本棚の奥、誰も読んだことのない禁断の一頁。"
+  },
+  "Mat106C": {
+    "id": "Mat106C",
+    "name": "五行のペンダント",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "106",
+    "text": "「パチュリー・ノーレッジ」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "火・水・木・金・土、全ての力を宿した護符。"
+  },
+  "XKEY106": {
+    "id": "XKEY106",
+    "name": "「動かずとも、全てはここにある」",
+    "type": "キー",
+    "cost": 3,
+    "parentCharacterId": "106",
+    "resultId": "EX106",
+    "materials": [
+      "Mat106A",
+      "Mat106B",
+      "Mat106C"
+    ],
+    "text": "覚醒に必要な証が3つ揃っている時のみ使用可能。使用すると覚醒する。",
+    "flavor": "全ての証が揃った時、パチュリー・ノーレッジの真の力が解き放たれる。"
+  },
+  "107": {
+    "id": "107",
+    "name": "小悪魔",
+    "level": 1,
+    "hp": 9,
+    "od": 5,
+    "motif": "小悪魔",
+    "flavor": "パチュリーに仕える小悪魔。図書館の本の出し入れをこなす、有能な使い魔。",
+    "abilities": [
+      {
+        "abilityId": "107_a1",
+        "type": "active",
+        "cost": 2,
+        "effectId": "RECOVER_RANDOM_MAGIC",
+        "params": {
+          "n": 1
+        },
+        "text": "「本の運搬」コストを2使用し、墓地からスペルを1枚ランダムに回収する。"
+      },
+      {
+        "abilityId": "107_a2",
+        "type": "active",
+        "cost": 0,
+        "effectId": "OD_BOOST",
+        "params": {
+          "amount": 1
+        },
+        "text": "主のために働き、オドを1回復する。"
+      }
+    ],
+    "awakening": {
+      "materials": [
+        "Mat107A",
+        "Mat107B",
+        "Mat107C"
+      ],
+      "keyCard": "XKEY107",
+      "resultId": "EX107"
+    }
+  },
+  "EX107": {
+    "id": "EX107",
+    "name": "埃っぽい図書館で働く魔物・小悪魔",
+    "level": null,
+    "hp": 16,
+    "od": 9,
+    "motif": "小悪魔",
+    "flavor": "使い魔としての領分を超え、その力の一端を垣間見せる。",
+    "abilities": [
+      {
+        "abilityId": "ex107_a1",
+        "type": "active",
+        "cost": 0,
+        "effectId": "RECOVER_RANDOM_MAGIC",
+        "params": {
+          "n": 2
+        },
+        "text": "墓地からスペルを2枚ランダムに回収する。"
+      },
+      {
+        "abilityId": "ex107_a2",
+        "type": "active",
+        "cost": 0,
+        "effectId": "OD_BOOST",
+        "params": {
+          "amount": 3
+        },
+        "text": "主より力を借り受け、オドを3回復する。"
+      },
+      {
+        "abilityId": "ex107_a3",
+        "type": "active",
+        "cost": 0,
+        "effectId": "DRAW_TRAP_FROM_DECK",
+        "params": {
+          "n": 1
+        },
+        "text": "山札からカウンタースペルを1枚手札に加える。"
+      }
+    ]
+  },
+  "Mat107A": {
+    "id": "Mat107A",
+    "name": "羽根のしおり",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "107",
+    "text": "「小悪魔」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "主の読みかけの本に、いつも挟んでおくもの。"
+  },
+  "Mat107B": {
+    "id": "Mat107B",
+    "name": "本の匂いの残り香",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "107",
+    "text": "「小悪魔」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "図書館で長く働いた証。服にまで染み付いている。"
+  },
+  "Mat107C": {
+    "id": "Mat107C",
+    "name": "主への手紙",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "107",
+    "text": "「小悪魔」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "まだ渡せていない、感謝の気持ちを綴った一枚。"
+  },
+  "XKEY107": {
+    "id": "XKEY107",
+    "name": "「本の一冊も、主のためなら」",
+    "type": "キー",
+    "cost": 3,
+    "parentCharacterId": "107",
+    "resultId": "EX107",
+    "materials": [
+      "Mat107A",
+      "Mat107B",
+      "Mat107C"
+    ],
+    "text": "覚醒に必要な証が3つ揃っている時のみ使用可能。使用すると覚醒する。",
+    "flavor": "全ての証が揃った時、小悪魔の真の力が解き放たれる。"
+  },
+  "108": {
+    "id": "108",
+    "name": "十六夜咲夜",
+    "level": 1,
+    "hp": 8,
+    "od": 6,
+    "motif": "十六夜咲夜",
+    "flavor": "紅魔館の完璧で瀟洒なメイド長。ナイフを操り、時に時間さえ操るとも言われる。",
+    "abilities": [
+      {
+        "abilityId": "108_a1",
+        "type": "active",
+        "cost": 3,
+        "effectId": "REVEAL_TRAP",
+        "params": {
+          "n": 1
+        },
+        "text": "「パーフェクトメイド」コストを3使用し相手のカウンタースペルを1枚公開する。"
+      },
+      {
+        "abilityId": "108_a2",
+        "type": "active",
+        "cost": 4,
+        "effectId": "DESTROY_TRAP",
+        "params": {
+          "n": 1
+        },
+        "text": "投擲したナイフで、相手のカウンタースペルを1枚破壊する。"
+      }
+    ],
+    "awakening": {
+      "materials": [
+        "Mat108A",
+        "Mat108B",
+        "Mat108C"
+      ],
+      "keyCard": "XKEY108",
+      "resultId": "EX108"
+    }
+  },
+  "EX108": {
+    "id": "EX108",
+    "name": "紅魔館のメイド・十六夜咲夜",
+    "level": null,
+    "hp": 17,
+    "od": 10,
+    "motif": "十六夜咲夜",
+    "flavor": "従者としての領分を超え、屋敷の時間そのものを掌握する。",
+    "abilities": [
+      {
+        "abilityId": "ex108_a1",
+        "type": "active",
+        "cost": 0,
+        "effectId": "DESTROY_TRAP",
+        "params": {
+          "n": 2
+        },
+        "text": "「咲夜のお庭」相手のカウンタースペルを2枚破壊する。"
+      },
+      {
+        "abilityId": "ex108_a2",
+        "type": "active",
+        "cost": 0,
+        "effectId": "DAMAGE_ALL_ENEMY",
+        "params": {
+          "amount": 4
+        },
+        "text": "無数のナイフを投げつけ、相手に4ダメージを与える。"
+      },
+      {
+        "abilityId": "ex108_a3",
+        "type": "triggered",
+        "trigger": "opponentActivatesTrap",
+        "effectId": "NEGATE_TRAP_ONCE",
+        "params": {
+          "uses": 1
+        },
+        "text": "「時よ止まれ」相手がカウンタースペルを発動する時、1度だけ時を止めて無効化する。"
+      }
+    ]
+  },
+  "Mat108A": {
+    "id": "Mat108A",
+    "name": "止まったままの懐中時計",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "108",
+    "text": "「十六夜咲夜」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "いつからか針が動かない。持ち主にだけは意味がある。"
+  },
+  "Mat108B": {
+    "id": "Mat108B",
+    "name": "銀のナイフ",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "108",
+    "text": "「十六夜咲夜」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "投げれば必ず狙った場所に届く、完璧な得物。"
+  },
+  "Mat108C": {
+    "id": "Mat108C",
+    "name": "メイド服の裾のリボン",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "108",
+    "text": "「十六夜咲夜」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "どれだけ働いても、着崩れたことは一度もない。"
+  },
+  "XKEY108": {
+    "id": "XKEY108",
+    "name": "「その一瞬、誰にも渡さない」",
+    "type": "キー",
+    "cost": 3,
+    "parentCharacterId": "108",
+    "resultId": "EX108",
+    "materials": [
+      "Mat108A",
+      "Mat108B",
+      "Mat108C"
+    ],
+    "text": "覚醒に必要な証が3つ揃っている時のみ使用可能。使用すると覚醒する。",
+    "flavor": "全ての証が揃った時、十六夜咲夜の真の力が解き放たれる。"
+  },
+  "109": {
+    "id": "109",
+    "name": "レミリア・スカーレット",
+    "level": 1,
+    "hp": 10,
+    "od": 6,
+    "motif": "レミリア・スカーレット",
+    "flavor": "紅魔館の当主にして真祖の吸血鬼。小さな体に、大きな運命を操る力を秘める。",
+    "abilities": [
+      {
+        "abilityId": "109_a1",
+        "type": "active",
+        "cost": 3,
+        "effectId": "LIFESTEAL_DAMAGE",
+        "params": {
+          "amount": 3,
+          "healRatio": 1.0
+        },
+        "text": "「紅色の吸血」コストを3使用し、相手に3ダメージを与えて同量回復する。"
+      },
+      {
+        "abilityId": "109_a2",
+        "type": "active",
+        "cost": 2,
+        "effectId": "DISCARD_OPPONENT",
+        "params": {
+          "n": 1
+        },
+        "text": "「運命の紅い糸」コストを2使用し、相手に不要な手札を1枚押し付け捨てさせる。"
+      }
+    ],
+    "awakening": {
+      "materials": [
+        "Mat109A",
+        "Mat109B",
+        "Mat109C"
+      ],
+      "keyCard": "XKEY109",
+      "resultId": "EX109"
+    }
+  },
+  "EX109": {
+    "id": "EX109",
+    "name": "永遠に紅い幼き月・レミリア",
+    "level": null,
+    "hp": 21,
+    "od": 11,
+    "motif": "レミリア・スカーレット",
+    "flavor": "永きに渡る孤独の果て、真祖としての力を解き放つ。逃げることは許されない。",
+    "abilities": [
+      {
+        "abilityId": "ex109_a1",
+        "type": "active",
+        "cost": 0,
+        "effectId": "PIERCE_DAMAGE",
+        "params": {
+          "amount": 5
+        },
+        "text": "「グングニル」相手に5ダメージを与える（軽減・反射を貫通する）。"
+      },
+      {
+        "abilityId": "ex109_a2",
+        "type": "active",
+        "cost": 0,
+        "effectId": "LIFESTEAL_DAMAGE",
+        "params": {
+          "amount": 3,
+          "healRatio": 1.0
+        },
+        "text": "眷属の血を啜り、相手に3ダメージ・自分は3回復する。"
+      },
+      {
+        "abilityId": "ex109_a3",
+        "type": "active",
+        "cost": 0,
+        "effectId": "DISCARD_OPPONENT",
+        "params": {
+          "n": 1
+        },
+        "text": "支配者の威圧。相手の手札を1枚問答無用で捨てさせる。"
+      }
+    ]
+  },
+  "Mat109A": {
+    "id": "Mat109A",
+    "name": "紅い月の欠片",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "109",
+    "text": "「レミリア・スカーレット」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "紅魔館の空にいつも浮かぶ、あの月の記憶。"
+  },
+  "Mat109B": {
+    "id": "Mat109B",
+    "name": "コウモリの羽根",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "109",
+    "text": "「レミリア・スカーレット」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "夜な夜な館の周りを飛び回る、眷属たちの証。"
+  },
+  "Mat109C": {
+    "id": "Mat109C",
+    "name": "グングニルの穂先",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "109",
+    "text": "「レミリア・スカーレット」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "投げれば全てを貫くという、伝説の槍の切っ先。"
+  },
+  "XKEY109": {
+    "id": "XKEY109",
+    "name": "「永遠に飽きるくらいなら、今宵狩りに出よう」",
+    "type": "キー",
+    "cost": 3,
+    "parentCharacterId": "109",
+    "resultId": "EX109",
+    "materials": [
+      "Mat109A",
+      "Mat109B",
+      "Mat109C"
+    ],
+    "text": "覚醒に必要な証が3つ揃っている時のみ使用可能。使用すると覚醒する。",
+    "flavor": "全ての証が揃った時、レミリア・スカーレットの真の力が解き放たれる。"
+  },
+  "110": {
+    "id": "110",
+    "name": "フランドール・スカーレット",
+    "level": 1,
+    "hp": 6,
+    "od": 8,
+    "motif": "フランドール・スカーレット",
+    "flavor": "レミリアの妹。地下室に長く閉じ込められていた、制御できない破壊の力を持つ少女。",
+    "abilities": [
+      {
+        "abilityId": "110_a1",
+        "type": "active",
+        "cost": 6,
+        "effectId": "SELF_DAMAGE_BURST",
+        "params": {
+          "amount": 6,
+          "selfDamage": 1
+        },
+        "text": "コストを6使用し、相手に6ダメージ与えるが、制御できず自分も1ダメージ受ける。"
+      },
+      {
+        "abilityId": "110_a2",
+        "type": "active",
+        "cost": 0,
+        "effectId": "DAMAGE_ALL_ENEMY",
+        "params": {
+          "amount": 1
+        },
+        "text": "何気ない一撃のつもりが、相手に1ダメージを与える。"
+      }
+    ],
+    "awakening": {
+      "materials": [
+        "Mat110A",
+        "Mat110B",
+        "Mat110C"
+      ],
+      "keyCard": "XKEY110",
+      "resultId": "EX110"
+    }
+  },
+  "EX110": {
+    "id": "EX110",
+    "name": "全てを破滅させる吸血鬼・フランドール",
+    "level": null,
+    "hp": 15,
+    "od": 14,
+    "motif": "フランドール・スカーレット",
+    "flavor": "486年分閉じ込められた力が、ついに解放される。触れた者は、壊れる。",
+    "abilities": [
+      {
+        "abilityId": "ex110_a1",
+        "type": "active",
+        "cost": 0,
+        "effectId": "UNBLOCKABLE_DAMAGE",
+        "params": {
+          "amount": 8
+        },
+        "text": "「QED・495年の波紋」相手に8ダメージを与える（軽減・反射・無効化を一切許さない）。"
+      },
+      {
+        "abilityId": "ex110_a2",
+        "type": "active",
+        "cost": 0,
+        "effectId": "SELF_DAMAGE_BURST",
+        "params": {
+          "amount": 4,
+          "selfDamage": 1
+        },
+        "text": "触れた者は壊れる。相手に4ダメージ、自分も1ダメージ受ける。"
+      },
+      {
+        "abilityId": "ex110_a3",
+        "type": "triggered",
+        "trigger": "opponentActivatesMagic",
+        "effectId": "REPLACE_MAGIC_WITH_DESTROY",
+        "params": {},
+        "text": "「壊れたおもちゃ」相手がスペルを発動する時、効果を発動させず破壊する。"
+      }
+    ]
+  },
+  "Mat110A": {
+    "id": "Mat110A",
+    "name": "千切れた鎖の欠片",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "110",
+    "text": "「フランドール・スカーレット」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "長い年月、地下室で繋がれていたものの名残。"
+  },
+  "Mat110B": {
+    "id": "Mat110B",
+    "name": "地下室のクリスタル",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "110",
+    "text": "「フランドール・スカーレット」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "薄暗い部屋でずっと光っていた、大切な宝物。"
+  },
+  "Mat110C": {
+    "id": "Mat110C",
+    "name": "壊れかけの人形",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "110",
+    "text": "「フランドール・スカーレット」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "遊び相手だった人形。もう長いこと修理していない。"
+  },
+  "XKEY110": {
+    "id": "XKEY110",
+    "name": "「壊してあげる、退屈ごと」",
+    "type": "キー",
+    "cost": 3,
+    "parentCharacterId": "110",
+    "resultId": "EX110",
+    "materials": [
+      "Mat110A",
+      "Mat110B",
+      "Mat110C"
+    ],
+    "text": "覚醒に必要な証が3つ揃っている時のみ使用可能。使用すると覚醒する。",
+    "flavor": "全ての証が揃った時、フランドール・スカーレットの真の力が解き放たれる。"
+  },
+  "SP-001": {
+    "id": "SP-001",
+    "name": "知符「星の導き」・I",
+    "type": "スペル",
+    "rank": "I",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "DRAW_N",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "コストを1使用しカードを1枚ドローする。",
+    "flavor": "夜空を見上げれば、次に引くべき一枚が見えてくる。"
+  },
+  "SP-002": {
+    "id": "SP-002",
+    "name": "知符「星の導き」・II",
+    "type": "スペル",
+    "rank": "II",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "DRAW_N",
+    "abilityType": "active",
+    "params": {
+      "n": 2
+    },
+    "text": "コストを1使用しカードを2枚ドローする。",
+    "flavor": "夜空を見上げれば、次に引くべき一枚が見えてくる。"
+  },
+  "SP-003": {
+    "id": "SP-003",
+    "name": "知符「星の導き」・III",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "DRAW_N",
+    "abilityType": "active",
+    "params": {
+      "n": 3
+    },
+    "text": "コストを2使用しカードを3枚ドローする。",
+    "flavor": "夜空を見上げれば、次に引くべき一枚が見えてくる。"
+  },
+  "SP-004": {
+    "id": "SP-004",
+    "name": "知符「星の導き」・IV",
+    "type": "スペル",
+    "rank": "IV",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "DRAW_N",
+    "abilityType": "active",
+    "params": {
+      "n": 4
+    },
+    "text": "コストを2使用しカードを4枚ドローする。",
+    "flavor": "夜空を見上げれば、次に引くべき一枚が見えてくる。"
+  },
+  "SP-005": {
+    "id": "SP-005",
+    "name": "知符「星の導き」・V",
+    "type": "スペル",
+    "rank": "V",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "DRAW_N",
+    "abilityType": "active",
+    "params": {
+      "n": 5
+    },
+    "text": "コストを3使用しカードを5枚ドローする。",
+    "flavor": "夜空を見上げれば、次に引くべき一枚が見えてくる。"
+  },
+  "SP-006": {
+    "id": "SP-006",
+    "name": "焔符「紅蓮の弾幕」・I",
+    "type": "スペル",
+    "rank": "I",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 1
+    },
+    "text": "コストを1使用し相手に1ダメージを与える。",
+    "flavor": "小さな火の粉も、束になれば弾幕になる。"
+  },
+  "SP-007": {
+    "id": "SP-007",
+    "name": "焔符「紅蓮の弾幕」・II",
+    "type": "スペル",
+    "rank": "II",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 2
+    },
+    "text": "コストを1使用し相手に2ダメージを与える。",
+    "flavor": "小さな火の粉も、束になれば弾幕になる。"
+  },
+  "SP-008": {
+    "id": "SP-008",
+    "name": "焔符「紅蓮の弾幕」・III",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "コストを2使用し相手に3ダメージを与える。",
+    "flavor": "小さな火の粉も、束になれば弾幕になる。"
+  },
+  "SP-009": {
+    "id": "SP-009",
+    "name": "焔符「紅蓮の弾幕」・IV",
+    "type": "スペル",
+    "rank": "IV",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "コストを2使用し相手に4ダメージを与える。",
+    "flavor": "小さな火の粉も、束になれば弾幕になる。"
+  },
+  "SP-010": {
+    "id": "SP-010",
+    "name": "焔符「紅蓮の弾幕」・V",
+    "type": "スペル",
+    "rank": "V",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 5
+    },
+    "text": "コストを3使用し相手に5ダメージを与える。",
+    "flavor": "小さな火の粉も、束になれば弾幕になる。"
+  },
+  "SP-011": {
+    "id": "SP-011",
+    "name": "爆符「制圧弾幕」・I",
+    "type": "スペル",
+    "rank": "I",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 1
+    },
+    "text": "コストを1使用し相手に1ダメージを与える。避けられない範囲弾幕。",
+    "flavor": "避けられないなら、それはもう弾幕ではなく結界だ。"
+  },
+  "SP-012": {
+    "id": "SP-012",
+    "name": "爆符「制圧弾幕」・II",
+    "type": "スペル",
+    "rank": "II",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 1
+    },
+    "text": "コストを1使用し相手に1ダメージを与える。避けられない範囲弾幕。",
+    "flavor": "避けられないなら、それはもう弾幕ではなく結界だ。"
+  },
+  "SP-013": {
+    "id": "SP-013",
+    "name": "爆符「制圧弾幕」・III",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 1
+    },
+    "text": "コストを2使用し相手に1ダメージを与える。避けられない範囲弾幕。",
+    "flavor": "避けられないなら、それはもう弾幕ではなく結界だ。"
+  },
+  "SP-014": {
+    "id": "SP-014",
+    "name": "爆符「制圧弾幕」・IV",
+    "type": "スペル",
+    "rank": "IV",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 2
+    },
+    "text": "コストを2使用し相手に2ダメージを与える。避けられない範囲弾幕。",
+    "flavor": "避けられないなら、それはもう弾幕ではなく結界だ。"
+  },
+  "SP-015": {
+    "id": "SP-015",
+    "name": "爆符「制圧弾幕」・V",
+    "type": "スペル",
+    "rank": "V",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 2
+    },
+    "text": "コストを3使用し相手に2ダメージを与える。避けられない範囲弾幕。",
+    "flavor": "避けられないなら、それはもう弾幕ではなく結界だ。"
+  },
+  "SP-016": {
+    "id": "SP-016",
+    "name": "命符「命の火」・I",
+    "type": "スペル",
+    "rank": "I",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "HEAL",
+    "abilityType": "active",
+    "params": {
+      "amount": 2
+    },
+    "text": "コストを1使用しHPを2回復する。",
+    "flavor": "尽きかけた命の灯りも、この一枚で保つ。"
+  },
+  "SP-017": {
+    "id": "SP-017",
+    "name": "命符「命の火」・II",
+    "type": "スペル",
+    "rank": "II",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "HEAL",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "コストを1使用しHPを4回復する。",
+    "flavor": "尽きかけた命の灯りも、この一枚で保つ。"
+  },
+  "SP-018": {
+    "id": "SP-018",
+    "name": "命符「命の火」・III",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "HEAL",
+    "abilityType": "active",
+    "params": {
+      "amount": 6
+    },
+    "text": "コストを2使用しHPを6回復する。",
+    "flavor": "尽きかけた命の灯りも、この一枚で保つ。"
+  },
+  "SP-019": {
+    "id": "SP-019",
+    "name": "命符「命の火」・IV",
+    "type": "スペル",
+    "rank": "IV",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "HEAL",
+    "abilityType": "active",
+    "params": {
+      "amount": 8
+    },
+    "text": "コストを2使用しHPを8回復する。",
+    "flavor": "尽きかけた命の灯りも、この一枚で保つ。"
+  },
+  "SP-020": {
+    "id": "SP-020",
+    "name": "命符「命の火」・V",
+    "type": "スペル",
+    "rank": "V",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "HEAL",
+    "abilityType": "active",
+    "params": {
+      "amount": 10
+    },
+    "text": "コストを3使用しHPを10回復する。",
+    "flavor": "尽きかけた命の灯りも、この一枚で保つ。"
+  },
+  "SP-021": {
+    "id": "SP-021",
+    "name": "霊符「魔力の泉」・I",
+    "type": "スペル",
+    "rank": "I",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "OD_BOOST",
+    "abilityType": "active",
+    "params": {
+      "amount": 2
+    },
+    "text": "コストを1使用しオドを2回復する。",
+    "flavor": "湧き出る魔力は、使っても使っても涸れることがない。"
+  },
+  "SP-022": {
+    "id": "SP-022",
+    "name": "霊符「魔力の泉」・II",
+    "type": "スペル",
+    "rank": "II",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "OD_BOOST",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "コストを1使用しオドを3回復する。",
+    "flavor": "湧き出る魔力は、使っても使っても涸れることがない。"
+  },
+  "SP-023": {
+    "id": "SP-023",
+    "name": "霊符「魔力の泉」・III",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "OD_BOOST",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "コストを2使用しオドを4回復する。",
+    "flavor": "湧き出る魔力は、使っても使っても涸れることがない。"
+  },
+  "SP-024": {
+    "id": "SP-024",
+    "name": "霊符「魔力の泉」・IV",
+    "type": "スペル",
+    "rank": "IV",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "OD_BOOST",
+    "abilityType": "active",
+    "params": {
+      "amount": 5
+    },
+    "text": "コストを2使用しオドを5回復する。",
+    "flavor": "湧き出る魔力は、使っても使っても涸れることがない。"
+  },
+  "SP-025": {
+    "id": "SP-025",
+    "name": "霊符「魔力の泉」・V",
+    "type": "スペル",
+    "rank": "V",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "OD_BOOST",
+    "abilityType": "active",
+    "params": {
+      "amount": 6
+    },
+    "text": "コストを2使用しオドを6回復する。",
+    "flavor": "湧き出る魔力は、使っても使っても涸れることがない。"
+  },
+  "SP-026": {
+    "id": "SP-026",
+    "name": "掠符「昼下がりの怪盗」・I",
+    "type": "スペル",
+    "rank": "I",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "DISCARD_OPPONENT",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "コストを1使用し相手の手札を1枚捨てさせる。",
+    "flavor": "気づいた時にはもう遅い。手の中身はとうに消えている。"
+  },
+  "SP-027": {
+    "id": "SP-027",
+    "name": "掠符「昼下がりの怪盗」・II",
+    "type": "スペル",
+    "rank": "II",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "DISCARD_OPPONENT",
+    "abilityType": "active",
+    "params": {
+      "n": 2
+    },
+    "text": "コストを1使用し相手の手札を2枚捨てさせる。",
+    "flavor": "気づいた時にはもう遅い。手の中身はとうに消えている。"
+  },
+  "SP-028": {
+    "id": "SP-028",
+    "name": "掠符「昼下がりの怪盗」・III",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "DISCARD_OPPONENT",
+    "abilityType": "active",
+    "params": {
+      "n": 3
+    },
+    "text": "コストを2使用し相手の手札を3枚捨てさせる。",
+    "flavor": "気づいた時にはもう遅い。手の中身はとうに消えている。"
+  },
+  "SP-029": {
+    "id": "SP-029",
+    "name": "掠符「昼下がりの怪盗」・IV",
+    "type": "スペル",
+    "rank": "IV",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "DISCARD_OPPONENT",
+    "abilityType": "active",
+    "params": {
+      "n": 4
+    },
+    "text": "コストを2使用し相手の手札を4枚捨てさせる。",
+    "flavor": "気づいた時にはもう遅い。手の中身はとうに消えている。"
+  },
+  "SP-030": {
+    "id": "SP-030",
+    "name": "掠符「昼下がりの怪盗」・V",
+    "type": "スペル",
+    "rank": "V",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "DISCARD_OPPONENT",
+    "abilityType": "active",
+    "params": {
+      "n": 5
+    },
+    "text": "コストを3使用し相手の手札を5枚捨てさせる。",
+    "flavor": "気づいた時にはもう遅い。手の中身はとうに消えている。"
+  },
+  "SP-031": {
+    "id": "SP-031",
+    "name": "封符「静寂の結界」・I",
+    "type": "スペル",
+    "rank": "I",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "SEAL_TRAP",
+    "abilityType": "active",
+    "params": {
+      "duration": 1
+    },
+    "text": "コストを1使用し相手のカウンタースペルを1ターンの間封印する。",
+    "flavor": "静けさの中でこそ、罠は牙を抜かれる。"
+  },
+  "SP-032": {
+    "id": "SP-032",
+    "name": "封符「静寂の結界」・II",
+    "type": "スペル",
+    "rank": "II",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "SEAL_TRAP",
+    "abilityType": "active",
+    "params": {
+      "duration": 2
+    },
+    "text": "コストを1使用し相手のカウンタースペルを2ターンの間封印する。",
+    "flavor": "静けさの中でこそ、罠は牙を抜かれる。"
+  },
+  "SP-033": {
+    "id": "SP-033",
+    "name": "封符「静寂の結界」・III",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "SEAL_TRAP",
+    "abilityType": "active",
+    "params": {
+      "duration": 3
+    },
+    "text": "コストを2使用し相手のカウンタースペルを3ターンの間封印する。",
+    "flavor": "静けさの中でこそ、罠は牙を抜かれる。"
+  },
+  "SP-034": {
+    "id": "SP-034",
+    "name": "封符「静寂の結界」・IV",
+    "type": "スペル",
+    "rank": "IV",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "SEAL_TRAP",
+    "abilityType": "active",
+    "params": {
+      "duration": 4
+    },
+    "text": "コストを2使用し相手のカウンタースペルを4ターンの間封印する。",
+    "flavor": "静けさの中でこそ、罠は牙を抜かれる。"
+  },
+  "SP-035": {
+    "id": "SP-035",
+    "name": "封符「静寂の結界」・V",
+    "type": "スペル",
+    "rank": "V",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "SEAL_TRAP",
+    "abilityType": "active",
+    "params": {
+      "duration": 5
+    },
+    "text": "コストを3使用し相手のカウンタースペルを5ターンの間封印する。",
+    "flavor": "静けさの中でこそ、罠は牙を抜かれる。"
+  },
+  "SP-036": {
+    "id": "SP-036",
+    "name": "視符「森羅万象」・I",
+    "type": "スペル",
+    "rank": "I",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "REVEAL_TRAP",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "コストを1使用し相手のカウンタースペルを1枚公開する。",
+    "flavor": "見えてしまえば、もう怖くはない。"
+  },
+  "SP-037": {
+    "id": "SP-037",
+    "name": "視符「森羅万象」・II",
+    "type": "スペル",
+    "rank": "II",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "REVEAL_TRAP",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "コストを1使用し相手のカウンタースペルを1枚公開する。",
+    "flavor": "見えてしまえば、もう怖くはない。"
+  },
+  "SP-038": {
+    "id": "SP-038",
+    "name": "視符「森羅万象」・III",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "REVEAL_TRAP",
+    "abilityType": "active",
+    "params": {
+      "n": 2
+    },
+    "text": "コストを2使用し相手のカウンタースペルを2枚公開する。",
+    "flavor": "見えてしまえば、もう怖くはない。"
+  },
+  "SP-039": {
+    "id": "SP-039",
+    "name": "視符「森羅万象」・IV",
+    "type": "スペル",
+    "rank": "IV",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "REVEAL_TRAP",
+    "abilityType": "active",
+    "params": {
+      "n": 2
+    },
+    "text": "コストを2使用し相手のカウンタースペルを2枚公開する。",
+    "flavor": "見えてしまえば、もう怖くはない。"
+  },
+  "SP-040": {
+    "id": "SP-040",
+    "name": "視符「森羅万象」・V",
+    "type": "スペル",
+    "rank": "V",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "REVEAL_TRAP",
+    "abilityType": "active",
+    "params": {
+      "n": 3
+    },
+    "text": "コストを3使用し相手のカウンタースペルを3枚公開する。",
+    "flavor": "見えてしまえば、もう怖くはない。"
+  },
+  "SP-041": {
+    "id": "SP-041",
+    "name": "探符「知恵の羅針盤」・I",
+    "type": "スペル",
+    "rank": "I",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "FETCH_FROM_DECK",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "コストを1使用し山札からスペルまたはカウンタースペルを1枚まで手札に加える。",
+    "flavor": "探し物は、いつも思ったより近くにある。"
+  },
+  "SP-042": {
+    "id": "SP-042",
+    "name": "探符「知恵の羅針盤」・II",
+    "type": "スペル",
+    "rank": "II",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "FETCH_FROM_DECK",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "コストを1使用し山札からスペルまたはカウンタースペルを1枚まで手札に加える。",
+    "flavor": "探し物は、いつも思ったより近くにある。"
+  },
+  "SP-043": {
+    "id": "SP-043",
+    "name": "探符「知恵の羅針盤」・III",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "FETCH_FROM_DECK",
+    "abilityType": "active",
+    "params": {
+      "n": 2
+    },
+    "text": "コストを2使用し山札からスペルまたはカウンタースペルを2枚まで手札に加える。",
+    "flavor": "探し物は、いつも思ったより近くにある。"
+  },
+  "SP-044": {
+    "id": "SP-044",
+    "name": "探符「知恵の羅針盤」・IV",
+    "type": "スペル",
+    "rank": "IV",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "FETCH_FROM_DECK",
+    "abilityType": "active",
+    "params": {
+      "n": 2
+    },
+    "text": "コストを2使用し山札からスペルまたはカウンタースペルを2枚まで手札に加える。",
+    "flavor": "探し物は、いつも思ったより近くにある。"
+  },
+  "SP-045": {
+    "id": "SP-045",
+    "name": "探符「知恵の羅針盤」・V",
+    "type": "スペル",
+    "rank": "V",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "FETCH_FROM_DECK",
+    "abilityType": "active",
+    "params": {
+      "n": 3
+    },
+    "text": "コストを3使用し山札からスペルまたはカウンタースペルを3枚まで手札に加える。",
+    "flavor": "探し物は、いつも思ったより近くにある。"
+  },
+  "SP-046": {
+    "id": "SP-046",
+    "name": "破符「威光の一閃」・I",
+    "type": "スペル",
+    "rank": "I",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "DESTROY_TRAP",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "コストを1使用し相手のカウンタースペルを1枚破壊する。",
+    "flavor": "隠れた罠ごと、まとめて吹き飛ばす。"
+  },
+  "SP-047": {
+    "id": "SP-047",
+    "name": "破符「威光の一閃」・II",
+    "type": "スペル",
+    "rank": "II",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "DESTROY_TRAP",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "コストを1使用し相手のカウンタースペルを1枚破壊する。",
+    "flavor": "隠れた罠ごと、まとめて吹き飛ばす。"
+  },
+  "SP-048": {
+    "id": "SP-048",
+    "name": "破符「威光の一閃」・III",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "DESTROY_TRAP",
+    "abilityType": "active",
+    "params": {
+      "n": 2
+    },
+    "text": "コストを2使用し相手のカウンタースペルを2枚破壊する。",
+    "flavor": "隠れた罠ごと、まとめて吹き飛ばす。"
+  },
+  "SP-049": {
+    "id": "SP-049",
+    "name": "破符「威光の一閃」・IV",
+    "type": "スペル",
+    "rank": "IV",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "DESTROY_TRAP",
+    "abilityType": "active",
+    "params": {
+      "n": 2
+    },
+    "text": "コストを2使用し相手のカウンタースペルを2枚破壊する。",
+    "flavor": "隠れた罠ごと、まとめて吹き飛ばす。"
+  },
+  "SP-050": {
+    "id": "SP-050",
+    "name": "破符「威光の一閃」・V",
+    "type": "スペル",
+    "rank": "V",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "DESTROY_TRAP",
+    "abilityType": "active",
+    "params": {
+      "n": 3
+    },
+    "text": "コストを3使用し相手のカウンタースペルを3枚破壊する。",
+    "flavor": "隠れた罠ごと、まとめて吹き飛ばす。"
+  },
+  "SP-051": {
+    "id": "SP-051",
+    "name": "掠符「本借用書」・I",
+    "type": "スペル",
+    "rank": "I",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "STEAL_CARD",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "コストを1使用し相手の手札をランダムに1枚奪い、自分の手札に加える。",
+    "flavor": "「借りていくぜ」——返す気は、あまりない。"
+  },
+  "SP-052": {
+    "id": "SP-052",
+    "name": "掠符「本借用書」・II",
+    "type": "スペル",
+    "rank": "II",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "STEAL_CARD",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "コストを1使用し相手の手札をランダムに1枚奪い、自分の手札に加える。",
+    "flavor": "「借りていくぜ」——返す気は、あまりない。"
+  },
+  "SP-053": {
+    "id": "SP-053",
+    "name": "掠符「本借用書」・III",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "STEAL_CARD",
+    "abilityType": "active",
+    "params": {
+      "n": 2
+    },
+    "text": "コストを2使用し相手の手札をランダムに2枚奪い、自分の手札に加える。",
+    "flavor": "「借りていくぜ」——返す気は、あまりない。"
+  },
+  "SP-054": {
+    "id": "SP-054",
+    "name": "掠符「本借用書」・IV",
+    "type": "スペル",
+    "rank": "IV",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "STEAL_CARD",
+    "abilityType": "active",
+    "params": {
+      "n": 2
+    },
+    "text": "コストを2使用し相手の手札をランダムに2枚奪い、自分の手札に加える。",
+    "flavor": "「借りていくぜ」——返す気は、あまりない。"
+  },
+  "SP-055": {
+    "id": "SP-055",
+    "name": "掠符「本借用書」・V",
+    "type": "スペル",
+    "rank": "V",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "STEAL_CARD",
+    "abilityType": "active",
+    "params": {
+      "n": 3
+    },
+    "text": "コストを3使用し相手の手札をランダムに3枚奪い、自分の手札に加える。",
+    "flavor": "「借りていくぜ」——返す気は、あまりない。"
+  },
+  "SP-056": {
+    "id": "SP-056",
+    "name": "紅符「小さな吸血」・I",
+    "type": "スペル",
+    "rank": "I",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "LIFESTEAL_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 1,
+      "healRatio": 0.5
+    },
+    "text": "コストを1使用し相手に1ダメージを与え、自分は0回復する。",
+    "flavor": "少しだけ分けてもらう。恨みっこなしで。"
+  },
+  "SP-057": {
+    "id": "SP-057",
+    "name": "紅符「小さな吸血」・II",
+    "type": "スペル",
+    "rank": "II",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "LIFESTEAL_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 2,
+      "healRatio": 0.5
+    },
+    "text": "コストを1使用し相手に2ダメージを与え、自分は1回復する。",
+    "flavor": "少しだけ分けてもらう。恨みっこなしで。"
+  },
+  "SP-058": {
+    "id": "SP-058",
+    "name": "紅符「小さな吸血」・III",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "LIFESTEAL_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 3,
+      "healRatio": 0.5
+    },
+    "text": "コストを2使用し相手に3ダメージを与え、自分は1回復する。",
+    "flavor": "少しだけ分けてもらう。恨みっこなしで。"
+  },
+  "SP-059": {
+    "id": "SP-059",
+    "name": "紅符「小さな吸血」・IV",
+    "type": "スペル",
+    "rank": "IV",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "LIFESTEAL_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 4,
+      "healRatio": 0.5
+    },
+    "text": "コストを2使用し相手に4ダメージを与え、自分は2回復する。",
+    "flavor": "少しだけ分けてもらう。恨みっこなしで。"
+  },
+  "SP-060": {
+    "id": "SP-060",
+    "name": "紅符「小さな吸血」・V",
+    "type": "スペル",
+    "rank": "V",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "LIFESTEAL_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 5,
+      "healRatio": 0.5
+    },
+    "text": "コストを3使用し相手に5ダメージを与え、自分は2回復する。",
+    "flavor": "少しだけ分けてもらう。恨みっこなしで。"
+  },
+  "SP-061": {
+    "id": "SP-061",
+    "name": "賭符「運命の五分五分」・I",
+    "type": "スペル",
+    "rank": "I",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "RANDOM_BURST",
+    "abilityType": "active",
+    "params": {
+      "min": 1,
+      "max": 3
+    },
+    "text": "コストを1使用し1〜3のランダムなダメージを相手に与える。",
+    "flavor": "当たるも外れるも、それはそれで弾幕の醍醐味。"
+  },
+  "SP-062": {
+    "id": "SP-062",
+    "name": "賭符「運命の五分五分」・II",
+    "type": "スペル",
+    "rank": "II",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "RANDOM_BURST",
+    "abilityType": "active",
+    "params": {
+      "min": 1,
+      "max": 4
+    },
+    "text": "コストを1使用し1〜4のランダムなダメージを相手に与える。",
+    "flavor": "当たるも外れるも、それはそれで弾幕の醍醐味。"
+  },
+  "SP-063": {
+    "id": "SP-063",
+    "name": "賭符「運命の五分五分」・III",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "RANDOM_BURST",
+    "abilityType": "active",
+    "params": {
+      "min": 2,
+      "max": 5
+    },
+    "text": "コストを2使用し2〜5のランダムなダメージを相手に与える。",
+    "flavor": "当たるも外れるも、それはそれで弾幕の醍醐味。"
+  },
+  "SP-064": {
+    "id": "SP-064",
+    "name": "賭符「運命の五分五分」・IV",
+    "type": "スペル",
+    "rank": "IV",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "RANDOM_BURST",
+    "abilityType": "active",
+    "params": {
+      "min": 2,
+      "max": 6
+    },
+    "text": "コストを2使用し2〜6のランダムなダメージを相手に与える。",
+    "flavor": "当たるも外れるも、それはそれで弾幕の醍醐味。"
+  },
+  "SP-065": {
+    "id": "SP-065",
+    "name": "賭符「運命の五分五分」・V",
+    "type": "スペル",
+    "rank": "V",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "RANDOM_BURST",
+    "abilityType": "active",
+    "params": {
+      "min": 3,
+      "max": 7
+    },
+    "text": "コストを3使用し3〜7のランダムなダメージを相手に与える。",
+    "flavor": "当たるも外れるも、それはそれで弾幕の醍醐味。"
+  },
+  "CS-001": {
+    "id": "CS-001",
+    "name": "予符「先読みの一手」・I",
+    "type": "カウンタースペル",
+    "rank": "I",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "DRAW_N",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "コストを1使用しカードを1枚ドローする。",
+    "flavor": "伏せておいた札は、めくる時を選ぶ。"
+  },
+  "CS-002": {
+    "id": "CS-002",
+    "name": "予符「先読みの一手」・II",
+    "type": "カウンタースペル",
+    "rank": "II",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "DRAW_N",
+    "abilityType": "active",
+    "params": {
+      "n": 2
+    },
+    "text": "コストを1使用しカードを2枚ドローする。",
+    "flavor": "伏せておいた札は、めくる時を選ぶ。"
+  },
+  "CS-003": {
+    "id": "CS-003",
+    "name": "予符「先読みの一手」・III",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "DRAW_N",
+    "abilityType": "active",
+    "params": {
+      "n": 3
+    },
+    "text": "コストを2使用しカードを3枚ドローする。",
+    "flavor": "伏せておいた札は、めくる時を選ぶ。"
+  },
+  "CS-004": {
+    "id": "CS-004",
+    "name": "予符「先読みの一手」・IV",
+    "type": "カウンタースペル",
+    "rank": "IV",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "DRAW_N",
+    "abilityType": "active",
+    "params": {
+      "n": 4
+    },
+    "text": "コストを2使用しカードを4枚ドローする。",
+    "flavor": "伏せておいた札は、めくる時を選ぶ。"
+  },
+  "CS-005": {
+    "id": "CS-005",
+    "name": "予符「先読みの一手」・V",
+    "type": "カウンタースペル",
+    "rank": "V",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "DRAW_N",
+    "abilityType": "active",
+    "params": {
+      "n": 5
+    },
+    "text": "コストを3使用しカードを5枚ドローする。",
+    "flavor": "伏せておいた札は、めくる時を選ぶ。"
+  },
+  "CS-006": {
+    "id": "CS-006",
+    "name": "護符「結界の盾」・I",
+    "type": "カウンタースペル",
+    "rank": "I",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "REDUCE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 1
+    },
+    "text": "次に受けるダメージを1軽減する。",
+    "flavor": "薄い結界でも、当たらなければどうということはない。"
+  },
+  "CS-007": {
+    "id": "CS-007",
+    "name": "護符「結界の盾」・II",
+    "type": "カウンタースペル",
+    "rank": "II",
+    "rarity": "N",
+    "cost": 1,
+    "effectId": "REDUCE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 2
+    },
+    "text": "次に受けるダメージを2軽減する。",
+    "flavor": "薄い結界でも、当たらなければどうということはない。"
+  },
+  "CS-008": {
+    "id": "CS-008",
+    "name": "護符「結界の盾」・III",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "REDUCE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "次に受けるダメージを3軽減する。",
+    "flavor": "薄い結界でも、当たらなければどうということはない。"
+  },
+  "CS-009": {
+    "id": "CS-009",
+    "name": "護符「結界の盾」・IV",
+    "type": "カウンタースペル",
+    "rank": "IV",
+    "rarity": "R",
+    "cost": 2,
+    "effectId": "REDUCE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "次に受けるダメージを4軽減する。",
+    "flavor": "薄い結界でも、当たらなければどうということはない。"
+  },
+  "CS-010": {
+    "id": "CS-010",
+    "name": "護符「結界の盾」・V",
+    "type": "カウンタースペル",
+    "rank": "V",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "REDUCE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 5
+    },
+    "text": "次に受けるダメージを5軽減する。",
+    "flavor": "薄い結界でも、当たらなければどうということはない。"
+  },
+  "CS-011": {
+    "id": "CS-011",
+    "name": "撃符「反撃の一閃」・I",
+    "type": "カウンタースペル",
+    "rank": "I",
+    "rarity": "N",
+    "cost": 1,
+    "trigger": "opponentAttacks",
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 1
+    },
+    "text": "相手の攻撃に反応し、1ダメージを与える。",
+    "flavor": "攻撃した側が、まさか反撃されるとは。"
+  },
+  "CS-012": {
+    "id": "CS-012",
+    "name": "撃符「反撃の一閃」・II",
+    "type": "カウンタースペル",
+    "rank": "II",
+    "rarity": "N",
+    "cost": 1,
+    "trigger": "opponentAttacks",
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 2
+    },
+    "text": "相手の攻撃に反応し、2ダメージを与える。",
+    "flavor": "攻撃した側が、まさか反撃されるとは。"
+  },
+  "CS-013": {
+    "id": "CS-013",
+    "name": "撃符「反撃の一閃」・III",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "R",
+    "cost": 2,
+    "trigger": "opponentAttacks",
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "相手の攻撃に反応し、3ダメージを与える。",
+    "flavor": "攻撃した側が、まさか反撃されるとは。"
+  },
+  "CS-014": {
+    "id": "CS-014",
+    "name": "撃符「反撃の一閃」・IV",
+    "type": "カウンタースペル",
+    "rank": "IV",
+    "rarity": "R",
+    "cost": 2,
+    "trigger": "opponentAttacks",
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "相手の攻撃に反応し、4ダメージを与える。",
+    "flavor": "攻撃した側が、まさか反撃されるとは。"
+  },
+  "CS-015": {
+    "id": "CS-015",
+    "name": "撃符「反撃の一閃」・V",
+    "type": "カウンタースペル",
+    "rank": "V",
+    "rarity": "SR",
+    "cost": 3,
+    "trigger": "opponentAttacks",
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 5
+    },
+    "text": "相手の攻撃に反応し、5ダメージを与える。",
+    "flavor": "攻撃した側が、まさか反撃されるとは。"
+  },
+  "CS-016": {
+    "id": "CS-016",
+    "name": "拒符「弾幕相殺」・I",
+    "type": "カウンタースペル",
+    "rank": "I",
+    "rarity": "N",
+    "cost": 1,
+    "trigger": "opponentActivatesMagic",
+    "effectId": "NEGATE_MAGIC",
+    "abilityType": "active",
+    "params": {
+      "maxCost": 1
+    },
+    "text": "相手がコスト1以下のスペルを発動する時、それを無効化する。",
+    "flavor": "弾幕と弾幕がぶつかれば、互いに消え合う。"
+  },
+  "CS-017": {
+    "id": "CS-017",
+    "name": "拒符「弾幕相殺」・II",
+    "type": "カウンタースペル",
+    "rank": "II",
+    "rarity": "N",
+    "cost": 1,
+    "trigger": "opponentActivatesMagic",
+    "effectId": "NEGATE_MAGIC",
+    "abilityType": "active",
+    "params": {
+      "maxCost": 1
+    },
+    "text": "相手がコスト1以下のスペルを発動する時、それを無効化する。",
+    "flavor": "弾幕と弾幕がぶつかれば、互いに消え合う。"
+  },
+  "CS-018": {
+    "id": "CS-018",
+    "name": "拒符「弾幕相殺」・III",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "R",
+    "cost": 2,
+    "trigger": "opponentActivatesMagic",
+    "effectId": "NEGATE_MAGIC",
+    "abilityType": "active",
+    "params": {
+      "maxCost": 2
+    },
+    "text": "相手がコスト2以下のスペルを発動する時、それを無効化する。",
+    "flavor": "弾幕と弾幕がぶつかれば、互いに消え合う。"
+  },
+  "CS-019": {
+    "id": "CS-019",
+    "name": "拒符「弾幕相殺」・IV",
+    "type": "カウンタースペル",
+    "rank": "IV",
+    "rarity": "R",
+    "cost": 2,
+    "trigger": "opponentActivatesMagic",
+    "effectId": "NEGATE_MAGIC",
+    "abilityType": "active",
+    "params": {
+      "maxCost": 2
+    },
+    "text": "相手がコスト2以下のスペルを発動する時、それを無効化する。",
+    "flavor": "弾幕と弾幕がぶつかれば、互いに消え合う。"
+  },
+  "CS-020": {
+    "id": "CS-020",
+    "name": "拒符「弾幕相殺」・V",
+    "type": "カウンタースペル",
+    "rank": "V",
+    "rarity": "SR",
+    "cost": 3,
+    "trigger": "opponentActivatesMagic",
+    "effectId": "NEGATE_MAGIC",
+    "abilityType": "active",
+    "params": {
+      "maxCost": 3
+    },
+    "text": "相手がコスト3以下のスペルを発動する時、それを無効化する。",
+    "flavor": "弾幕と弾幕がぶつかれば、互いに消え合う。"
+  },
+  "CS-021": {
+    "id": "CS-021",
+    "name": "断符「鎖の逆襲」・I",
+    "type": "カウンタースペル",
+    "rank": "I",
+    "rarity": "N",
+    "cost": 1,
+    "trigger": "opponentActivatesTrap",
+    "effectId": "NEGATE_TRAP",
+    "abilityType": "active",
+    "params": {
+      "maxCost": 1
+    },
+    "text": "相手がコスト1以下のカウンタースペルを発動する時、それを無効化する。",
+    "flavor": "罠を張るなら、罠を破る覚悟もいる。"
+  },
+  "CS-022": {
+    "id": "CS-022",
+    "name": "断符「鎖の逆襲」・II",
+    "type": "カウンタースペル",
+    "rank": "II",
+    "rarity": "N",
+    "cost": 1,
+    "trigger": "opponentActivatesTrap",
+    "effectId": "NEGATE_TRAP",
+    "abilityType": "active",
+    "params": {
+      "maxCost": 1
+    },
+    "text": "相手がコスト1以下のカウンタースペルを発動する時、それを無効化する。",
+    "flavor": "罠を張るなら、罠を破る覚悟もいる。"
+  },
+  "CS-023": {
+    "id": "CS-023",
+    "name": "断符「鎖の逆襲」・III",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "R",
+    "cost": 2,
+    "trigger": "opponentActivatesTrap",
+    "effectId": "NEGATE_TRAP",
+    "abilityType": "active",
+    "params": {
+      "maxCost": 2
+    },
+    "text": "相手がコスト2以下のカウンタースペルを発動する時、それを無効化する。",
+    "flavor": "罠を張るなら、罠を破る覚悟もいる。"
+  },
+  "CS-024": {
+    "id": "CS-024",
+    "name": "断符「鎖の逆襲」・IV",
+    "type": "カウンタースペル",
+    "rank": "IV",
+    "rarity": "R",
+    "cost": 2,
+    "trigger": "opponentActivatesTrap",
+    "effectId": "NEGATE_TRAP",
+    "abilityType": "active",
+    "params": {
+      "maxCost": 2
+    },
+    "text": "相手がコスト2以下のカウンタースペルを発動する時、それを無効化する。",
+    "flavor": "罠を張るなら、罠を破る覚悟もいる。"
+  },
+  "CS-025": {
+    "id": "CS-025",
+    "name": "断符「鎖の逆襲」・V",
+    "type": "カウンタースペル",
+    "rank": "V",
+    "rarity": "SR",
+    "cost": 3,
+    "trigger": "opponentActivatesTrap",
+    "effectId": "NEGATE_TRAP",
+    "abilityType": "active",
+    "params": {
+      "maxCost": 3
+    },
+    "text": "相手がコスト3以下のカウンタースペルを発動する時、それを無効化する。",
+    "flavor": "罠を張るなら、罠を破る覚悟もいる。"
+  },
+  "CS-026": {
+    "id": "CS-026",
+    "name": "幻符「霧の迷宮」・I",
+    "type": "カウンタースペル",
+    "rank": "I",
+    "rarity": "N",
+    "cost": 1,
+    "trigger": "opponentDraws",
+    "effectId": "DISCARD_OPPONENT",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "相手が追加ドローする時、代わりに手札を1枚捨てさせる。",
+    "flavor": "霧の中では、拾ったはずのものすら見失う。"
+  },
+  "CS-027": {
+    "id": "CS-027",
+    "name": "幻符「霧の迷宮」・II",
+    "type": "カウンタースペル",
+    "rank": "II",
+    "rarity": "N",
+    "cost": 1,
+    "trigger": "opponentDraws",
+    "effectId": "DISCARD_OPPONENT",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "相手が追加ドローする時、代わりに手札を1枚捨てさせる。",
+    "flavor": "霧の中では、拾ったはずのものすら見失う。"
+  },
+  "CS-028": {
+    "id": "CS-028",
+    "name": "幻符「霧の迷宮」・III",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "R",
+    "cost": 2,
+    "trigger": "opponentDraws",
+    "effectId": "DISCARD_OPPONENT",
+    "abilityType": "active",
+    "params": {
+      "n": 2
+    },
+    "text": "相手が追加ドローする時、代わりに手札を2枚捨てさせる。",
+    "flavor": "霧の中では、拾ったはずのものすら見失う。"
+  },
+  "CS-029": {
+    "id": "CS-029",
+    "name": "幻符「霧の迷宮」・IV",
+    "type": "カウンタースペル",
+    "rank": "IV",
+    "rarity": "R",
+    "cost": 2,
+    "trigger": "opponentDraws",
+    "effectId": "DISCARD_OPPONENT",
+    "abilityType": "active",
+    "params": {
+      "n": 2
+    },
+    "text": "相手が追加ドローする時、代わりに手札を2枚捨てさせる。",
+    "flavor": "霧の中では、拾ったはずのものすら見失う。"
+  },
+  "CS-030": {
+    "id": "CS-030",
+    "name": "幻符「霧の迷宮」・V",
+    "type": "カウンタースペル",
+    "rank": "V",
+    "rarity": "SR",
+    "cost": 3,
+    "trigger": "opponentDraws",
+    "effectId": "DISCARD_OPPONENT",
+    "abilityType": "active",
+    "params": {
+      "n": 3
+    },
+    "text": "相手が追加ドローする時、代わりに手札を3枚捨てさせる。",
+    "flavor": "霧の中では、拾ったはずのものすら見失う。"
+  },
+  "CS-031": {
+    "id": "CS-031",
+    "name": "治符「再生の温泉」・I",
+    "type": "カウンタースペル",
+    "rank": "I",
+    "rarity": "N",
+    "cost": 1,
+    "trigger": "selfTakesDamage",
+    "effectId": "HEAL",
+    "abilityType": "active",
+    "params": {
+      "amount": 1
+    },
+    "text": "自分がダメージを受けた時、HPを1回復する。",
+    "flavor": "傷ついた分だけ、しっかり浸かって癒える。"
+  },
+  "CS-032": {
+    "id": "CS-032",
+    "name": "治符「再生の温泉」・II",
+    "type": "カウンタースペル",
+    "rank": "II",
+    "rarity": "N",
+    "cost": 1,
+    "trigger": "selfTakesDamage",
+    "effectId": "HEAL",
+    "abilityType": "active",
+    "params": {
+      "amount": 2
+    },
+    "text": "自分がダメージを受けた時、HPを2回復する。",
+    "flavor": "傷ついた分だけ、しっかり浸かって癒える。"
+  },
+  "CS-033": {
+    "id": "CS-033",
+    "name": "治符「再生の温泉」・III",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "R",
+    "cost": 2,
+    "trigger": "selfTakesDamage",
+    "effectId": "HEAL",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "自分がダメージを受けた時、HPを3回復する。",
+    "flavor": "傷ついた分だけ、しっかり浸かって癒える。"
+  },
+  "CS-034": {
+    "id": "CS-034",
+    "name": "治符「再生の温泉」・IV",
+    "type": "カウンタースペル",
+    "rank": "IV",
+    "rarity": "R",
+    "cost": 2,
+    "trigger": "selfTakesDamage",
+    "effectId": "HEAL",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "自分がダメージを受けた時、HPを4回復する。",
+    "flavor": "傷ついた分だけ、しっかり浸かって癒える。"
+  },
+  "CS-035": {
+    "id": "CS-035",
+    "name": "治符「再生の温泉」・V",
+    "type": "カウンタースペル",
+    "rank": "V",
+    "rarity": "SR",
+    "cost": 3,
+    "trigger": "selfTakesDamage",
+    "effectId": "HEAL",
+    "abilityType": "active",
+    "params": {
+      "amount": 5
+    },
+    "text": "自分がダメージを受けた時、HPを5回復する。",
+    "flavor": "傷ついた分だけ、しっかり浸かって癒える。"
+  },
+  "CS-036": {
+    "id": "CS-036",
+    "name": "奪符「魂魄吸収」・I",
+    "type": "カウンタースペル",
+    "rank": "I",
+    "rarity": "N",
+    "cost": 1,
+    "trigger": "opponentUsesAbility",
+    "effectId": "OD_DRAIN",
+    "abilityType": "active",
+    "params": {
+      "amount": 1
+    },
+    "text": "相手がキャラクター能力を使う時、オドを1奪う。",
+    "flavor": "力を使おうとしたその瞬間を、そのまま頂く。"
+  },
+  "CS-037": {
+    "id": "CS-037",
+    "name": "奪符「魂魄吸収」・II",
+    "type": "カウンタースペル",
+    "rank": "II",
+    "rarity": "N",
+    "cost": 1,
+    "trigger": "opponentUsesAbility",
+    "effectId": "OD_DRAIN",
+    "abilityType": "active",
+    "params": {
+      "amount": 2
+    },
+    "text": "相手がキャラクター能力を使う時、オドを2奪う。",
+    "flavor": "力を使おうとしたその瞬間を、そのまま頂く。"
+  },
+  "CS-038": {
+    "id": "CS-038",
+    "name": "奪符「魂魄吸収」・III",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "R",
+    "cost": 2,
+    "trigger": "opponentUsesAbility",
+    "effectId": "OD_DRAIN",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "相手がキャラクター能力を使う時、オドを3奪う。",
+    "flavor": "力を使おうとしたその瞬間を、そのまま頂く。"
+  },
+  "CS-039": {
+    "id": "CS-039",
+    "name": "奪符「魂魄吸収」・IV",
+    "type": "カウンタースペル",
+    "rank": "IV",
+    "rarity": "R",
+    "cost": 2,
+    "trigger": "opponentUsesAbility",
+    "effectId": "OD_DRAIN",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "相手がキャラクター能力を使う時、オドを4奪う。",
+    "flavor": "力を使おうとしたその瞬間を、そのまま頂く。"
+  },
+  "CS-040": {
+    "id": "CS-040",
+    "name": "奪符「魂魄吸収」・V",
+    "type": "カウンタースペル",
+    "rank": "V",
+    "rarity": "SR",
+    "cost": 3,
+    "trigger": "opponentUsesAbility",
+    "effectId": "OD_DRAIN",
+    "abilityType": "active",
+    "params": {
+      "amount": 5
+    },
+    "text": "相手がキャラクター能力を使う時、オドを5奪う。",
+    "flavor": "力を使おうとしたその瞬間を、そのまま頂く。"
+  },
+  "CS-041": {
+    "id": "CS-041",
+    "name": "封符「沈黙の呪縛」・I",
+    "type": "カウンタースペル",
+    "rank": "I",
+    "rarity": "N",
+    "cost": 1,
+    "trigger": "opponentUsesAbility",
+    "effectId": "SEAL_ABILITY",
+    "abilityType": "active",
+    "params": {
+      "duration": 1
+    },
+    "text": "相手がキャラクター能力を使う時、その能力を1ターン封印する。",
+    "flavor": "声を封じられれば、どんな力も振るえない。"
+  },
+  "CS-042": {
+    "id": "CS-042",
+    "name": "封符「沈黙の呪縛」・II",
+    "type": "カウンタースペル",
+    "rank": "II",
+    "rarity": "N",
+    "cost": 1,
+    "trigger": "opponentUsesAbility",
+    "effectId": "SEAL_ABILITY",
+    "abilityType": "active",
+    "params": {
+      "duration": 2
+    },
+    "text": "相手がキャラクター能力を使う時、その能力を2ターン封印する。",
+    "flavor": "声を封じられれば、どんな力も振るえない。"
+  },
+  "CS-043": {
+    "id": "CS-043",
+    "name": "封符「沈黙の呪縛」・III",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "R",
+    "cost": 2,
+    "trigger": "opponentUsesAbility",
+    "effectId": "SEAL_ABILITY",
+    "abilityType": "active",
+    "params": {
+      "duration": 3
+    },
+    "text": "相手がキャラクター能力を使う時、その能力を3ターン封印する。",
+    "flavor": "声を封じられれば、どんな力も振るえない。"
+  },
+  "CS-044": {
+    "id": "CS-044",
+    "name": "封符「沈黙の呪縛」・IV",
+    "type": "カウンタースペル",
+    "rank": "IV",
+    "rarity": "R",
+    "cost": 2,
+    "trigger": "opponentUsesAbility",
+    "effectId": "SEAL_ABILITY",
+    "abilityType": "active",
+    "params": {
+      "duration": 4
+    },
+    "text": "相手がキャラクター能力を使う時、その能力を4ターン封印する。",
+    "flavor": "声を封じられれば、どんな力も振るえない。"
+  },
+  "CS-045": {
+    "id": "CS-045",
+    "name": "封符「沈黙の呪縛」・V",
+    "type": "カウンタースペル",
+    "rank": "V",
+    "rarity": "SR",
+    "cost": 3,
+    "trigger": "opponentUsesAbility",
+    "effectId": "SEAL_ABILITY",
+    "abilityType": "active",
+    "params": {
+      "duration": 5
+    },
+    "text": "相手がキャラクター能力を使う時、その能力を5ターン封印する。",
+    "flavor": "声を封じられれば、どんな力も振るえない。"
+  },
+  "CS-046": {
+    "id": "CS-046",
+    "name": "身代わり符「影武者の術」・I",
+    "type": "カウンタースペル",
+    "rank": "I",
+    "rarity": "N",
+    "cost": 1,
+    "trigger": "selfWouldBeDestroyed",
+    "effectId": "REFLECT_SHIELD",
+    "abilityType": "active",
+    "params": {
+      "uses": 1
+    },
+    "text": "自分が破壊効果の対象になる時、それを1回無効化する。",
+    "flavor": "本体はとうに、そこにはいない。"
+  },
+  "CS-047": {
+    "id": "CS-047",
+    "name": "身代わり符「影武者の術」・II",
+    "type": "カウンタースペル",
+    "rank": "II",
+    "rarity": "N",
+    "cost": 1,
+    "trigger": "selfWouldBeDestroyed",
+    "effectId": "REFLECT_SHIELD",
+    "abilityType": "active",
+    "params": {
+      "uses": 1
+    },
+    "text": "自分が破壊効果の対象になる時、それを1回無効化する。",
+    "flavor": "本体はとうに、そこにはいない。"
+  },
+  "CS-048": {
+    "id": "CS-048",
+    "name": "身代わり符「影武者の術」・III",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "R",
+    "cost": 2,
+    "trigger": "selfWouldBeDestroyed",
+    "effectId": "REFLECT_SHIELD",
+    "abilityType": "active",
+    "params": {
+      "uses": 1
+    },
+    "text": "自分が破壊効果の対象になる時、それを1回無効化する。",
+    "flavor": "本体はとうに、そこにはいない。"
+  },
+  "CS-049": {
+    "id": "CS-049",
+    "name": "身代わり符「影武者の術」・IV",
+    "type": "カウンタースペル",
+    "rank": "IV",
+    "rarity": "R",
+    "cost": 2,
+    "trigger": "selfWouldBeDestroyed",
+    "effectId": "REFLECT_SHIELD",
+    "abilityType": "active",
+    "params": {
+      "uses": 1
+    },
+    "text": "自分が破壊効果の対象になる時、それを1回無効化する。",
+    "flavor": "本体はとうに、そこにはいない。"
+  },
+  "CS-050": {
+    "id": "CS-050",
+    "name": "身代わり符「影武者の術」・V",
+    "type": "カウンタースペル",
+    "rank": "V",
+    "rarity": "SR",
+    "cost": 3,
+    "trigger": "selfWouldBeDestroyed",
+    "effectId": "REFLECT_SHIELD",
+    "abilityType": "active",
+    "params": {
+      "uses": 1
+    },
+    "text": "自分が破壊効果の対象になる時、それを1回無効化する。",
+    "flavor": "本体はとうに、そこにはいない。"
+  },
+  "CS-051": {
+    "id": "CS-051",
+    "name": "護符「魂の逆流」・I",
+    "type": "カウンタースペル",
+    "rank": "I",
+    "rarity": "N",
+    "cost": 1,
+    "trigger": "selfTakesDamage",
+    "effectId": "LIFESTEAL_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 1,
+      "healRatio": 0.5
+    },
+    "text": "自分がダメージを受けた時、相手に1ダメージを与え自分は0回復する。",
+    "flavor": "受けた痛みは、そのまま送り返す。"
+  },
+  "CS-052": {
+    "id": "CS-052",
+    "name": "護符「魂の逆流」・II",
+    "type": "カウンタースペル",
+    "rank": "II",
+    "rarity": "N",
+    "cost": 1,
+    "trigger": "selfTakesDamage",
+    "effectId": "LIFESTEAL_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 2,
+      "healRatio": 0.5
+    },
+    "text": "自分がダメージを受けた時、相手に2ダメージを与え自分は1回復する。",
+    "flavor": "受けた痛みは、そのまま送り返す。"
+  },
+  "CS-053": {
+    "id": "CS-053",
+    "name": "護符「魂の逆流」・III",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "R",
+    "cost": 2,
+    "trigger": "selfTakesDamage",
+    "effectId": "LIFESTEAL_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 3,
+      "healRatio": 0.5
+    },
+    "text": "自分がダメージを受けた時、相手に3ダメージを与え自分は1回復する。",
+    "flavor": "受けた痛みは、そのまま送り返す。"
+  },
+  "CS-054": {
+    "id": "CS-054",
+    "name": "護符「魂の逆流」・IV",
+    "type": "カウンタースペル",
+    "rank": "IV",
+    "rarity": "R",
+    "cost": 2,
+    "trigger": "selfTakesDamage",
+    "effectId": "LIFESTEAL_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 4,
+      "healRatio": 0.5
+    },
+    "text": "自分がダメージを受けた時、相手に4ダメージを与え自分は2回復する。",
+    "flavor": "受けた痛みは、そのまま送り返す。"
+  },
+  "CS-055": {
+    "id": "CS-055",
+    "name": "護符「魂の逆流」・V",
+    "type": "カウンタースペル",
+    "rank": "V",
+    "rarity": "SR",
+    "cost": 3,
+    "trigger": "selfTakesDamage",
+    "effectId": "LIFESTEAL_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 5,
+      "healRatio": 0.5
+    },
+    "text": "自分がダメージを受けた時、相手に5ダメージを与え自分は2回復する。",
+    "flavor": "受けた痛みは、そのまま送り返す。"
+  },
+  "AR101": {
+    "id": "AR101",
+    "name": "博麗神社の結界",
+    "type": "エリア",
+    "cost": null,
+    "rarity": "UR",
+    "recommendedCharacterId": "101",
+    "params": {
+      "maxOdBoost": 2
+    },
+    "passiveEffect": {
+      "effectId": "ABILITY_DISCOUNT_AURA",
+      "params": {
+        "amount": 1
+      }
+    },
+    "text": "【発動条件】使用可能コストが上限に達している時、それを全て消費して発動できる。\n【発動後】コストの上限が2増加する。\n【効果】自分の陣地に結界を張る。以後、自分のキャラクター能力の発動コストが1軽減される。",
+    "flavor": "ここは博麗の縄張り。多少の無茶は、通ることになっている。"
+  },
+  "AR102": {
+    "id": "AR102",
+    "name": "魔法の森",
+    "type": "エリア",
+    "cost": null,
+    "rarity": "UR",
+    "recommendedCharacterId": "102",
+    "params": {
+      "maxOdBoost": 3
+    },
+    "passiveEffect": {
+      "effectId": "DAMAGE_BOOST_AURA",
+      "params": {
+        "amount": 2
+      }
+    },
+    "text": "【発動条件】使用可能コストが上限に達している時、それを全て消費して発動できる。\n【発動後】コストの上限が3増加する。\n【効果】魔力の満ちる森を展開する。以後、自分が相手に与えるダメージが2増加する。",
+    "flavor": "森の奥に住むという魔法使いの噂は、あながち間違いでもない。"
+  },
+  "AR103": {
+    "id": "AR103",
+    "name": "宵闇の結界",
+    "type": "エリア",
+    "cost": null,
+    "rarity": "UR",
+    "recommendedCharacterId": "103",
+    "params": {
+      "maxOdBoost": 2
+    },
+    "passiveEffect": {
+      "effectId": "LIFESTEAL_AURA",
+      "params": {
+        "ratio": 0.3
+      }
+    },
+    "text": "【発動条件】使用可能コストが上限に達している時、それを全て消費して発動できる。\n【発動後】コストの上限が2増加する。\n【効果】闇を展開する。以後、自分が相手に与えたダメージの30%を自分のHPとして得る。",
+    "flavor": "光の届かない場所では、闇の方こそが主役になる。"
+  },
+  "AR104": {
+    "id": "AR104",
+    "name": "湖上の凍土",
+    "type": "エリア",
+    "cost": null,
+    "rarity": "UR",
+    "recommendedCharacterId": "104",
+    "params": {
+      "maxOdBoost": 2
+    },
+    "passiveEffect": {
+      "effectId": "RANDOM_BURST_BOOST_AURA",
+      "params": {
+        "amount": 2
+      }
+    },
+    "text": "【発動条件】使用可能コストが上限に達している時、それを全て消費して発動できる。\n【発動後】コストの上限が2増加する。\n【効果】湖を凍らせ戦場にする。以後、乱数ダメージ効果の上限値が2増加する。",
+    "flavor": "全部凍らせちゃえば、当たるも外れるも私の勝ち。"
+  },
+  "AR105": {
+    "id": "AR105",
+    "name": "紅魔館の門",
+    "type": "エリア",
+    "cost": null,
+    "rarity": "UR",
+    "recommendedCharacterId": "105",
+    "params": {
+      "maxOdBoost": 2
+    },
+    "passiveEffect": {
+      "effectId": "FREE_TRAP_COST",
+      "params": {
+        "maxRank": 5
+      }
+    },
+    "text": "【発動条件】使用可能コストが上限に達している時、それを全て消費して発動できる。\n【発動後】コストの上限が2増加する。\n【効果】門番として館の入り口を固める。以後、ランクを問わず自分のカウンタースペルの発動コストを消費しない。",
+    "flavor": "この門を通りたければ、まず私を倒してから。"
+  },
+  "AR106": {
+    "id": "AR106",
+    "name": "大図書館",
+    "type": "エリア",
+    "cost": null,
+    "rarity": "UR",
+    "recommendedCharacterId": "106",
+    "params": {
+      "maxOdBoost": 3
+    },
+    "passiveEffect": {
+      "effectId": "DISCOUNT_SPELL_COST",
+      "params": {
+        "maxRank": 5,
+        "discount": 1
+      }
+    },
+    "text": "【発動条件】使用可能コストが上限に達している時、それを全て消費して発動できる。\n【発動後】コストの上限が3増加する。\n【効果】動かない大図書館を展開する。以後、ランクを問わず自分のスペルの発動コストが1軽減される。",
+    "flavor": "知りたいことは大抵、この中に既に書いてある。"
+  },
+  "AR107": {
+    "id": "AR107",
+    "name": "本の山",
+    "type": "エリア",
+    "cost": null,
+    "rarity": "UR",
+    "recommendedCharacterId": "107",
+    "params": {
+      "maxOdBoost": 2
+    },
+    "passiveEffect": {
+      "effectId": "GRAVEYARD_RECOVERY_AURA",
+      "params": {
+        "amount": 1
+      }
+    },
+    "text": "【発動条件】使用可能コストが上限に達している時、それを全て消費して発動できる。\n【発動後】コストの上限が2増加する。\n【効果】運びかけの本の山を築く。以後、自分のターン開始時に墓地からスペルを1枚ランダムに回収する。",
+    "flavor": "働き者の証。積んである本は、ちゃんと後で片付ける。"
+  },
+  "AR108": {
+    "id": "AR108",
+    "name": "時計仕掛けの庭園",
+    "type": "エリア",
+    "cost": null,
+    "rarity": "UR",
+    "recommendedCharacterId": "108",
+    "params": {
+      "maxOdBoost": 2
+    },
+    "passiveEffect": {
+      "effectId": "EXTRA_DRAW_AURA",
+      "params": {
+        "amount": 1
+      }
+    },
+    "text": "【発動条件】使用可能コストが上限に達している時、それを全て消費して発動できる。\n【発動後】コストの上限が2増加する。\n【効果】屋敷の庭に時計仕掛けの結界を張る。以後、自分のターン開始時のドロー枚数が1枚増加する。",
+    "flavor": "時間はいくらでも作れる。誰も気づかないうちに。"
+  },
+  "AR109": {
+    "id": "AR109",
+    "name": "紅い霧",
+    "type": "エリア",
+    "cost": null,
+    "rarity": "UR",
+    "recommendedCharacterId": "109",
+    "params": {
+      "maxOdBoost": 2
+    },
+    "passiveEffect": {
+      "effectId": "LIFESTEAL_AURA",
+      "params": {
+        "ratio": 0.5
+      }
+    },
+    "text": "【発動条件】使用可能コストが上限に達している時、それを全て消費して発動できる。\n【発動後】コストの上限が2増加する。\n【効果】紅い霧で辺りを満たす。以後、自分が相手に与えたダメージの50%を自分のHPとして得る。",
+    "flavor": "この霧の中では、誰も真祖には逆らえない。"
+  },
+  "AR110": {
+    "id": "AR110",
+    "name": "地下室の開放",
+    "type": "エリア",
+    "cost": null,
+    "rarity": "UR",
+    "recommendedCharacterId": "110",
+    "params": {
+      "maxOdBoost": 4
+    },
+    "passiveEffect": {
+      "effectId": "DAMAGE_BOOST_AURA",
+      "params": {
+        "amount": 3
+      }
+    },
+    "text": "【発動条件】使用可能コストが上限に達している時、それを全て消費して発動できる。\n【発動後】コストの上限が4増加する。\n【効果】486年分閉じ込められていた力を解き放つ。以後、自分が相手に与えるダメージが3増加する。",
+    "flavor": "閉じ込めていたのは、優しさだったのかもしれない。もう遅いけれど。"
+  },
+  "SC101-01": {
+    "id": "SC101-01",
+    "name": "霊符「妖怪バスター」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "コストを2使用し、相手に3ダメージを与える。",
+    "flavor": "とりあえず祓っておけば大体解決する。",
+    "conceptCharacterId": "101"
+  },
+  "SC101-02": {
+    "id": "SC101-02",
+    "name": "神霊符「客人の目」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "REVEAL_TRAP",
+    "abilityType": "active",
+    "params": {
+      "n": 2
+    },
+    "text": "コストを2使用し、相手のカウンタースペルを2枚公開する。",
+    "flavor": "隠しごとは、大抵お見通しだ。",
+    "conceptCharacterId": "101"
+  },
+  "SC101-03": {
+    "id": "SC101-03",
+    "name": "破魔の矢",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "DESTROY_TRAP",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "コストを2使用し、相手のカウンタースペルを1枚破壊する。",
+    "flavor": "面倒な罠は、さっさと片付けるに限る。",
+    "conceptCharacterId": "101"
+  },
+  "SC101-04": {
+    "id": "SC101-04",
+    "name": "珠符「二重の陰陽玉」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "コストを3使用し、相手に4ダメージを与える。",
+    "flavor": "投げて、浮かべて、もう一度投げる。",
+    "conceptCharacterId": "101"
+  },
+  "SC101-05": {
+    "id": "SC101-05",
+    "name": "神符「産霊の甦り」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "HEAL",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "コストを2使用し、HPを4回復する。",
+    "flavor": "神々の力を借りれば、傷も塞がる。",
+    "conceptCharacterId": "101"
+  },
+  "SC101-06": {
+    "id": "SC101-06",
+    "name": "お札「乱れ吹き」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "DISCARD_OPPONENT",
+    "abilityType": "active",
+    "params": {
+      "n": 2
+    },
+    "text": "コストを2使用し、相手の手札を2枚捨てさせる。",
+    "flavor": "余計なものは、風に乗せて捨ててしまえ。",
+    "conceptCharacterId": "101"
+  },
+  "SC101-07": {
+    "id": "SC101-07",
+    "name": "結界「なんとかする程度の力」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "REDUCE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "コストを1使用し、受けるダメージを3軽減する。",
+    "flavor": "多少のことは、なんとかなる。",
+    "conceptCharacterId": "101"
+  },
+  "SC101-08": {
+    "id": "SC101-08",
+    "name": "陰陽玉「明鏡」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "REFLECT_SHIELD",
+    "abilityType": "active",
+    "params": {
+      "uses": 1
+    },
+    "text": "コストを2使用し、破壊効果を1回無効化する。",
+    "flavor": "跳ね返すのも、巫女の仕事のうち。",
+    "conceptCharacterId": "101"
+  },
+  "SC101-09": {
+    "id": "SC101-09",
+    "name": "お祓い棒「一掃」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "DRAW_N",
+    "abilityType": "active",
+    "params": {
+      "n": 2
+    },
+    "text": "コストを1使用し、カードを2枚ドローする。",
+    "flavor": "振るえば、不要な気も必要な手も整理される。",
+    "conceptCharacterId": "101"
+  },
+  "SC101-10": {
+    "id": "SC101-10",
+    "name": "夢想「境界を渡る者」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 4,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 6
+    },
+    "text": "コストを4使用し、相手に6ダメージを与える。",
+    "flavor": "幻想と現実の境目で、勝負をつける。",
+    "conceptCharacterId": "101"
+  },
+  "SC102-01": {
+    "id": "SC102-01",
+    "name": "魔砲「弾幕、まとめて頂き」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "コストを2使用し、相手に4ダメージを与える。",
+    "flavor": "面倒だから、まとめて撃つ。",
+    "conceptCharacterId": "102"
+  },
+  "SC102-02": {
+    "id": "SC102-02",
+    "name": "星屑「コメット」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 2
+    },
+    "text": "コストを1使用し、相手に2ダメージを与える。",
+    "flavor": "小さいけど、当たれば効く。",
+    "conceptCharacterId": "102"
+  },
+  "SC102-03": {
+    "id": "SC102-03",
+    "name": "八卦炉「魔力全開」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "OD_BOOST",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "コストを1使用し、オドを4回復する。",
+    "flavor": "溜め込むのは、次の一撃のため。",
+    "conceptCharacterId": "102"
+  },
+  "SC102-04": {
+    "id": "SC102-04",
+    "name": "魔導書「ページを捲る」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "DRAW_N",
+    "abilityType": "active",
+    "params": {
+      "n": 2
+    },
+    "text": "コストを2使用し、カードを2枚ドローする。",
+    "flavor": "借りた本にも、まだ使い道はある。",
+    "conceptCharacterId": "102"
+  },
+  "SC102-05": {
+    "id": "SC102-05",
+    "name": "強奪「戦利品確保」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "STEAL_CARD",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "コストを3使用し、相手の手札をランダムに1枚奪い、自分の手札に加える。",
+    "flavor": "「借りていくぜ」――返す気はあまりない。",
+    "conceptCharacterId": "102"
+  },
+  "SC102-06": {
+    "id": "SC102-06",
+    "name": "星符「メテオニックシャワー」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "RANDOM_BURST",
+    "abilityType": "active",
+    "params": {
+      "min": 2,
+      "max": 7
+    },
+    "text": "コストを3使用し、2〜7のランダムなダメージを相手に与える。",
+    "flavor": "降り注ぐ星屑は、当たり外れも味のうち。",
+    "conceptCharacterId": "102"
+  },
+  "SC102-07": {
+    "id": "SC102-07",
+    "name": "魔力「マナ暴走」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 4,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 5
+    },
+    "text": "コストを4使用し、相手に5ダメージを与える。",
+    "flavor": "溜めすぎた魔力は、もう抑えが効かない。",
+    "conceptCharacterId": "102"
+  },
+  "SC102-08": {
+    "id": "SC102-08",
+    "name": "箒「疾風の一撃」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 2
+    },
+    "text": "コストを1使用し、相手に2ダメージを与える。",
+    "flavor": "飛び道具にもなる、頼れる相棒。",
+    "conceptCharacterId": "102"
+  },
+  "SC102-09": {
+    "id": "SC102-09",
+    "name": "恋符「マスタースパーク（小）」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "PIERCE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "コストを3使用し、相手に3ダメージを与える（軽減・反射を貫通する）。",
+    "flavor": "本気の一歩手前でも、これくらいは出せる。",
+    "conceptCharacterId": "102"
+  },
+  "SC102-10": {
+    "id": "SC102-10",
+    "name": "魔砲「マスタースパーク・全開」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 5,
+    "effectId": "PIERCE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 7
+    },
+    "text": "コストを5使用し、相手に7ダメージを与える（軽減・反射を貫通する）。",
+    "flavor": "星に届けと、ありったけの魔力を込めて。",
+    "conceptCharacterId": "102"
+  },
+  "SC103-01": {
+    "id": "SC103-01",
+    "name": "闇符「宵闇にとける」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "DISCARD_OPPONENT",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "コストを2使用し、相手の手札を1枚捨てさせる。",
+    "flavor": "気づいた時には、もう遅い。",
+    "conceptCharacterId": "103"
+  },
+  "SC103-02": {
+    "id": "SC103-02",
+    "name": "夜「見えない牙」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "コストを2使用し、相手に3ダメージを与える。",
+    "flavor": "見えないものほど、避けようがない。",
+    "conceptCharacterId": "103"
+  },
+  "SC103-03": {
+    "id": "SC103-03",
+    "name": "暗闇「もう一口」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "LIFESTEAL_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 3,
+      "healRatio": 0.5
+    },
+    "text": "コストを2使用し、相手に3ダメージを与え、自分は1回復する。",
+    "flavor": "少しだけ、分けてもらう。",
+    "conceptCharacterId": "103"
+  },
+  "SC103-04": {
+    "id": "SC103-04",
+    "name": "迷いの霧",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "DISCARD_OPPONENT",
+    "abilityType": "active",
+    "params": {
+      "n": 2
+    },
+    "text": "コストを3使用し、相手の手札を2枚捨てさせる。",
+    "flavor": "森の奥で迷ったら最後、戻れない。",
+    "conceptCharacterId": "103"
+  },
+  "SC103-05": {
+    "id": "SC103-05",
+    "name": "闇夜「正体不明」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "SEAL_TRAP",
+    "abilityType": "active",
+    "params": {
+      "duration": 2
+    },
+    "text": "コストを2使用し、相手のカウンタースペルを2ターン封印する。",
+    "flavor": "闇に紛れれば、仕掛けも見えなくなる。",
+    "conceptCharacterId": "103"
+  },
+  "SC103-06": {
+    "id": "SC103-06",
+    "name": "宵闇「腹ごしらえ」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "LIFESTEAL_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 5,
+      "healRatio": 0.6
+    },
+    "text": "コストを3使用し、相手に5ダメージを与え、自分は3回復する。",
+    "flavor": "少しお腹が空いていただけ。",
+    "conceptCharacterId": "103"
+  },
+  "SC103-07": {
+    "id": "SC103-07",
+    "name": "人恋しい夜",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "DRAW_N",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "コストを1使用し、カードを1枚ドローする。",
+    "flavor": "誰かに構ってほしい夜も、たまにはある。",
+    "conceptCharacterId": "103"
+  },
+  "SC103-08": {
+    "id": "SC103-08",
+    "name": "暗黒「デーモンズディスコード」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 5
+    },
+    "text": "コストを3使用し、相手に5ダメージを与える。",
+    "flavor": "闇そのものが牙を剥く。",
+    "conceptCharacterId": "103"
+  },
+  "SC103-09": {
+    "id": "SC103-09",
+    "name": "闇に潜む",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 0,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 1
+    },
+    "text": "コストを0使用し、相手に1ダメージを与える。",
+    "flavor": "気配だけ、そっと残していく。",
+    "conceptCharacterId": "103"
+  },
+  "SC103-10": {
+    "id": "SC103-10",
+    "name": "夜「全部平らげる」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 4,
+    "effectId": "LIFESTEAL_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 7,
+      "healRatio": 0.7
+    },
+    "text": "コストを4使用し、相手に7ダメージを与え、自分は4回復する。",
+    "flavor": "今夜は、少しお腹が空いている。",
+    "conceptCharacterId": "103"
+  },
+  "SC104-01": {
+    "id": "SC104-01",
+    "name": "冷気「アイスチャージ」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 0,
+    "effectId": "OD_BOOST",
+    "abilityType": "active",
+    "params": {
+      "amount": 2
+    },
+    "text": "コストを0使用し、オドを2回復する。",
+    "flavor": "冷やしておけば、そのうち使い道がある。",
+    "conceptCharacterId": "104"
+  },
+  "SC104-02": {
+    "id": "SC104-02",
+    "name": "氷符「アイシクルフォール」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "コストを2使用し、相手に3ダメージを与える。",
+    "flavor": "頭上からの奇襲は、いつも効果的。",
+    "conceptCharacterId": "104"
+  },
+  "SC104-03": {
+    "id": "SC104-03",
+    "name": "凍結「フリーズ」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "SEAL_ABILITY",
+    "abilityType": "active",
+    "params": {
+      "duration": 1
+    },
+    "text": "コストを2使用し、相手のキャラクター能力を1ターン封印する。",
+    "flavor": "動きを止めれば、私の勝ち。",
+    "conceptCharacterId": "104"
+  },
+  "SC104-04": {
+    "id": "SC104-04",
+    "name": "冷符「ダイヤモンドブリザード」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "RANDOM_BURST",
+    "abilityType": "active",
+    "params": {
+      "min": 1,
+      "max": 6
+    },
+    "text": "コストを2使用し、1〜6のランダムなダメージを相手に与える。",
+    "flavor": "当たれば痛い、避けても寒い。",
+    "conceptCharacterId": "104"
+  },
+  "SC104-05": {
+    "id": "SC104-05",
+    "name": "私は最強",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "RANDOM_BURST",
+    "abilityType": "active",
+    "params": {
+      "min": 2,
+      "max": 8
+    },
+    "text": "コストを3使用し、2〜8のランダムなダメージを相手に与える。",
+    "flavor": "口に出せば出すほど、なぜか強くなる気がする。",
+    "conceptCharacterId": "104"
+  },
+  "SC104-06": {
+    "id": "SC104-06",
+    "name": "氷結「絶対零度」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "SEAL_TRAP",
+    "abilityType": "active",
+    "params": {
+      "duration": 2
+    },
+    "text": "コストを2使用し、相手のカウンタースペルを2ターン封印する。",
+    "flavor": "何もかも凍らせて、無かったことにする。",
+    "conceptCharacterId": "104"
+  },
+  "SC104-07": {
+    "id": "SC104-07",
+    "name": "妖精のいたずら",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "DISCARD_OPPONENT",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "コストを1使用し、相手の手札を1枚捨てさせる。",
+    "flavor": "ちょっとしたイタズラのつもり。",
+    "conceptCharacterId": "104"
+  },
+  "SC104-08": {
+    "id": "SC104-08",
+    "name": "大氷柱「叩き割る」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "コストを3使用し、相手に4ダメージを与える。",
+    "flavor": "自慢の一本を、思いきり振り下ろす。",
+    "conceptCharacterId": "104"
+  },
+  "SC104-09": {
+    "id": "SC104-09",
+    "name": "完全「フリーズ」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "REDUCE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 5
+    },
+    "text": "コストを2使用し、受けるダメージを5軽減する。",
+    "flavor": "凍らせておけば、傷もつかない。",
+    "conceptCharacterId": "104"
+  },
+  "SC104-10": {
+    "id": "SC104-10",
+    "name": "⑨「パーフェクトフリーズ」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 4,
+    "effectId": "RANDOM_BURST",
+    "abilityType": "active",
+    "params": {
+      "min": 3,
+      "max": 10
+    },
+    "text": "コストを4使用し、3〜10のランダムなダメージを相手に与える。",
+    "flavor": "9割9分は運任せ、残り1分に全てを賭ける。",
+    "conceptCharacterId": "104"
+  },
+  "SC105-01": {
+    "id": "SC105-01",
+    "name": "拳法「ノックアウト」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "コストを2使用し、相手に3ダメージを与える。",
+    "flavor": "一撃で決めるのが、拳法家の美学。",
+    "conceptCharacterId": "105"
+  },
+  "SC105-02": {
+    "id": "SC105-02",
+    "name": "気功「掌打」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "コストを3使用し、相手に4ダメージを与える。",
+    "flavor": "気を練って、一気に放つ。",
+    "conceptCharacterId": "105"
+  },
+  "SC105-03": {
+    "id": "SC105-03",
+    "name": "構え「見切り」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "REDUCE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "コストを1使用し、受けるダメージを4軽減する。",
+    "flavor": "見てから避ける。門番の基本。",
+    "conceptCharacterId": "105"
+  },
+  "SC105-04": {
+    "id": "SC105-04",
+    "name": "中国拳法「連撃」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 2
+    },
+    "text": "コストを1使用し、相手に2ダメージを与える。",
+    "flavor": "一発では終わらない。",
+    "conceptCharacterId": "105"
+  },
+  "SC105-05": {
+    "id": "SC105-05",
+    "name": "太陽の下で",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "HEAL",
+    "abilityType": "active",
+    "params": {
+      "amount": 5
+    },
+    "text": "コストを2使用し、HPを5回復する。",
+    "flavor": "日向でひと眠りすれば、大抵の疲れは取れる。",
+    "conceptCharacterId": "105"
+  },
+  "SC105-06": {
+    "id": "SC105-06",
+    "name": "門番の意地",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "REFLECT_SHIELD",
+    "abilityType": "active",
+    "params": {
+      "uses": 1
+    },
+    "text": "コストを2使用し、破壊効果を1回無効化する。",
+    "flavor": "通したくないものは、通さない。",
+    "conceptCharacterId": "105"
+  },
+  "SC105-07": {
+    "id": "SC105-07",
+    "name": "紅色の脚「回し蹴り」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 5
+    },
+    "text": "コストを3使用し、相手に5ダメージを与える。",
+    "flavor": "見た目以上に、この脚は速い。",
+    "conceptCharacterId": "105"
+  },
+  "SC105-08": {
+    "id": "SC105-08",
+    "name": "護身「鉄壁」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "REDUCE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 6
+    },
+    "text": "コストを2使用し、受けるダメージを6軽減する。",
+    "flavor": "打たれ強さには、それなりの自信がある。",
+    "conceptCharacterId": "105"
+  },
+  "SC105-09": {
+    "id": "SC105-09",
+    "name": "気合注入",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "OD_BOOST",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "コストを1使用し、オドを3回復する。",
+    "flavor": "気合を入れ直せば、まだまだいける。",
+    "conceptCharacterId": "105"
+  },
+  "SC105-10": {
+    "id": "SC105-10",
+    "name": "満月拳「クリムゾンレインボー」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 4,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 7
+    },
+    "text": "コストを4使用し、相手に7ダメージを与える。",
+    "flavor": "門番の本気、見せてあげる。",
+    "conceptCharacterId": "105"
+  },
+  "SC106-01": {
+    "id": "SC106-01",
+    "name": "火の元素「ファイア」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "コストを2使用し、相手に3ダメージを与える。",
+    "flavor": "五行の基本、まずは火から。",
+    "conceptCharacterId": "106"
+  },
+  "SC106-02": {
+    "id": "SC106-02",
+    "name": "水の元素「アクア」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "HEAL",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "コストを2使用し、HPを4回復する。",
+    "flavor": "癒しの力も、五行のうち。",
+    "conceptCharacterId": "106"
+  },
+  "SC106-03": {
+    "id": "SC106-03",
+    "name": "風の元素「ウィンド」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "DRAW_N",
+    "abilityType": "active",
+    "params": {
+      "n": 2
+    },
+    "text": "コストを2使用し、カードを2枚ドローする。",
+    "flavor": "風に乗せて、必要な知識を運ぶ。",
+    "conceptCharacterId": "106"
+  },
+  "SC106-04": {
+    "id": "SC106-04",
+    "name": "土の元素「アース」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "REDUCE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "コストを2使用し、受けるダメージを4軽減する。",
+    "flavor": "揺るがない、大地のような守り。",
+    "conceptCharacterId": "106"
+  },
+  "SC106-05": {
+    "id": "SC106-05",
+    "name": "金の元素「メタル」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "REFLECT_SHIELD",
+    "abilityType": "active",
+    "params": {
+      "uses": 1
+    },
+    "text": "コストを2使用し、破壊効果を1回無効化する。",
+    "flavor": "硬さでは、誰にも負けない。",
+    "conceptCharacterId": "106"
+  },
+  "SC106-06": {
+    "id": "SC106-06",
+    "name": "図書館「該当ページ」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "FETCH_FROM_DECK",
+    "abilityType": "active",
+    "params": {
+      "n": 1,
+      "types": [
+        "スペル"
+      ]
+    },
+    "text": "コストを2使用し、山札からスペルを1枚まで手札に加える。",
+    "flavor": "探し物は、大抵この中にある。",
+    "conceptCharacterId": "106"
+  },
+  "SC106-07": {
+    "id": "SC106-07",
+    "name": "賢者の知識",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "FETCH_FROM_DECK",
+    "abilityType": "active",
+    "params": {
+      "n": 1,
+      "types": [
+        "カウンタースペル"
+      ]
+    },
+    "text": "コストを2使用し、山札からカウンタースペルを1枚まで手札に加える。",
+    "flavor": "対策なら、とうに用意してある。",
+    "conceptCharacterId": "106"
+  },
+  "SC106-08": {
+    "id": "SC106-08",
+    "name": "五行「ロイヤルフレア」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 5
+    },
+    "text": "コストを3使用し、相手に5ダメージを与える。",
+    "flavor": "五つの力を束ねれば、これほどの威力になる。",
+    "conceptCharacterId": "106"
+  },
+  "SC106-09": {
+    "id": "SC106-09",
+    "name": "深遠なる書庫",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "DRAW_N",
+    "abilityType": "active",
+    "params": {
+      "n": 3
+    },
+    "text": "コストを3使用し、カードを3枚ドローする。",
+    "flavor": "動かずとも、知識だけは無尽蔵にある。",
+    "conceptCharacterId": "106"
+  },
+  "SC106-10": {
+    "id": "SC106-10",
+    "name": "元素統合「エレメンタルハーヴェスト」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 4,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 7
+    },
+    "text": "コストを4使用し、相手に7ダメージを与える。",
+    "flavor": "五行、全ての力を一点に収束させる。",
+    "conceptCharacterId": "106"
+  },
+  "SC107-01": {
+    "id": "SC107-01",
+    "name": "使い魔の献身",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "HEAL",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "コストを1使用し、HPを3回復する。",
+    "flavor": "主のためなら、これくらい当然。",
+    "conceptCharacterId": "107"
+  },
+  "SC107-02": {
+    "id": "SC107-02",
+    "name": "本の運搬",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "DRAW_N",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "コストを1使用し、カードを1枚ドローする。",
+    "flavor": "重い本も、羽ばたけば苦にならない。",
+    "conceptCharacterId": "107"
+  },
+  "SC107-03": {
+    "id": "SC107-03",
+    "name": "忠実な羽ばたき",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 0,
+    "effectId": "OD_BOOST",
+    "abilityType": "active",
+    "params": {
+      "amount": 2
+    },
+    "text": "コストを0使用し、オドを2回復する。",
+    "flavor": "働き者の証。",
+    "conceptCharacterId": "107"
+  },
+  "SC107-04": {
+    "id": "SC107-04",
+    "name": "主のために",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "DISCARD_OPPONENT",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "コストを2使用し、相手の手札を1枚捨てさせる。",
+    "flavor": "邪魔者は、主の前から取り除く。",
+    "conceptCharacterId": "107"
+  },
+  "SC107-05": {
+    "id": "SC107-05",
+    "name": "蔵書整理",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "FETCH_FROM_DECK",
+    "abilityType": "active",
+    "params": {
+      "n": 1,
+      "types": [
+        "スペル"
+      ]
+    },
+    "text": "コストを2使用し、山札からスペルを1枚まで手札に加える。",
+    "flavor": "どこに何があるかは、全部把握している。",
+    "conceptCharacterId": "107"
+  },
+  "SC107-06": {
+    "id": "SC107-06",
+    "name": "小さな一撃",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 2
+    },
+    "text": "コストを1使用し、相手に2ダメージを与える。",
+    "flavor": "見た目より、やる時はやる。",
+    "conceptCharacterId": "107"
+  },
+  "SC107-07": {
+    "id": "SC107-07",
+    "name": "忠誠の証",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "HEAL",
+    "abilityType": "active",
+    "params": {
+      "amount": 5
+    },
+    "text": "コストを2使用し、HPを5回復する。",
+    "flavor": "主に恩返しできることが、何よりの喜び。",
+    "conceptCharacterId": "107"
+  },
+  "SC107-08": {
+    "id": "SC107-08",
+    "name": "献身的な働き",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "OD_BOOST",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "コストを1使用し、オドを4回復する。",
+    "flavor": "休む間もなく、今日も本を運ぶ。",
+    "conceptCharacterId": "107"
+  },
+  "SC107-09": {
+    "id": "SC107-09",
+    "name": "本の山「崩落」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "コストを2使用し、相手に4ダメージを与える。",
+    "flavor": "積みすぎた本が、思わぬ凶器になる。",
+    "conceptCharacterId": "107"
+  },
+  "SC107-10": {
+    "id": "SC107-10",
+    "name": "使い魔、全力を尽くす",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "DRAW_N",
+    "abilityType": "active",
+    "params": {
+      "n": 3
+    },
+    "text": "コストを3使用し、カードを3枚ドローする。",
+    "flavor": "主のために、今日も全力を尽くす。",
+    "conceptCharacterId": "107"
+  },
+  "SC108-01": {
+    "id": "SC108-01",
+    "name": "ナイフ投げ",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "コストを2使用し、相手に3ダメージを与える。",
+    "flavor": "狙った場所に、必ず届く。",
+    "conceptCharacterId": "108"
+  },
+  "SC108-02": {
+    "id": "SC108-02",
+    "name": "パーフェクトメイド",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "DRAW_N",
+    "abilityType": "active",
+    "params": {
+      "n": 2
+    },
+    "text": "コストを2使用し、カードを2枚ドローする。",
+    "flavor": "完璧な仕事には、それなりの準備がいる。",
+    "conceptCharacterId": "108"
+  },
+  "SC108-03": {
+    "id": "SC108-03",
+    "name": "完璧な給仕",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "HEAL",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "コストを2使用し、HPを4回復する。",
+    "flavor": "お嬢様のために磨いた、細やかな気配り。",
+    "conceptCharacterId": "108"
+  },
+  "SC108-04": {
+    "id": "SC108-04",
+    "name": "銀のナイフ「連続突き」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 5
+    },
+    "text": "コストを3使用し、相手に5ダメージを与える。",
+    "flavor": "一投目より、二投目の方が速い。",
+    "conceptCharacterId": "108"
+  },
+  "SC108-05": {
+    "id": "SC108-05",
+    "name": "懐中時計「加速」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "OD_BOOST",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "コストを1使用し、オドを3回復する。",
+    "flavor": "止まったままの針にも、まだ意味がある。",
+    "conceptCharacterId": "108"
+  },
+  "SC108-06": {
+    "id": "SC108-06",
+    "name": "時の狭間",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "SEAL_TRAP",
+    "abilityType": "active",
+    "params": {
+      "duration": 2
+    },
+    "text": "コストを2使用し、相手のカウンタースペルを2ターン封印する。",
+    "flavor": "その一瞬だけ、時間を借りる。",
+    "conceptCharacterId": "108"
+  },
+  "SC108-07": {
+    "id": "SC108-07",
+    "name": "咲夜のお庭「一掃」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "DESTROY_TRAP",
+    "abilityType": "active",
+    "params": {
+      "n": 2
+    },
+    "text": "コストを3使用し、相手のカウンタースペルを2枚破壊する。",
+    "flavor": "お庭の手入れも、メイドの仕事。",
+    "conceptCharacterId": "108"
+  },
+  "SC108-08": {
+    "id": "SC108-08",
+    "name": "完璧で瀟洒な一撃",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 2
+    },
+    "text": "コストを1使用し、相手に2ダメージを与える。",
+    "flavor": "無駄のない動きが、何よりの美学。",
+    "conceptCharacterId": "108"
+  },
+  "SC108-09": {
+    "id": "SC108-09",
+    "name": "静止した世界",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "SEAL_ABILITY",
+    "abilityType": "active",
+    "params": {
+      "duration": 2
+    },
+    "text": "コストを3使用し、相手のキャラクター能力を2ターン封印する。",
+    "flavor": "動けない時間は、案外長く感じるものだ。",
+    "conceptCharacterId": "108"
+  },
+  "SC108-10": {
+    "id": "SC108-10",
+    "name": "「時よ、止まれ」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 4,
+    "effectId": "PIERCE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 6
+    },
+    "text": "コストを4使用し、相手に6ダメージを与える（軽減・反射を貫通する）。",
+    "flavor": "止まった世界で、一撃を届ける。",
+    "conceptCharacterId": "108"
+  },
+  "SC109-01": {
+    "id": "SC109-01",
+    "name": "紅色の一撃",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "コストを2使用し、相手に3ダメージを与える。",
+    "flavor": "当主の一撃は、伊達ではない。",
+    "conceptCharacterId": "109"
+  },
+  "SC109-02": {
+    "id": "SC109-02",
+    "name": "小さな吸血",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "LIFESTEAL_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 3,
+      "healRatio": 1.0
+    },
+    "text": "コストを2使用し、相手に3ダメージを与え、自分は3回復する。",
+    "flavor": "少しだけ分けてもらう。恨みっこなしで。",
+    "conceptCharacterId": "109"
+  },
+  "SC109-03": {
+    "id": "SC109-03",
+    "name": "運命の紅い糸",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "DISCARD_OPPONENT",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "コストを2使用し、相手の手札を1枚捨てさせる。",
+    "flavor": "その手札、もう必要ないでしょう？",
+    "conceptCharacterId": "109"
+  },
+  "SC109-04": {
+    "id": "SC109-04",
+    "name": "コウモリの群れ",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "コストを3使用し、相手に4ダメージを与える。",
+    "flavor": "夜な夜な飛び回る、眷属たちの牙。",
+    "conceptCharacterId": "109"
+  },
+  "SC109-05": {
+    "id": "SC109-05",
+    "name": "眷属の忠誠",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "HEAL",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "コストを2使用し、HPを4回復する。",
+    "flavor": "眷属たちが捧げる、力の一端。",
+    "conceptCharacterId": "109"
+  },
+  "SC109-06": {
+    "id": "SC109-06",
+    "name": "紅い霧「幻惑」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "SEAL_ABILITY",
+    "abilityType": "active",
+    "params": {
+      "duration": 2
+    },
+    "text": "コストを3使用し、相手のキャラクター能力を2ターン封印する。",
+    "flavor": "霧の中では、正気を保つのも一苦労。",
+    "conceptCharacterId": "109"
+  },
+  "SC109-07": {
+    "id": "SC109-07",
+    "name": "真祖の血",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "LIFESTEAL_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 5,
+      "healRatio": 1.0
+    },
+    "text": "コストを3使用し、相手に5ダメージを与え、自分は5回復する。",
+    "flavor": "真祖たる者、血を啜ってこそ。",
+    "conceptCharacterId": "109"
+  },
+  "SC109-08": {
+    "id": "SC109-08",
+    "name": "支配者の威圧",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "DISCARD_OPPONENT",
+    "abilityType": "active",
+    "params": {
+      "n": 2
+    },
+    "text": "コストを3使用し、相手の手札を2枚捨てさせる。",
+    "flavor": "逆らうことすら、許していない。",
+    "conceptCharacterId": "109"
+  },
+  "SC109-09": {
+    "id": "SC109-09",
+    "name": "スカーレットの誇り",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "OD_BOOST",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "コストを1使用し、オドを3回復する。",
+    "flavor": "当主として、力を惜しむ理由はない。",
+    "conceptCharacterId": "109"
+  },
+  "SC109-10": {
+    "id": "SC109-10",
+    "name": "「グングニル」全力全開",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 5,
+    "effectId": "PIERCE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 7
+    },
+    "text": "コストを5使用し、相手に7ダメージを与える（軽減・反射を貫通する）。",
+    "flavor": "全てを貫く、紅き閃光。",
+    "conceptCharacterId": "109"
+  },
+  "SC110-01": {
+    "id": "SC110-01",
+    "name": "破壊の一撃",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "コストを2使用し、相手に4ダメージを与える。",
+    "flavor": "触れたもの全てが、壊れていく。",
+    "conceptCharacterId": "110"
+  },
+  "SC110-02": {
+    "id": "SC110-02",
+    "name": "制御できない力",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "SELF_DAMAGE_BURST",
+    "abilityType": "active",
+    "params": {
+      "amount": 5,
+      "selfDamage": 1
+    },
+    "text": "コストを3使用し、相手に5ダメージを与える。自分も1ダメージを受ける。",
+    "flavor": "力が強すぎて、自分でも抑えきれない。",
+    "conceptCharacterId": "110"
+  },
+  "SC110-03": {
+    "id": "SC110-03",
+    "name": "触れたら壊れる",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "コストを2使用し、相手に3ダメージを与える。",
+    "flavor": "優しく触れたつもりでも、結果は同じ。",
+    "conceptCharacterId": "110"
+  },
+  "SC110-04": {
+    "id": "SC110-04",
+    "name": "地下室からの解放",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "OD_BOOST",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "コストを1使用し、オドを4回復する。",
+    "flavor": "長い年月の分まで、取り返す。",
+    "conceptCharacterId": "110"
+  },
+  "SC110-05": {
+    "id": "SC110-05",
+    "name": "カラミティ",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 4,
+    "effectId": "SELF_DAMAGE_BURST",
+    "abilityType": "active",
+    "params": {
+      "amount": 6,
+      "selfDamage": 1
+    },
+    "text": "コストを4使用し、相手に6ダメージを与える。自分も1ダメージを受ける。",
+    "flavor": "災厄と呼ばれる力の、片鱗。",
+    "conceptCharacterId": "110"
+  },
+  "SC110-06": {
+    "id": "SC110-06",
+    "name": "何気ない一撃",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 2
+    },
+    "text": "コストを1使用し、相手に2ダメージを与える。",
+    "flavor": "本人にとっては、遊びのつもり。",
+    "conceptCharacterId": "110"
+  },
+  "SC110-07": {
+    "id": "SC110-07",
+    "name": "486年分の力",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 4,
+    "effectId": "UNBLOCKABLE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 5
+    },
+    "text": "コストを4使用し、相手に5ダメージを与える（軽減・反射・無効化を一切許さない）。",
+    "flavor": "閉じ込められていた時間の分だけ、重い。",
+    "conceptCharacterId": "110"
+  },
+  "SC110-08": {
+    "id": "SC110-08",
+    "name": "壊れたおもちゃ",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "DISCARD_OPPONENT",
+    "abilityType": "active",
+    "params": {
+      "n": 2
+    },
+    "text": "コストを2使用し、相手の手札を2枚捨てさせる。",
+    "flavor": "遊び終わったものは、もう要らない。",
+    "conceptCharacterId": "110"
+  },
+  "SC110-09": {
+    "id": "SC110-09",
+    "name": "妹の意地",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "REDUCE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "コストを1使用し、受けるダメージを4軽減する。",
+    "flavor": "お姉様に、心配をかけたくはない。",
+    "conceptCharacterId": "110"
+  },
+  "SC110-10": {
+    "id": "SC110-10",
+    "name": "「QED・495年の波紋」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 5,
+    "effectId": "UNBLOCKABLE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 9
+    },
+    "text": "コストを5使用し、相手に9ダメージを与える（軽減・反射・無効化を一切許さない）。",
+    "flavor": "触れたもの全てを、消し去る力。",
+    "conceptCharacterId": "110"
+  },
+  "CC101-01": {
+    "id": "CC101-01",
+    "name": "「その術、通さない」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentActivatesMagic",
+    "effectId": "NEGATE_MAGIC",
+    "abilityType": "active",
+    "params": {
+      "maxCost": 3
+    },
+    "text": "相手がスペルを発動する時、コストを2使用してそれを無効にする（コスト3以下の場合）。",
+    "flavor": "巫女の勘に、隙はない。",
+    "conceptCharacterId": "101"
+  },
+  "CC101-02": {
+    "id": "CC101-02",
+    "name": "「罠には罠を」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentActivatesTrap",
+    "effectId": "NEGATE_TRAP",
+    "abilityType": "active",
+    "params": {
+      "maxCost": 3
+    },
+    "text": "相手がカウンタースペルを発動する時、コストを2使用してそれを無効にする（コスト3以下の場合）。",
+    "flavor": "先に仕掛けたつもりだろうけど。",
+    "conceptCharacterId": "101"
+  },
+  "CC101-03": {
+    "id": "CC101-03",
+    "name": "「舐めるでない」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentUsesAbility",
+    "effectId": "SEAL_ABILITY",
+    "abilityType": "active",
+    "params": {
+      "duration": 2
+    },
+    "text": "相手がキャラクター能力を使う時、コストを2使用して相手のキャラクター能力を2ターン封印する。",
+    "flavor": "博麗の巫女を甘く見た報い。",
+    "conceptCharacterId": "101"
+  },
+  "CC101-04": {
+    "id": "CC101-04",
+    "name": "「巫女の勘」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "opponentDraws",
+    "effectId": "REVEAL_TRAP",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "相手が追加ドローする時、コストを1使用して相手のカウンタースペルを1枚公開する。",
+    "flavor": "何を引いたか、大体わかる。",
+    "conceptCharacterId": "101"
+  },
+  "CC101-05": {
+    "id": "CC101-05",
+    "name": "「なんとかする程度の力」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentAttacks",
+    "effectId": "REDUCE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "自分が攻撃を受けた時、コストを2使用して受けるダメージを4軽減する。",
+    "flavor": "多少のことは、なんとかなる。",
+    "conceptCharacterId": "101"
+  },
+  "CC102-01": {
+    "id": "CC102-01",
+    "name": "「借りていくぜ」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentUsesAbility",
+    "effectId": "STEAL_CARD",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "相手がキャラクター能力を使う時、コストを2使用して相手の手札をランダムに1枚奪い、自分の手札に加える。",
+    "flavor": "使う前に、頂いておく。",
+    "conceptCharacterId": "102"
+  },
+  "CC102-02": {
+    "id": "CC102-02",
+    "name": "「見切った」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentActivatesMagic",
+    "effectId": "NEGATE_MAGIC",
+    "abilityType": "active",
+    "params": {
+      "maxCost": 3
+    },
+    "text": "相手がスペルを発動する時、コストを2使用してそれを無効にする（コスト3以下の場合）。",
+    "flavor": "その魔法、もう見飽きた。",
+    "conceptCharacterId": "102"
+  },
+  "CC102-03": {
+    "id": "CC102-03",
+    "name": "「油断大敵」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "opponentUsesAbility",
+    "effectId": "OD_DRAIN",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "相手がキャラクター能力を使う時、コストを1使用して相手のオドを3減少させる。",
+    "flavor": "力を使おうとした、その隙を頂く。",
+    "conceptCharacterId": "102"
+  },
+  "CC102-04": {
+    "id": "CC102-04",
+    "name": "「返り討ち」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentAttacks",
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "自分が攻撃を受けた時、コストを2使用して相手に3ダメージを与える。",
+    "flavor": "攻撃されて黙っている魔法使いはいない。",
+    "conceptCharacterId": "102"
+  },
+  "CC102-05": {
+    "id": "CC102-05",
+    "name": "「魔法使いの余裕」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "selfTakesDamage",
+    "effectId": "OD_BOOST",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "自分がダメージを受けた時、コストを1使用してオドを3回復する。",
+    "flavor": "この程度、まだまだ余裕。",
+    "conceptCharacterId": "102"
+  },
+  "CC103-01": {
+    "id": "CC103-01",
+    "name": "「気づかないうちに」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "opponentDraws",
+    "effectId": "DISCARD_OPPONENT",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "相手が追加ドローする時、コストを1使用して相手の手札を1枚捨てさせる。",
+    "flavor": "手に入れたはずのものが、もう無い。",
+    "conceptCharacterId": "103"
+  },
+  "CC103-02": {
+    "id": "CC103-02",
+    "name": "「闇の中では見えない」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "opponentAttacks",
+    "effectId": "REDUCE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "自分が攻撃を受けた時、コストを1使用して受けるダメージを3軽減する。",
+    "flavor": "狙いを定めるのも、一苦労だろう。",
+    "conceptCharacterId": "103"
+  },
+  "CC103-03": {
+    "id": "CC103-03",
+    "name": "「隠れて食事」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "selfTakesDamage",
+    "effectId": "LIFESTEAL_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 2,
+      "healRatio": 1.0
+    },
+    "text": "自分がダメージを受けた時、コストを2使用して相手に2ダメージを与え、自分は2回復する。",
+    "flavor": "傷ついたついでに、少し頂く。",
+    "conceptCharacterId": "103"
+  },
+  "CC103-04": {
+    "id": "CC103-04",
+    "name": "「正体を暴くな」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentActivatesMagic",
+    "effectId": "NEGATE_MAGIC",
+    "abilityType": "active",
+    "params": {
+      "maxCost": 2
+    },
+    "text": "相手がスペルを発動する時、コストを2使用してそれを無効にする（コスト2以下の場合）。",
+    "flavor": "見られたくないものは、見せない。",
+    "conceptCharacterId": "103"
+  },
+  "CC103-05": {
+    "id": "CC103-05",
+    "name": "「宵闇の逆襲」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "opponentUsesAbility",
+    "effectId": "SEAL_ABILITY",
+    "abilityType": "active",
+    "params": {
+      "duration": 1
+    },
+    "text": "相手がキャラクター能力を使う時、コストを1使用して相手のキャラクター能力を1ターン封印する。",
+    "flavor": "闇の中に踏み込んだのが、間違いだった。",
+    "conceptCharacterId": "103"
+  },
+  "CC104-01": {
+    "id": "CC104-01",
+    "name": "「甘く見るなよ」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentAttacks",
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "自分が攻撃を受けた時、コストを2使用して相手に3ダメージを与える。",
+    "flavor": "9割9分は雑でも、残り1分は本気。",
+    "conceptCharacterId": "104"
+  },
+  "CC104-02": {
+    "id": "CC104-02",
+    "name": "「氷の壁」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "opponentAttacks",
+    "effectId": "REDUCE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "自分が攻撃を受けた時、コストを1使用して受けるダメージを4軽減する。",
+    "flavor": "凍らせておけば、大抵は防げる。",
+    "conceptCharacterId": "104"
+  },
+  "CC104-03": {
+    "id": "CC104-03",
+    "name": "「間違って本気出した」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentUsesAbility",
+    "effectId": "RANDOM_BURST",
+    "abilityType": "active",
+    "params": {
+      "min": 1,
+      "max": 9
+    },
+    "text": "相手がキャラクター能力を使う時、コストを2使用して1〜9のランダムなダメージを相手に与える。",
+    "flavor": "びっくりするくらい強く出ることもある。",
+    "conceptCharacterId": "104"
+  },
+  "CC104-04": {
+    "id": "CC104-04",
+    "name": "「氷漬け」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "opponentUsesAbility",
+    "effectId": "SEAL_ABILITY",
+    "abilityType": "active",
+    "params": {
+      "duration": 1
+    },
+    "text": "相手がキャラクター能力を使う時、コストを1使用して相手のキャラクター能力を1ターン封印する。",
+    "flavor": "動けなければ、何もできない。",
+    "conceptCharacterId": "104"
+  },
+  "CC104-05": {
+    "id": "CC104-05",
+    "name": "「私にも勝てる時がある」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "opponentActivatesMagic",
+    "effectId": "NEGATE_MAGIC",
+    "abilityType": "active",
+    "params": {
+      "maxCost": 2
+    },
+    "text": "相手がスペルを発動する時、コストを1使用してそれを無効にする（コスト2以下の場合）。",
+    "flavor": "たまには、私だって勝つ。",
+    "conceptCharacterId": "104"
+  },
+  "CC105-01": {
+    "id": "CC105-01",
+    "name": "「通さない」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentAttacks",
+    "effectId": "REDUCE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 5
+    },
+    "text": "自分が攻撃を受けた時、コストを2使用して受けるダメージを5軽減する。",
+    "flavor": "門番の意地に懸けて。",
+    "conceptCharacterId": "105"
+  },
+  "CC105-02": {
+    "id": "CC105-02",
+    "name": "「見た目より頑丈」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "selfTakesDamage",
+    "effectId": "HEAL",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "自分がダメージを受けた時、コストを1使用してHPを3回復する。",
+    "flavor": "打たれ強さだけは自信がある。",
+    "conceptCharacterId": "105"
+  },
+  "CC105-03": {
+    "id": "CC105-03",
+    "name": "「居眠りしてても隙はない」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentAttacks",
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "自分が攻撃を受けた時、コストを2使用して相手に3ダメージを与える。",
+    "flavor": "寝たふりも、戦法のうち。",
+    "conceptCharacterId": "105"
+  },
+  "CC105-04": {
+    "id": "CC105-04",
+    "name": "「門は容易く開かぬ」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "opponentActivatesTrap",
+    "effectId": "NEGATE_TRAP",
+    "abilityType": "active",
+    "params": {
+      "maxCost": 2
+    },
+    "text": "相手がカウンタースペルを発動する時、コストを1使用してそれを無効にする（コスト2以下の場合）。",
+    "flavor": "そう簡単に通れると思うなよ。",
+    "conceptCharacterId": "105"
+  },
+  "CC105-05": {
+    "id": "CC105-05",
+    "name": "「反撃だ」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "selfWouldBeDestroyed",
+    "effectId": "REFLECT_SHIELD",
+    "abilityType": "active",
+    "params": {
+      "uses": 1
+    },
+    "text": "自分が破壊効果の対象になる時、コストを1使用して破壊効果を1回無効化する。",
+    "flavor": "壊されたままでは終わらない。",
+    "conceptCharacterId": "105"
+  },
+  "CC106-01": {
+    "id": "CC106-01",
+    "name": "「計算済みだ」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentActivatesMagic",
+    "effectId": "NEGATE_MAGIC",
+    "abilityType": "active",
+    "params": {
+      "maxCost": 3
+    },
+    "text": "相手がスペルを発動する時、コストを2使用してそれを無効にする（コスト3以下の場合）。",
+    "flavor": "その一手も、とうに読んでいる。",
+    "conceptCharacterId": "106"
+  },
+  "CC106-02": {
+    "id": "CC106-02",
+    "name": "「既に対策は用意してある」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentActivatesTrap",
+    "effectId": "NEGATE_TRAP",
+    "abilityType": "active",
+    "params": {
+      "maxCost": 3
+    },
+    "text": "相手がカウンタースペルを発動する時、コストを2使用してそれを無効にする（コスト3以下の場合）。",
+    "flavor": "動かなくても、備えは万全。",
+    "conceptCharacterId": "106"
+  },
+  "CC106-03": {
+    "id": "CC106-03",
+    "name": "「知識の防壁」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentAttacks",
+    "effectId": "REDUCE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "自分が攻撃を受けた時、コストを2使用して受けるダメージを4軽減する。",
+    "flavor": "本の山も、時には盾になる。",
+    "conceptCharacterId": "106"
+  },
+  "CC106-04": {
+    "id": "CC106-04",
+    "name": "「読み終えた本より」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "selfTakesDamage",
+    "effectId": "FETCH_FROM_DECK",
+    "abilityType": "active",
+    "params": {
+      "n": 1,
+      "types": [
+        "スペル"
+      ]
+    },
+    "text": "自分がダメージを受けた時、コストを2使用して山札からスペルを1枚まで手札に加える。",
+    "flavor": "傷ついた分、知識で取り返す。",
+    "conceptCharacterId": "106"
+  },
+  "CC106-05": {
+    "id": "CC106-05",
+    "name": "「深遠なる報復」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentUsesAbility",
+    "effectId": "SEAL_ABILITY",
+    "abilityType": "active",
+    "params": {
+      "duration": 2
+    },
+    "text": "相手がキャラクター能力を使う時、コストを2使用して相手のキャラクター能力を2ターン封印する。",
+    "flavor": "知識をひけらかした報いを受けるがいい。",
+    "conceptCharacterId": "106"
+  },
+  "CC107-01": {
+    "id": "CC107-01",
+    "name": "「主を守る」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "opponentAttacks",
+    "effectId": "REDUCE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "自分が攻撃を受けた時、コストを1使用して受けるダメージを3軽減する。",
+    "flavor": "主に手を出させはしない。",
+    "conceptCharacterId": "107"
+  },
+  "CC107-02": {
+    "id": "CC107-02",
+    "name": "「代わりに私が」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "selfTakesDamage",
+    "effectId": "HEAL",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "自分がダメージを受けた時、コストを1使用してHPを3回復する。",
+    "flavor": "この程度、大したことじゃない。",
+    "conceptCharacterId": "107"
+  },
+  "CC107-03": {
+    "id": "CC107-03",
+    "name": "「油断させておいて」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "opponentUsesAbility",
+    "effectId": "OD_DRAIN",
+    "abilityType": "active",
+    "params": {
+      "amount": 2
+    },
+    "text": "相手がキャラクター能力を使う時、コストを1使用して相手のオドを2減少させる。",
+    "flavor": "隙を見せた方が悪い。",
+    "conceptCharacterId": "107"
+  },
+  "CC107-04": {
+    "id": "CC107-04",
+    "name": "「本で殴る」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "opponentAttacks",
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 2
+    },
+    "text": "自分が攻撃を受けた時、コストを1使用して相手に2ダメージを与える。",
+    "flavor": "分厚い本は、意外と武器になる。",
+    "conceptCharacterId": "107"
+  },
+  "CC107-05": {
+    "id": "CC107-05",
+    "name": "「隙を見て回収」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentDraws",
+    "effectId": "FETCH_FROM_DECK",
+    "abilityType": "active",
+    "params": {
+      "n": 1,
+      "types": [
+        "スペル"
+      ]
+    },
+    "text": "相手が追加ドローする時、コストを2使用して山札からスペルを1枚まで手札に加える。",
+    "flavor": "働き者は、隙を見逃さない。",
+    "conceptCharacterId": "107"
+  },
+  "CC108-01": {
+    "id": "CC108-01",
+    "name": "「その瞬間は貰った」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentActivatesTrap",
+    "effectId": "NEGATE_TRAP",
+    "abilityType": "active",
+    "params": {
+      "maxCost": 3
+    },
+    "text": "相手がカウンタースペルを発動する時、コストを2使用してそれを無効にする（コスト3以下の場合）。",
+    "flavor": "仕掛ける前に、もう終わっている。",
+    "conceptCharacterId": "108"
+  },
+  "CC108-02": {
+    "id": "CC108-02",
+    "name": "「完璧な間合い」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentAttacks",
+    "effectId": "REDUCE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "自分が攻撃を受けた時、コストを2使用して受けるダメージを4軽減する。",
+    "flavor": "無駄のない一手で、受け流す。",
+    "conceptCharacterId": "108"
+  },
+  "CC108-03": {
+    "id": "CC108-03",
+    "name": "「一秒あれば十分」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "opponentUsesAbility",
+    "effectId": "DRAW_N",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "相手がキャラクター能力を使う時、コストを1使用してカードを1枚ドローする。",
+    "flavor": "その一瞬で、次の手を用意する。",
+    "conceptCharacterId": "108"
+  },
+  "CC108-04": {
+    "id": "CC108-04",
+    "name": "「刃は迅い」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentAttacks",
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "自分が攻撃を受けた時、コストを2使用して相手に3ダメージを与える。",
+    "flavor": "気づいた時には、もう終わっている。",
+    "conceptCharacterId": "108"
+  },
+  "CC108-05": {
+    "id": "CC108-05",
+    "name": "「時間切れ」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "opponentUsesAbility",
+    "effectId": "SEAL_ABILITY",
+    "abilityType": "active",
+    "params": {
+      "duration": 1
+    },
+    "text": "相手がキャラクター能力を使う時、コストを1使用して相手のキャラクター能力を1ターン封印する。",
+    "flavor": "その力、もう時間切れだ。",
+    "conceptCharacterId": "108"
+  },
+  "CC109-01": {
+    "id": "CC109-01",
+    "name": "「逃がさない」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentActivatesTrap",
+    "effectId": "NEGATE_TRAP",
+    "abilityType": "active",
+    "params": {
+      "maxCost": 3
+    },
+    "text": "相手がカウンタースペルを発動する時、コストを2使用してそれを無効にする（コスト3以下の場合）。",
+    "flavor": "当主から逃げられるとでも？",
+    "conceptCharacterId": "109"
+  },
+  "CC109-02": {
+    "id": "CC109-02",
+    "name": "「血の代償」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "selfTakesDamage",
+    "effectId": "LIFESTEAL_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 3,
+      "healRatio": 1.0
+    },
+    "text": "自分がダメージを受けた時、コストを2使用して相手に3ダメージを与え、自分は3回復する。",
+    "flavor": "傷つけられた分は、きっちり頂く。",
+    "conceptCharacterId": "109"
+  },
+  "CC109-03": {
+    "id": "CC109-03",
+    "name": "「永遠に付き合ってもらう」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentUsesAbility",
+    "effectId": "SEAL_ABILITY",
+    "abilityType": "active",
+    "params": {
+      "duration": 2
+    },
+    "text": "相手がキャラクター能力を使う時、コストを2使用して相手のキャラクター能力を2ターン封印する。",
+    "flavor": "退屈しのぎに、少し遊んでいくといい。",
+    "conceptCharacterId": "109"
+  },
+  "CC109-04": {
+    "id": "CC109-04",
+    "name": "「紅い霧の逆襲」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentAttacks",
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "自分が攻撃を受けた時、コストを2使用して相手に3ダメージを与える。",
+    "flavor": "手を出したことを、後悔させる。",
+    "conceptCharacterId": "109"
+  },
+  "CC109-05": {
+    "id": "CC109-05",
+    "name": "「運命は変えられない」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "opponentDraws",
+    "effectId": "DISCARD_OPPONENT",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "相手が追加ドローする時、コストを1使用して相手の手札を1枚捨てさせる。",
+    "flavor": "抗っても、無駄なこと。",
+    "conceptCharacterId": "109"
+  },
+  "CC110-01": {
+    "id": "CC110-01",
+    "name": "「触れたものは壊れる」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentAttacks",
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "自分が攻撃を受けた時、コストを2使用して相手に4ダメージを与える。",
+    "flavor": "触れた側が、悪いんだからね。",
+    "conceptCharacterId": "110"
+  },
+  "CC110-02": {
+    "id": "CC110-02",
+    "name": "「壊してあげる」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentUsesAbility",
+    "effectId": "SELF_DAMAGE_BURST",
+    "abilityType": "active",
+    "params": {
+      "amount": 3,
+      "selfDamage": 1
+    },
+    "text": "相手がキャラクター能力を使う時、コストを2使用して相手に3ダメージを与える。自分も1ダメージを受ける。",
+    "flavor": "力の加減が、よくわからない。",
+    "conceptCharacterId": "110"
+  },
+  "CC110-03": {
+    "id": "CC110-03",
+    "name": "「もう我慢しない」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "trigger": "opponentUsesAbility",
+    "effectId": "SEAL_ABILITY",
+    "abilityType": "active",
+    "params": {
+      "duration": 2
+    },
+    "text": "相手がキャラクター能力を使う時、コストを2使用して相手のキャラクター能力を2ターン封印する。",
+    "flavor": "地下室でずっと我慢していた分。",
+    "conceptCharacterId": "110"
+  },
+  "CC110-04": {
+    "id": "CC110-04",
+    "name": "「反射的に」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "selfWouldBeDestroyed",
+    "effectId": "REFLECT_SHIELD",
+    "abilityType": "active",
+    "params": {
+      "uses": 1
+    },
+    "text": "自分が破壊効果の対象になる時、コストを1使用して破壊効果を1回無効化する。",
+    "flavor": "壊されそうになると、つい力が出る。",
+    "conceptCharacterId": "110"
+  },
+  "CC110-05": {
+    "id": "CC110-05",
+    "name": "「地下室からは出たくなかった」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "opponentAttacks",
+    "effectId": "REDUCE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "自分が攻撃を受けた時、コストを1使用して受けるダメージを3軽減する。",
+    "flavor": "本当は、あまり争いたくない。",
+    "conceptCharacterId": "110"
+  },
+  "111": {
+    "id": "111",
+    "name": "大妖精",
+    "level": 1,
+    "hp": 10,
+    "od": 5,
+    "motif": "大妖精",
+    "flavor": "紅魔館周辺の湖に棲む妖精。他の妖精より力が強く、気立てが良くいたずら好き。",
+    "abilities": [
+      {
+        "abilityId": "111_a1",
+        "type": "active",
+        "cost": 2,
+        "effectId": "OD_BOOST",
+        "params": {
+          "amount": 3
+        },
+        "text": "妖精の悪戯心で、オドを少し分けてもらう。"
+      },
+      {
+        "abilityId": "111_a2",
+        "type": "active",
+        "cost": 2,
+        "effectId": "HEAL",
+        "params": {
+          "amount": 4
+        },
+        "text": "妖精の輪舞。傷を癒す優しい風が吹く。"
+      }
+    ],
+    "awakening": {
+      "materials": [
+        "Mat111A",
+        "Mat111B",
+        "Mat111C"
+      ],
+      "keyCard": "XKEY111",
+      "resultId": "EX111"
+    }
+  },
+  "EX111": {
+    "id": "EX111",
+    "name": "霧の中で見つかる妖精・大妖精",
+    "level": null,
+    "hp": 18,
+    "od": 10,
+    "motif": "大妖精",
+    "flavor": "湖の霧の中、ふと気配を感じて振り向くと、そこにいる。妖精にしては、ずいぶん頼りになる。",
+    "abilities": [
+      {
+        "abilityId": "ex111_a1",
+        "type": "active",
+        "cost": 0,
+        "effectId": "OD_BOOST",
+        "params": {
+          "amount": 5
+        },
+        "text": "みんなの分まで、オドを分けてあげる。"
+      },
+      {
+        "abilityId": "ex111_a2",
+        "type": "active",
+        "cost": 0,
+        "effectId": "HEAL",
+        "params": {
+          "amount": 6
+        },
+        "text": "湖の水のように、傷を優しく癒す。"
+      },
+      {
+        "abilityId": "ex111_a3",
+        "type": "active",
+        "cost": 0,
+        "effectId": "REFLECT_SHIELD",
+        "params": {
+          "uses": 1
+        },
+        "text": "妖精の加護。壊されそうになっても、ひらりとかわす。"
+      }
+    ]
+  },
+  "Mat111A": {
+    "id": "Mat111A",
+    "name": "妖精の羽ばたきの残滓",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "111",
+    "text": "「大妖精」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "湖の上を飛び回った証。軽くて、少し湿っている。"
+  },
+  "Mat111B": {
+    "id": "Mat111B",
+    "name": "湖霧の欠片",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "111",
+    "text": "「大妖精」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "触れると消えてしまう、儚くも涼しい霧のかけら。"
+  },
+  "Mat111C": {
+    "id": "Mat111C",
+    "name": "いたずら好きな笑い声",
+    "type": "素材",
+    "cost": 1,
+    "parentCharacterId": "111",
+    "text": "「大妖精」の覚醒に必要な証。使用すると覚醒フラグが1つ立つ（3つ揃うとキーカードが使用可能になる）。",
+    "flavor": "どこからともなく聞こえてくる、無邪気な笑い声の記憶。"
+  },
+  "XKEY111": {
+    "id": "XKEY111",
+    "name": "「見つけられるかな、私のこと」",
+    "type": "キー",
+    "cost": 3,
+    "parentCharacterId": "111",
+    "resultId": "EX111",
+    "materials": [
+      "Mat111A",
+      "Mat111B",
+      "Mat111C"
+    ],
+    "text": "覚醒に必要な証が3つ揃っている時のみ使用可能。使用すると覚醒する。",
+    "flavor": "全ての証が揃った時、大妖精の真の力が解き放たれる。"
+  },
+  "SC111-01": {
+    "id": "SC111-01",
+    "name": "妖精の悪戯",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "DISCARD_OPPONENT",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "コストを1使用し、相手の手札を1枚捨てさせる。",
+    "flavor": "ちょっとしたイタズラのつもり。",
+    "conceptCharacterId": "111"
+  },
+  "SC111-02": {
+    "id": "SC111-02",
+    "name": "湖上のきらめき",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 2
+    },
+    "text": "コストを1使用し、相手に2ダメージを与える。",
+    "flavor": "日差しを受けた水面が、時々目潰しになる。",
+    "conceptCharacterId": "111"
+  },
+  "SC111-03": {
+    "id": "SC111-03",
+    "name": "妖精の輪舞",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "HEAL",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "コストを1使用し、HPを3回復する。",
+    "flavor": "くるくる回れば、大抵の傷は忘れられる。",
+    "conceptCharacterId": "111"
+  },
+  "SC111-04": {
+    "id": "SC111-04",
+    "name": "風を纏う",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "OD_BOOST",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "コストを1使用し、オドを3回復する。",
+    "flavor": "湖から吹く風には、少し力が宿っている。",
+    "conceptCharacterId": "111"
+  },
+  "SC111-05": {
+    "id": "SC111-05",
+    "name": "霧の中で",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "DRAW_N",
+    "abilityType": "active",
+    "params": {
+      "n": 2
+    },
+    "text": "コストを2使用し、カードを2枚ドローする。",
+    "flavor": "霧の中を探せば、案外いろんなものが見つかる。",
+    "conceptCharacterId": "111"
+  },
+  "SC111-06": {
+    "id": "SC111-06",
+    "name": "妖精パワー",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "コストを2使用し、相手に3ダメージを与える。",
+    "flavor": "小さくても、束になれば結構強い。",
+    "conceptCharacterId": "111"
+  },
+  "SC111-07": {
+    "id": "SC111-07",
+    "name": "なかよし",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "OD_BOOST",
+    "abilityType": "active",
+    "params": {
+      "amount": 4
+    },
+    "text": "コストを1使用し、オドを4回復する。",
+    "flavor": "誰かと一緒だと、なぜか力が湧いてくる。",
+    "conceptCharacterId": "111"
+  },
+  "SC111-08": {
+    "id": "SC111-08",
+    "name": "きらきら",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 2,
+    "effectId": "HEAL",
+    "abilityType": "active",
+    "params": {
+      "amount": 5
+    },
+    "text": "コストを2使用し、HPを5回復する。",
+    "flavor": "湖面の輝きを分けてもらう。",
+    "conceptCharacterId": "111"
+  },
+  "SC111-09": {
+    "id": "SC111-09",
+    "name": "妖精の意地",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "effectId": "REDUCE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "コストを1使用し、受けるダメージを3軽減する。",
+    "flavor": "これでも、妖精の中では結構強い方。",
+    "conceptCharacterId": "111"
+  },
+  "SC111-10": {
+    "id": "SC111-10",
+    "name": "「湖上の魔精、参上」",
+    "type": "スペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 3,
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 5
+    },
+    "text": "コストを3使用し、相手に5ダメージを与える。",
+    "flavor": "侮っていると、痛い目を見る。",
+    "conceptCharacterId": "111"
+  },
+  "CC111-01": {
+    "id": "CC111-01",
+    "name": "「見つけちゃった」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "opponentDraws",
+    "effectId": "REVEAL_TRAP",
+    "abilityType": "active",
+    "params": {
+      "n": 1
+    },
+    "text": "相手が追加ドローする時、コストを1使用して相手のカウンタースペルを1枚公開する。",
+    "flavor": "隠れてるつもりでも、案外バレバレ。",
+    "conceptCharacterId": "111"
+  },
+  "CC111-02": {
+    "id": "CC111-02",
+    "name": "「妖精の勘」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "opponentAttacks",
+    "effectId": "REDUCE_DAMAGE",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "自分が攻撃を受けた時、コストを1使用して受けるダメージを3軽減する。",
+    "flavor": "なんとなく、避けるべき方向がわかる。",
+    "conceptCharacterId": "111"
+  },
+  "CC111-03": {
+    "id": "CC111-03",
+    "name": "「一緒に遊ぼ」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "selfTakesDamage",
+    "effectId": "HEAL",
+    "abilityType": "active",
+    "params": {
+      "amount": 3
+    },
+    "text": "自分がダメージを受けた時、コストを1使用してHPを3回復する。",
+    "flavor": "痛くても、遊びをやめる理由にはならない。",
+    "conceptCharacterId": "111"
+  },
+  "CC111-04": {
+    "id": "CC111-04",
+    "name": "「意外とやるもん」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "opponentAttacks",
+    "effectId": "DAMAGE_ALL_ENEMY",
+    "abilityType": "active",
+    "params": {
+      "amount": 2
+    },
+    "text": "自分が攻撃を受けた時、コストを1使用して相手に2ダメージを与える。",
+    "flavor": "妖精だからって、舐めてもらっちゃ困る。",
+    "conceptCharacterId": "111"
+  },
+  "CC111-05": {
+    "id": "CC111-05",
+    "name": "「隠れるのは得意」",
+    "type": "カウンタースペル",
+    "rank": "III",
+    "rarity": "SR",
+    "cost": 1,
+    "trigger": "opponentActivatesMagic",
+    "effectId": "NEGATE_MAGIC",
+    "abilityType": "active",
+    "params": {
+      "maxCost": 2
+    },
+    "text": "相手がスペルを発動する時、コストを1使用してそれを無効にする（コスト2以下の場合）。",
+    "flavor": "霧の中に隠れれば、大抵のものはやり過ごせる。",
+    "conceptCharacterId": "111"
+  },
+  "AR111": {
+    "id": "AR111",
+    "name": "湖上の霧",
+    "type": "エリア",
+    "cost": null,
+    "rarity": "UR",
+    "recommendedCharacterId": "111",
+    "params": {
+      "maxOdBoost": 2
+    },
+    "passiveEffect": {
+      "effectId": "LIFESTEAL_AURA",
+      "params": {
+        "ratio": 0.2
+      }
+    },
+    "text": "【発動条件】使用可能コストが上限に達している時、それを全て消費して発動できる。\n【発動後】コストの上限が2増加する。\n【効果】湖の霧を纏う。以後、自分が相手に与えたダメージの20%を自分のHPとして得る。",
+    "flavor": "霧の中では、みんな少しずつ分け合って生きている。"
+  }
+}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TCG System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>TCG System</h1>
+
+    <div id="mode-select-screen" style="display:none;">
+        <h2>モードを選択してください</h2>
+        <button onclick="selectGameMode('single')">AI対戦</button>
+        <button onclick="selectGameMode('local2p')">ローカル2人対戦（1台の端末で交互にプレイ）</button>
+        <button onclick="goToNetworkLobby()">ネット対戦（テスト版：接続確認のみ）</button>
+    </div>
+
+    <div id="network-lobby-screen" style="display:none;">
+        <div class="deckbuilder-topbar">
+            <button class="link-btn" onclick="leaveNetworkLobby()">← モード選択に戻る</button>
+        </div>
+        <h2>ネット対戦（テスト版）</h2>
+        <p class="warning-box" style="display:block;">
+            現在は「合言葉で接続できるか」の確認のみです。対戦そのものはまだ同期されません。
+        </p>
+
+        <h3>ルームを作る</h3>
+        <button onclick="createNetworkRoom()">ルームを作成する</button>
+        <div id="network-room-code-display" class="room-code-display" style="display:none;"></div>
+
+        <h3>ルームに参加する</h3>
+        <div class="deck-save-row">
+            <input type="text" id="network-room-code-input" placeholder="合言葉を入力（例：AB12）" maxlength="4">
+            <button onclick="joinNetworkRoom(document.getElementById('network-room-code-input').value)">参加する</button>
+        </div>
+
+        <div id="network-lobby-status" class="network-status"></div>
+    </div>
+
+    <div id="deckbuilder-screen" style="display:none;">
+        <div class="deckbuilder-topbar">
+            <button class="link-btn" onclick="backToModeSelect()">← モード選択に戻る</button>
+        </div>
+        <h2 id="deckbuilder-heading">デッキを構築してください</h2>
+
+        <h3>① キャラクターを1体選択</h3>
+        <div id="character-select-list"></div>
+        <div id="awakening-warning" class="warning-box" style="display:none;"></div>
+
+        <h3>② 山札にするカードを40〜60枚選択（1種類最大3枚まで）</h3>
+        <div class="deck-sort-bar">
+            <label for="deck-sort-select">並び替え：</label>
+            <select id="deck-sort-select" onchange="deckSortMode = this.value; renderDeckSelect();">
+                <option value="type">種類順（デフォルト）</option>
+                <option value="effect">効果ごと</option>
+                <option value="cost">コストが低い順</option>
+                <option value="name">名前順</option>
+            </select>
+        </div>
+        <div id="deck-count-display">選択枚数: 0枚</div>
+        <div id="deck-select-list"></div>
+
+        <h3>③ デッキの保存・読み込み</h3>
+        <div id="deck-management">
+            <div class="deck-save-row">
+                <input type="text" id="deck-save-name" placeholder="デッキ名を入力">
+                <button onclick="saveCurrentDeck()">現在の内容を保存</button>
+            </div>
+            <div id="saved-deck-list"></div>
+        </div>
+
+        <br>
+        <button id="go-to-battle-btn" onclick="startBattle()" disabled>戦闘画面へ</button>
+    </div>
+
+    <div id="battle-screen" style="display:none;">
+        <div id="turn-indicator">ターン: - / 手番: -</div>
+
+        <div id="battlefield">
+            <div class="zone-row opponent-zone-row">
+                <div class="zone-slot trap-slot-container" id="opponent-trap-zone"></div>
+                <div class="zone-slot area-slot area-slot-empty" id="opponent-area-zone"></div>
+                <div class="zone-slot deck-slot">
+                    <img id="opponent-deck-art" class="deck-art" alt="山札">
+                    <div class="zone-count" id="opponent-deck-count">0</div>
+                    <div class="zone-label">山札</div>
+                </div>
+                <div class="zone-slot graveyard-slot" id="opponent-graveyard-slot" onclick="showGraveyardList(opponent)">
+                    <img id="opponent-graveyard-art" class="graveyard-art" alt="墓地">
+                    <div class="zone-count" id="opponent-graveyard-count">0</div>
+                    <div class="zone-label">墓地</div>
+                </div>
+            </div>
+
+            <div class="zone-row character-row">
+                <div class="character-slot">
+                    <img id="opponent-character-art" class="character-art" alt="相手キャラクター">
+                    <div class="character-name" id="opponent-character">召喚されていません</div>
+                    <div class="character-status" id="opponent-status">HP: - / コスト: -</div>
+                    <div id="opponent-ability-area" class="ability-area"></div>
+                </div>
+                <div class="character-slot">
+                    <img id="my-character-art" class="character-art" alt="自分キャラクター">
+                    <div class="character-name" id="my-character">召喚されていません</div>
+                    <div class="character-status" id="my-status">HP: - / コスト: -</div>
+                    <div id="my-ability-area" class="ability-area"></div>
+                </div>
+            </div>
+
+            <div class="zone-row my-zone-row">
+                <div class="zone-slot trap-slot-container" id="my-trap-zone"></div>
+                <div class="zone-slot area-slot area-slot-empty" id="my-area-zone"></div>
+                <div class="zone-slot deck-slot">
+                    <img id="my-deck-art" class="deck-art" alt="山札">
+                    <div class="zone-count" id="my-deck-count">0</div>
+                    <div class="zone-label">山札</div>
+                </div>
+                <div class="zone-slot graveyard-slot" id="my-graveyard-slot" onclick="showGraveyardList(myPlayer)">
+                    <img id="my-graveyard-art" class="graveyard-art" alt="墓地">
+                    <div class="zone-count" id="my-graveyard-count">0</div>
+                    <div class="zone-label">墓地</div>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="endTurn()">ターンエンド</button>
+
+        <div id="hand-area">手札: </div>
+    </div>
+
+    <div id="card-detail-panel" style="display:none;">
+        <div id="card-detail-header">
+            <h3>カード詳細</h3>
+            <button id="card-detail-close" onclick="clearCardDetail()">✕</button>
+        </div>
+        <div id="card-detail-content">カードをタップすると詳細が表示されます</div>
+    </div>
+
+    <div id="modal-backdrop" style="display:none;"></div>
+    <div id="action-prompt-panel" style="display:none;">
+        <div id="action-prompt-message"></div>
+        <div id="action-prompt-options"></div>
+    </div>
+
+    <div id="game-over-panel" style="display:none;">
+        <div id="game-over-message"></div>
+        <button onclick="rematchBattle()">もう一度対戦する（同じデッキ）</button>
+        <button onclick="returnToDeckBuilder()">デッキ構築へ戻る</button>
+    </div>
+
+    <div id="battle-log-controls">
+        <span class="log-mode-label">ログ表示：</span>
+        <button class="log-mode-btn log-mode-btn-active" data-mode="full" onclick="setBattleLogMode('full')">全部</button>
+        <button class="log-mode-btn" data-mode="recent" onclick="setBattleLogMode('recent')">直近のみ</button>
+        <button class="log-mode-btn" data-mode="collapsed" onclick="setBattleLogMode('collapsed')">折りたたむ</button>
+    </div>
+    <div id="output">準備完了</div>
+
+    <!-- ローカル2人対戦：1台の端末を渡し合うための画面。手番が変わるたび・相手の情報を見る必要がある瞬間に表示する -->
+    <div id="pass-screen" style="display:none;">
+        <div id="pass-screen-message">端末を渡してください</div>
+        <button id="pass-screen-button">タップして続行</button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/12.15.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.15.0/firebase-database-compat.js"></script>
+
+    <script src="state.js"></script>
+    <script src="assets.js"></script>
+    <script src="controllers.js"></script>
+    <script src="utils.js"></script>
+    <script src="data_loader.js"></script>
+    <script src="network.js"></script>
+    <script src="deck_builder.js"></script>
+    <script src="turn_engine.js"></script>
+    <script src="effects.js"></script>
+    <script src="chain_system.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
