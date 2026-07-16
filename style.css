@@ -41,6 +41,20 @@ h2 { font-size: 1.05em; margin-top: 1em; }
 }
 #credit-block img:hover { opacity: 1; }
 
+#music-notice {
+    color: #f0c060;
+    border: 1px solid #6b5426;
+    background: rgba(240, 192, 96, 0.08);
+    border-radius: 6px;
+    padding: 8px 10px;
+}
+
+#material-credit {
+    font-size: 0.7em;
+    color: #999;
+    margin-top: 10px;
+}
+
 button {
     padding: 8px 16px;
     margin: 6px 4px;
