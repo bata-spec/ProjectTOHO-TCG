@@ -19,6 +19,7 @@ function selectGameMode(mode) {
     if (modeScreen) modeScreen.style.display = "none";
     if (builderScreen) builderScreen.style.display = "block";
 
+    playBGM('deckbuilder');
     initDeckBuilder();
 }
 
@@ -32,6 +33,8 @@ function backToModeSelect() {
     const builderScreen = document.getElementById('deckbuilder-screen');
     if (builderScreen) builderScreen.style.display = "none";
     if (modeScreen) modeScreen.style.display = "block";
+
+    playBGM('title');
 }
 
 // --- 初期化・画面ごとの見出し/ボタン設定 ---

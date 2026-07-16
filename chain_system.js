@@ -64,6 +64,7 @@ async function activateTrapAt(defender, slotIndex, attacker) {
     const costToPay = getTrapCostToPay(defender, card);
     defender.od = Math.max(0, defender.od - costToPay);
 
+    playSE('counterspellFire');
     updateDisplay(`⚡ ${getPlayerLabel(defender)}のトラップ発動：${card.name}${costToPay === 0 ? '（コスト消費なし）' : ''}`);
 
     defender.traps[slotIndex] = null;
@@ -130,6 +131,7 @@ async function resolveNegateChoice(negator, triggerName, sourceCard, promptLabel
     if (chosen.kind === 'ability') {
         negator.characterNegateCharges[chosen.ability.abilityId] =
             (negator.characterNegateCharges[chosen.ability.abilityId] || 0) + 1;
+        playSE('negate');
         updateDisplay(`✨ ${getPlayerLabel(negator)}の「${baseCard.name}」の能力が発動：無効化した！`);
         return { name: baseCard.name, cost: 0 };
     }
@@ -139,6 +141,7 @@ async function resolveNegateChoice(negator, triggerName, sourceCard, promptLabel
     const costToPay = getTrapCostToPay(negator, trapCard);
     negator.od = Math.max(0, negator.od - costToPay);
 
+    playSE('negate');
     updateDisplay(`⚡ ${getPlayerLabel(negator)}のトラップ発動：${trapCard.name}${costToPay === 0 ? '（コスト消費なし）' : ''}`);
     negator.traps[i] = null;
     negator.trapsRevealed[i] = false;

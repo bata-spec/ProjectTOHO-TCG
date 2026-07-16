@@ -19,6 +19,7 @@ async function applyCardEffect(effectId, params, self, opponent) {
             break;
 
         case 'OD_BOOST': {
+            playSE('odBoost');
             const before = self.od;
             self.od = Math.min(self.maxOd, self.od + params.amount);
             const actualGain = self.od - before;
@@ -33,11 +34,13 @@ async function applyCardEffect(effectId, params, self, opponent) {
             break;
 
         case 'SEAL_TRAP':
+            playSE('seal');
             opponent.trapSealedTurns = (opponent.trapSealedTurns || 0) + params.duration;
             updateDisplay(`相手のカウンタースペルが${params.duration}ターン封印された。`);
             break;
 
         case 'SEAL_ABILITY':
+            playSE('seal');
             opponent.abilitySealedTurns = (opponent.abilitySealedTurns || 0) + params.duration;
             updateDisplay(`相手のキャラクター能力が${params.duration}ターン封印された。`);
             break;
@@ -87,6 +90,7 @@ async function applyCardEffect(effectId, params, self, opponent) {
         // --- ここから新規追加の効果 ---
 
         case 'STEAL_CARD': {
+            playSE('steal');
             const n = params.n || 1;
             for (let i = 0; i < n; i++) {
                 if (opponent.hand.length === 0) break;
@@ -241,6 +245,7 @@ async function dealDamageTo(player, amount, attacker) {
 
 function healPlayer(player, amount) {
     player.hp = Math.min(player.maxHp, player.hp + amount);
+    playSE('heal');
     updateDisplay(`HPが${amount}回復した。`);
     refreshFieldDisplay(player);
 }

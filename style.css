@@ -11,6 +11,36 @@ body {
 h1 { font-size: 1.3em; }
 h2 { font-size: 1.05em; margin-top: 1em; }
 
+#audio-controls {
+    display: flex;
+    gap: 6px;
+    margin: -6px 0 8px;
+}
+#audio-controls button {
+    font-size: 0.75em;
+    padding: 4px 10px;
+}
+
+/* 二次創作クレジット表記 */
+#credit-block {
+    margin-top: 24px;
+    padding: 10px;
+    border-top: 1px solid #444;
+    text-align: center;
+}
+#credit-block p {
+    font-size: 0.7em;
+    color: #999;
+    line-height: 1.5;
+    margin: 0 0 8px;
+}
+#credit-block img {
+    width: 200px;
+    height: 40px;
+    opacity: 0.85;
+}
+#credit-block img:hover { opacity: 1; }
+
 button {
     padding: 8px 16px;
     margin: 6px 4px;

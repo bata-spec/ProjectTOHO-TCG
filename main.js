@@ -97,6 +97,7 @@ async function initBattle() {
     targetSelectionState = null;
     listSelectionState = null;
     hideActionPrompt();
+    playBGM('battle');
 
     if (gameMode === 'local2p') {
         // --- ローカル2人対戦：プレイヤー1・プレイヤー2ともに人間操作 ---

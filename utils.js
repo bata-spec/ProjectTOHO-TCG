@@ -263,6 +263,7 @@ function applyDamage(player, damage, charElementId, statusElementId) {
 
     const card = cardDatabase[player.currentCard];
     player.hp -= damage;
+    playSE('damage');
     updateDisplay(`${card.name} に ダメージ ${damage}！`);
 
     if (player.hp <= 0) {
@@ -292,6 +293,10 @@ function applyDamage(player, damage, charElementId, statusElementId) {
 function endGame(loserPlayer, reason) {
     if (gameOver) return;
     gameOver = true;
+
+    const isMyLoss = (loserPlayer === myPlayer);
+    playSE(isMyLoss ? 'defeat' : 'victory');
+    playBGM(isMyLoss ? 'defeat' : 'victory');
 
     updateDisplay(`🏁 GAME SET！${getPlayerLabel(loserPlayer)}の敗北（${reason}）`);
 

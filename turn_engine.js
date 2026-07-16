@@ -73,6 +73,7 @@ function getAbilityCostToPay(player, ability) {
 }
 
 async function drawCard(player, n) {
+    playSE('draw');
     const other = (player === myPlayer) ? opponent : myPlayer;
     const otherBase = cardDatabase[other.currentCard];
     const replaceAbility = otherBase && otherBase.abilities && otherBase.abilities.find(a =>
@@ -141,6 +142,7 @@ async function startTurn() {
 
 async function endTurn() {
     if (gameOver) return;
+    playSE('turnEnd');
     currentTurnPlayer = (currentTurnPlayer === 'me') ? 'opponent' : 'me';
 
     if (gameMode === 'local2p') {
@@ -190,6 +192,7 @@ async function useMagic(index) {
     payCost(player, costToPay);
     player.hand.splice(index, 1);
     player.graveyard.push(cardId);
+    playSE('spell');
     updateDisplay(`✨ ${getPlayerLabel(player)}がスペル発動：${card.name}${costToPay !== card.cost ? `（割引済コスト${costToPay}）` : ''}`);
 
     const defender = getDefendingPlayer();
@@ -243,6 +246,7 @@ function setTrapFromHand(index) {
     player.hand.splice(index, 1);
     player.traps[emptySlot] = cardId;
     player.trapsRevealed[emptySlot] = false;
+    playSE('counterspellSet');
     updateDisplay(`🔒 ${getPlayerLabel(player)}がカウンタースペルをセットした。`);
 
     updateHandDisplay();
@@ -323,6 +327,7 @@ function awakenCharacter(player, resultId) {
         return;
     }
 
+    playSE('awaken');
     player.currentCard = resultId;
     player.hp = exCard.hp;
     player.maxHp = exCard.hp;
@@ -368,6 +373,7 @@ function activateAreaCard(index) {
     const maxOdBoost = (card.params && card.params.maxOdBoost) || 0;
     player.maxOd += maxOdBoost;
 
+    playSE('areaActivate');
     updateDisplay(`🌌 ${getPlayerLabel(player)}がエリア展開：「${card.name}」！ コストの上限が${player.maxOd}に増加した（${card.text || ''}）`);
 
     refreshFieldDisplay(player);
@@ -495,6 +501,7 @@ async function useCharacterAbility(player, abilityIndex) {
 
     payCost(player, costToPay);
     player.usedAbilitiesThisTurn[ability.abilityId] = true;
+    playSE('ability');
     updateDisplay(`💫 ${getPlayerLabel(player)}が能力発動：${ability.text}`);
 
     const defender = (player === myPlayer) ? opponent : myPlayer;
