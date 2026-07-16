@@ -24,6 +24,7 @@ function selectGameMode(mode) {
 }
 
 function backToModeSelect() {
+    if (gameMode === 'network') leaveNetworkRoom();
     gameMode = null;
     localBuildPhase = null;
     player1Build = null;
@@ -63,6 +64,10 @@ function configureBuilderScreenForPhase() {
         heading.innerText = 'プレイヤー2：キャラクターとデッキを選択してください';
         btn.innerText = '対戦開始';
         btn.onclick = () => confirmLocalBuildStep();
+    } else if (gameMode === 'network') {
+        heading.innerText = 'ネット対戦：キャラクターとデッキを選択してください';
+        btn.innerText = '準備完了（相手を待つ）';
+        btn.onclick = () => confirmNetworkBuildStep();
     } else {
         heading.innerText = 'デッキを構築してください';
         btn.innerText = '戦闘画面へ';
@@ -121,6 +126,7 @@ function renderCharacterSelect() {
             selectedCharacterId = card.id;
             updateGoButtonState();
             checkAwakeningWarning();
+            playCharacterBGM(card.motif);
         };
 
         const img = document.createElement("img");
@@ -199,6 +205,7 @@ function useConceptDeck(characterId) {
     checkAwakeningWarning();
 
     const charCard = cardDatabase[characterId];
+    playCharacterBGM(charCard ? charCard.motif : null);
     updateDisplay(`🎴 ${charCard ? charCard.name : characterId}のコンセプトデッキを組みました。必要なら枚数を調整してから戦闘画面へ進んでください。`);
 }
 

@@ -97,7 +97,6 @@ async function initBattle() {
     targetSelectionState = null;
     listSelectionState = null;
     hideActionPrompt();
-    playBGM('battle');
 
     if (gameMode === 'local2p') {
         // --- ローカル2人対戦：プレイヤー1・プレイヤー2ともに人間操作 ---
@@ -116,6 +115,15 @@ async function initBattle() {
         const opponentDeck = buildRandomOpponentDeck(opponentCharacterId);
         shuffleDeck(opponentDeck);
         resetPlayerForBattle(opponent, opponentDeck, opponentCharacterId, CONTROLLER_TYPES.AI, "opponent-character", "opponent-status");
+    }
+
+    // 自分が選んだキャラのテーマ曲があればそれを、無ければ汎用の戦闘BGMを流す
+    const myBaseCard = cardDatabase[myPlayer.currentCard];
+    const hasCharTheme = myBaseCard && CHARACTER_BGM_TRACKS[myBaseCard.motif];
+    if (hasCharTheme) {
+        playCharacterBGM(myBaseCard.motif);
+    } else {
+        playBGM('battle');
     }
 
     // --- 初期手札 ---

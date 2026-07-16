@@ -16,16 +16,19 @@
         <h2>モードを選択してください</h2>
         <button onclick="selectGameMode('single')">AI対戦</button>
         <button onclick="selectGameMode('local2p')">ローカル2人対戦（1台の端末で交互にプレイ）</button>
-        <button onclick="goToNetworkLobby()">ネット対戦（テスト版：接続確認のみ）</button>
+        <button onclick="goToNetworkLobby()">ネット対戦（無料・合言葉で接続）</button>
+        <br>
+        <button onclick="openRulesPanel()">📖 遊び方・ルール説明</button>
     </div>
 
     <div id="network-lobby-screen" style="display:none;">
         <div class="deckbuilder-topbar">
             <button class="link-btn" onclick="leaveNetworkLobby()">← モード選択に戻る</button>
         </div>
-        <h2>ネット対戦（テスト版）</h2>
+        <h2>ネット対戦</h2>
         <p class="warning-box" style="display:block;">
-            現在は「合言葉で接続できるか」の確認のみです。対戦そのものはまだ同期されません。
+            Firebaseを使った無料のネット対戦です。同じ合言葉を使えば、離れた場所同士でも対戦できます。
+            一方がルームを作り、合言葉をもう一方に伝えて参加してください。
         </p>
 
         <h3>ルームを作る</h3>
@@ -41,9 +44,16 @@
         <div id="network-lobby-status" class="network-status"></div>
     </div>
 
+    <div id="network-waiting-screen" style="display:none;">
+        <h2>対戦相手を待っています…</h2>
+        <p>相手側もデッキを組み終えると、自動的に対戦が始まります。このまま少しお待ちください。</p>
+        <button class="link-btn" onclick="leaveNetworkLobby()">← やめてモード選択に戻る</button>
+    </div>
+
     <div id="deckbuilder-screen" style="display:none;">
         <div class="deckbuilder-topbar">
             <button class="link-btn" onclick="backToModeSelect()">← モード選択に戻る</button>
+            <button class="link-btn" onclick="openRulesPanel()">📖 遊び方</button>
         </div>
         <h2 id="deckbuilder-heading">デッキを構築してください</h2>
 
@@ -102,6 +112,7 @@
 
     <div id="battle-screen" style="display:none;">
         <div id="turn-indicator">ターン: - / 手番: -</div>
+        <button class="link-btn" onclick="openRulesPanel()">📖 遊び方</button>
 
         <div id="battlefield">
             <div class="zone-row opponent-zone-row">
@@ -161,6 +172,53 @@
             <button id="card-detail-close" onclick="clearCardDetail()">✕</button>
         </div>
         <div id="card-detail-content">カードをタップすると詳細が表示されます</div>
+    </div>
+
+    <div id="rules-panel" style="display:none;">
+        <div id="card-detail-header">
+            <h3>遊び方・ルール説明</h3>
+            <button id="card-detail-close" onclick="closeRulesPanel()">✕</button>
+        </div>
+        <div id="rules-content">
+            <h4>① ゲームの目的</h4>
+            <p>お互い1体のキャラクターとなって対戦する1対1のカードゲームです。相手のHPを0にするか、相手が山札切れ（ドローできない）になれば勝利です。</p>
+
+            <h4>② デッキの構築</h4>
+            <ul>
+                <li>キャラクターを1体選び、デッキを40〜60枚で組みます（同じカードは3枚まで。ただしエリアカードは1枚まで）。</li>
+                <li>各キャラには専用の「覚醒素材」3種＋「キーカード」1種があります。入れなくてもプレイできますが、入れないと戦闘中に覚醒（EX化）できません。</li>
+                <li>「コンセプトデッキで組む」ボタンを押すと、そのキャラに合ったデッキを自動で組んでくれます（後から調整も可能）。</li>
+            </ul>
+
+            <h4>③ カードの種類</h4>
+            <ul>
+                <li><strong>キャラクター</strong>：自分の分身。HPとオド（コスト）を持つ。</li>
+                <li><strong>スペル</strong>：手札から即座に発動する効果。発動にはコストが必要。</li>
+                <li><strong>カウンタースペル</strong>：手札から場に伏せて（セットして）おき、決められた条件（相手の攻撃・スペル発動・ドローなど）を満たした時に自動で発動する。セットする時にコストはかからず、発動する時にコストを払う。</li>
+                <li><strong>素材／キー</strong>：使うと覚醒フラグが進み、素材3枚を使い終えるとキーカードが使用可能になり、覚醒（EX化）できる。</li>
+                <li><strong>エリア</strong>：使用可能コスト（オド）が上限に達している時だけ、全部消費して発動できる特殊カード。発動するとコストの上限が増え、以後ゲーム中ずっと効果（オーラ）が続く。自分と相手、それぞれ独立して展開できる。</li>
+            </ul>
+
+            <h4>④ コスト（オド）について</h4>
+            <p>自分のターン開始時に、オドは上限まですべて回復します。スペル・カウンタースペルの発動、キャラクター能力の使用にはオドを消費します。</p>
+
+            <h4>⑤ 覚醒（EX化）</h4>
+            <p>覚醒素材3枚をすべて使うとキーカードが使用可能になります。キーカードを使うと、そのキャラの真の姿（EX）に変身し、HP・オドが変化し、より強力な能力が使えるようになります。</p>
+
+            <h4>⑥ ターンの流れ</h4>
+            <ol>
+                <li>ターン開始：オドが上限まで回復し、カードを1枚ドローする（自分の初回ターンのみドローなし）。</li>
+                <li>手札からスペル／カウンタースペルのセット／素材・キーの使用／キャラクター能力の発動（1ターンに1回まで）／エリアの発動、を好きな順番・好きな回数で行う。</li>
+                <li>「ターンエンド」を押すと相手の番になる。</li>
+            </ol>
+
+            <h4>⑦ 便利機能</h4>
+            <ul>
+                <li>墓地（自分・相手どちらも）をタップすると、中に入っているカードの一覧を確認できます。</li>
+                <li>手札やキャラクターの絵をタップすると、詳細（効果・フレーバーテキスト）を確認できます。</li>
+                <li>画面上部の🔊SE／🎵BGMボタンで、効果音・BGMをそれぞれオン/オフできます。</li>
+            </ul>
+        </div>
     </div>
 
     <div id="modal-backdrop" style="display:none;"></div>

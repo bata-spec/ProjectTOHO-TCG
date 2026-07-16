@@ -387,6 +387,32 @@ button:disabled {
     background: #4a5578;
 }
 
+#rules-panel {
+    position: fixed;
+    inset: 5vh 4vw;
+    z-index: 50;
+    padding: 12px;
+    background: #1c1f2e;
+    border: 2px solid #4a5578;
+    border-radius: 10px;
+    overflow-y: auto;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+}
+#rules-content h4 {
+    margin: 14px 0 4px;
+    color: #d8bfff;
+}
+#rules-content h4:first-child { margin-top: 0; }
+#rules-content p, #rules-content li {
+    font-size: 0.85em;
+    line-height: 1.6;
+    color: #ddd;
+}
+#rules-content ul, #rules-content ol {
+    padding-left: 1.3em;
+    margin: 4px 0;
+}
+
 /* --- モーダル背景・アクション確認プロンプト（無効化するか等の選択、対象選択の決定ボタンなど） --- */
 #modal-backdrop {
     position: fixed;

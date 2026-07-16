@@ -94,10 +94,26 @@ function playSE(name) {
     if (!sfxEnabled) return;
     const fn = SE[name];
     if (fn) fn();
+    duckBgm();
 }
 
-// --- BGM ---
-// 音声ファイルは audio/bgm/ に置く想定（無くても壊れない）。
+// SEが鳴っている間だけBGMの音量を少し下げて、また元に戻す
+let duckTimeoutId = null;
+function duckBgm() {
+    if (!currentBgm) return;
+    if (currentBgm._baseVolume == null) currentBgm._baseVolume = currentBgm.volume;
+
+    currentBgm.volume = currentBgm._baseVolume * 0.35;
+
+    if (duckTimeoutId) clearTimeout(duckTimeoutId);
+    duckTimeoutId = setTimeout(() => {
+        if (currentBgm) currentBgm.volume = currentBgm._baseVolume;
+        duckTimeoutId = null;
+    }, 450);
+}
+
+// --- BGM（画面ごとの汎用BGM） ---
+// 音声ファイルは audio/bgm/ に置く想定（無くても壊れない。ファイルが無ければ単に無音）。
 const BGM_TRACKS = {
     title: "audio/bgm/title.mp3",
     deckbuilder: "audio/bgm/deckbuilder.mp3",
@@ -106,7 +122,11 @@ const BGM_TRACKS = {
     defeat: "audio/bgm/defeat.mp3",
 };
 
+// ミュート解除時に「直前は何を再生しようとしていたか」を再現するための記録
+let lastBgmRequest = null; // { type: 'generic' | 'character', arg: string }
+
 function playBGM(key) {
+    lastBgmRequest = { type: 'generic', arg: key };
     if (currentBgmKey === key && currentBgm && !currentBgm.paused) return;
     stopBGM();
     currentBgmKey = key;
@@ -118,7 +138,7 @@ function playBGM(key) {
     const audio = new Audio(src);
     audio.loop = true;
     audio.volume = 0.4;
-    audio.onerror = () => { /* ファイル未提供の間は静かに無視する */ };
+    audio.onerror = () => { /* ファイル未設置の間は静かに無視する */ };
     audio.play().catch(() => { /* 自動再生ブロック等は無視。次のタップ操作後に再度呼ばれれば鳴る */ });
 
     currentBgm = audio;
@@ -132,7 +152,51 @@ function stopBGM() {
     }
 }
 
-// --- ミュート切り替え（画面上のボタンから呼ぶ） ---
+// --- キャラクター別テーマ曲（ご自身が所有する音楽データを使う方式） ---
+// このゲームは、東方Projectの楽曲データを一切含んでいません（配布物にファイルは同梱していません）。
+// キャラのテーマ曲を鳴らしたい場合は、CD等からご自身で用意した音楽データを、
+// 下記のファイル名で audio/bgm/characters/ に置いてください。それだけで、
+// そのキャラを選んだ時・そのキャラで戦闘を始めた時に自動でループ再生されます。
+// ファイルが無いキャラは、単に無音のままになります（エラーは出ません）。
+const CHARACTER_BGM_TRACKS = {
+    "博麗霊夢": "audio/bgm/characters/reimu.mp3",
+    "霧雨魔理沙": "audio/bgm/characters/marisa.mp3",
+    "ルーミア": "audio/bgm/characters/rumia.mp3",
+    "チルノ": "audio/bgm/characters/cirno.mp3",
+    "紅美鈴": "audio/bgm/characters/meiling.mp3",
+    "パチュリー・ノーレッジ": "audio/bgm/characters/patchouli.mp3",
+    "小悪魔": "audio/bgm/characters/koakuma.mp3",
+    "十六夜咲夜": "audio/bgm/characters/sakuya.mp3",
+    "レミリア・スカーレット": "audio/bgm/characters/remilia.mp3",
+    "フランドール・スカーレット": "audio/bgm/characters/flandre.mp3",
+    "大妖精": "audio/bgm/characters/daiyousei.mp3",
+};
+
+// 選んだキャラのテーマ曲をループ再生する。音源ファイルが無ければ何も鳴らさない（エラーも出さない）。
+function playCharacterBGM(motif) {
+    lastBgmRequest = { type: 'character', arg: motif };
+
+    const src = motif && CHARACTER_BGM_TRACKS[motif];
+    if (!src) {
+        stopBGM();
+        currentBgmKey = null;
+        return;
+    }
+    if (currentBgmKey === `char:${motif}` && currentBgm && !currentBgm.paused) return;
+
+    stopBGM();
+    currentBgmKey = `char:${motif}`;
+    if (!bgmEnabled) return;
+
+    const audio = new Audio(src);
+    audio.loop = true;
+    audio.volume = 0.4;
+    audio.onerror = () => { /* 音源未設置の間は静かに無視する */ };
+    audio.play().catch(() => { /* 自動再生ブロック等は無視 */ });
+
+    currentBgm = audio;
+}
+
 function toggleSfx() {
     sfxEnabled = !sfxEnabled;
     updateAudioButtons();
@@ -142,8 +206,9 @@ function toggleBgm() {
     bgmEnabled = !bgmEnabled;
     if (!bgmEnabled) {
         stopBGM();
-    } else if (currentBgmKey) {
-        playBGM(currentBgmKey);
+    } else if (lastBgmRequest) {
+        if (lastBgmRequest.type === 'generic') playBGM(lastBgmRequest.arg);
+        else if (lastBgmRequest.type === 'character') playCharacterBGM(lastBgmRequest.arg);
     }
     updateAudioButtons();
 }

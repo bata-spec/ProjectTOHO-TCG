@@ -108,10 +108,23 @@ async function startTurn() {
     turnCount++;
     const player = getActivePlayer();
 
+    // ネット対戦で「相手」の番になった場合、実際の処理は相手の端末側が行い、
+    // こちらにはFirebase経由で結果が同期されてくる。ここでは何もせず待つだけにする
+    // （でないと、こちらの手元にある不正確な相手情報でドロー等を行ってしまい、
+    // 　相手の端末の本物の状態と食い違ってしまう）。
+    if (player.controllerType === CONTROLLER_TYPES.NETWORK) {
+        turnCount--; // 実際のターン数は同期されてくる値を使うので、ここでは進めない
+        updateTurnIndicator();
+        maybeSyncNetworkState(); // 「あなたの番になりました」を相手の端末に伝える
+        runControllerTurn(player);
+        return;
+    }
+
     player.od = player.maxOd;
     player.usedAbilitiesThisTurn = {}; // 能力の「1ターンに1回」制限を、自分の手番開始時にリセット
     if (player.trapSealedTurns > 0) player.trapSealedTurns--;
     if (player.abilitySealedTurns > 0) player.abilitySealedTurns--;
+    refreshFieldDisplay(player); // コストを回復した直後、画面にすぐ反映させる
 
     if (player.firstTurnTaken) {
         await drawCard(player, 1);
@@ -137,11 +150,13 @@ async function startTurn() {
 
     updateDisplay(`--- ${turnCount}ターン目：${getPlayerLabel(player)}の番 ---`);
 
+    maybeSyncNetworkState();
     runControllerTurn(player);
 }
 
 async function endTurn() {
     if (gameOver) return;
+    if (!isHumanControlled(getActivePlayer())) return; // 自分の番でない時に誤って押しても無視する
     playSE('turnEnd');
     currentTurnPlayer = (currentTurnPlayer === 'me') ? 'opponent' : 'me';
 
@@ -224,6 +239,7 @@ async function useMagic(index) {
     updateHandDisplay();
     updateGraveyardDisplay(player);
     refreshAbilityDisplay();
+    maybeSyncNetworkState();
 }
 
 function setTrapFromHand(index) {
@@ -251,6 +267,7 @@ function setTrapFromHand(index) {
 
     updateHandDisplay();
     updateTrapDisplay();
+    maybeSyncNetworkState();
 }
 
 // --- 覚醒システム（素材カード・キーカード） ---
@@ -285,6 +302,7 @@ function useMaterialCard(index) {
     updateHandDisplay();
     updateGraveyardDisplay(player);
     refreshAbilityDisplay();
+    maybeSyncNetworkState();
 }
 
 function useKeyCard(index) {
@@ -318,6 +336,7 @@ function useKeyCard(index) {
 
     awakenCharacter(player, card.resultId);
     updateGraveyardDisplay(player);
+    maybeSyncNetworkState();
 }
 
 function awakenCharacter(player, resultId) {
@@ -380,6 +399,7 @@ function activateAreaCard(index) {
     updateAreaDisplay();
     updateHandDisplay();
     refreshAbilityDisplay();
+    maybeSyncNetworkState();
 }
 
 // 場のエリア表示（トラップゾーンと同様、1人1枠）
@@ -511,6 +531,7 @@ async function useCharacterAbility(player, abilityIndex) {
 
     refreshFieldDisplay(player);
     refreshAbilityDisplay();
+    maybeSyncNetworkState();
 }
 
 // --- 場の描画（デッキ枚数・トラップゾーン） ---

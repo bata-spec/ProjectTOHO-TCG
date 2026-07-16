@@ -165,6 +165,16 @@ function openCardDetailPanel() {
     if (panel) panel.style.display = "block";
 }
 
+function openRulesPanel() {
+    const panel = document.getElementById('rules-panel');
+    if (panel) panel.style.display = "block";
+}
+
+function closeRulesPanel() {
+    const panel = document.getElementById('rules-panel');
+    if (panel) panel.style.display = "none";
+}
+
 function clearCardDetail() {
     const panel = document.getElementById('card-detail-panel');
     const content = document.getElementById('card-detail-content');
@@ -293,6 +303,8 @@ function applyDamage(player, damage, charElementId, statusElementId) {
 function endGame(loserPlayer, reason) {
     if (gameOver) return;
     gameOver = true;
+    lastGameOverLoserPlayer = loserPlayer;
+    lastGameOverReason = reason;
 
     const isMyLoss = (loserPlayer === myPlayer);
     playSE(isMyLoss ? 'defeat' : 'victory');
@@ -310,6 +322,7 @@ function endGame(loserPlayer, reason) {
     hideActionPrompt();
 
     showGameOverPanel(loserPlayer, reason);
+    maybeSyncNetworkState();
 }
 
 // --- 勝敗確定後：再戦 or デッキ構築へ戻る ---
@@ -336,6 +349,11 @@ function hideGameOverPanel() {
 
 // 同じデッキ・同じキャラクターのまま、山札を組み直してもう一度対戦する
 async function rematchBattle() {
+    if (gameMode === 'network') {
+        updateDisplay('❌ ネット対戦の再戦は未対応です。一度ロビーに戻って、もう一度ルームを作り直してください。');
+        return;
+    }
+
     hideGameOverPanel();
     document.querySelectorAll('#battle-screen button').forEach(btn => btn.disabled = false);
     battleLogMessages = ['同じデッキで再戦します。'];

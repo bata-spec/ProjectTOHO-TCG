@@ -160,20 +160,10 @@ function findBestAiMagicIndex(player) {
     return bestIndex;
 }
 
-// --- ネットワーク対戦用（未実装・項目のみ用意） ---
+// --- ネットワーク対戦 ---
+// このデバイスから見て「相手（controllerType: network）」の番になった時に呼ばれる。
+// 実際の操作は相手の端末で行われ、Firebase経由で状態が同期されてくるのを待つだけでよいので、
+// ここでは何もしない（ボタン類は isHumanControlled() のチェックにより自動的に操作不可になる）。
 function runNetworkTurn(player) {
-    // TODO: サーバー/DBから相手の行動を受信して同期する処理を実装する
-    updateDisplay('（ネットワーク対戦は未実装です）');
-}
-
-function sendActionToServer(action) {
-    // TODO: 自分の行動（マジック使用・トラップセット・ターンエンド等）をサーバーに送信する
-}
-
-function receiveActionFromServer() {
-    // TODO: サーバーから相手の行動を受信してゲーム状態に反映する
-}
-
-function connectToNetworkSession(sessionId, playerId) {
-    // TODO: サーバー/DBに接続し、対戦セッションに参加する処理を実装する
+    // 何もしない：相手の端末からの同期を待つ
 }
