@@ -156,7 +156,8 @@ async function startTurn() {
 
 async function endTurn() {
     if (gameOver) return;
-    if (!isHumanControlled(getActivePlayer())) return; // 自分の番でない時に誤って押しても無視する
+    // ネット対戦で「自分の番でない時」にボタンを誤って押しても無視する（AI自身のターン終了処理は妨げない）
+    if (gameMode === 'network' && !isHumanControlled(getActivePlayer())) return;
     playSE('turnEnd');
     currentTurnPlayer = (currentTurnPlayer === 'me') ? 'opponent' : 'me';
 
