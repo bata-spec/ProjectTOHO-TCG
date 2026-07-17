@@ -42,13 +42,6 @@ function getPlayerLabel(player) {
     if (gameMode === 'local2p') {
         return player === myPlayer ? 'プレイヤー1' : 'プレイヤー2';
     }
-    if (gameMode === 'network') {
-        // 「自分/相手」は表示している端末ごとに意味が変わってしまい、ログを同期すると
-        // 主語がねじれて見えるため、ネット対戦ではどちらの画面でも同じ意味になる
-        // キャラクター名を主語として使う。
-        const card = cardDatabase[player.currentCard];
-        return card ? card.name : (player === myPlayer ? '自分' : '相手');
-    }
     return player === myPlayer ? '自分' : '相手';
 }
 
