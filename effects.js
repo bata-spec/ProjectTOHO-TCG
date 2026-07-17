@@ -3,7 +3,7 @@
 // 対象を選ぶ必要がある効果（トラップの破壊・公開など）は、発動した側（self）が人間操作なら
 // pickTrapTargets() 経由でタップ選択させる。AI操作の場合は先頭から自動で選ぶ（従来の挙動）。
 
-async function applyCardEffect(effectId, params, self, opponent) {
+async function applyCardEffect(effectId, params, self, target) {
     switch (effectId) {
         case 'DRAW_N':
             await drawCard(self, params.n);
@@ -11,7 +11,7 @@ async function applyCardEffect(effectId, params, self, opponent) {
             break;
 
         case 'DAMAGE_ALL_ENEMY':
-            await dealDamageTo(opponent, params.amount, self);
+            await dealDamageTo(target, params.amount, self);
             break;
 
         case 'HEAL':
@@ -30,29 +30,29 @@ async function applyCardEffect(effectId, params, self, opponent) {
         }
 
         case 'DISCARD_OPPONENT':
-            await discardCardsFromHand(opponent, params.n);
+            await discardCardsFromHand(target, params.n);
             break;
 
         case 'SEAL_TRAP':
             playSE('seal');
-            opponent.trapSealedTurns = (opponent.trapSealedTurns || 0) + params.duration;
+            target.trapSealedTurns = (target.trapSealedTurns || 0) + params.duration;
             updateDisplay(`相手のカウンタースペルが${params.duration}ターン封印された。`);
             break;
 
         case 'SEAL_ABILITY':
             playSE('seal');
-            opponent.abilitySealedTurns = (opponent.abilitySealedTurns || 0) + params.duration;
+            target.abilitySealedTurns = (target.abilitySealedTurns || 0) + params.duration;
             updateDisplay(`相手のキャラクター能力が${params.duration}ターン封印された。`);
             break;
 
         case 'REVEAL_TRAP': {
             // 公開対象は「まだ伏せられているカウンタースペル」のみを選択候補にする
             const indices = await pickTrapTargets(
-                self, opponent, params.n,
+                self, target, params.n,
                 '公開するカウンタースペルを選択',
-                (cardId, i) => !!cardId && !opponent.trapsRevealed[i]
+                (cardId, i) => !!cardId && !target.trapsRevealed[i]
             );
-            revealTrapsAt(opponent, indices);
+            revealTrapsAt(target, indices);
             break;
         }
 
@@ -61,8 +61,8 @@ async function applyCardEffect(effectId, params, self, opponent) {
             break;
 
         case 'DESTROY_TRAP': {
-            const indices = await pickTrapTargets(self, opponent, params.n, '破壊するカウンタースペルを選択');
-            destroyTrapsAt(opponent, indices);
+            const indices = await pickTrapTargets(self, target, params.n, '破壊するカウンタースペルを選択');
+            destroyTrapsAt(target, indices);
             break;
         }
 
@@ -72,9 +72,9 @@ async function applyCardEffect(effectId, params, self, opponent) {
             break;
 
         case 'OD_DRAIN':
-            opponent.od = Math.max(0, opponent.od - params.amount);
+            target.od = Math.max(0, target.od - params.amount);
             updateDisplay(`相手のコストが${params.amount}減少した。`);
-            refreshFieldDisplay(opponent);
+            refreshFieldDisplay(target);
             break;
 
         case 'REFLECT_SHIELD':
@@ -93,19 +93,19 @@ async function applyCardEffect(effectId, params, self, opponent) {
             playSE('steal');
             const n = params.n || 1;
             for (let i = 0; i < n; i++) {
-                if (opponent.hand.length === 0) break;
-                const idx = Math.floor(Math.random() * opponent.hand.length);
-                const cardId = opponent.hand.splice(idx, 1)[0];
+                if (target.hand.length === 0) break;
+                const idx = Math.floor(Math.random() * target.hand.length);
+                const cardId = target.hand.splice(idx, 1)[0];
                 self.hand.push(cardId);
                 const c = cardDatabase[cardId];
-                updateDisplay(`🃏 ${getPlayerLabel(self)}は${getPlayerLabel(opponent)}の「${c ? c.name : cardId}」を奪った！`);
+                updateDisplay(`🃏 ${getPlayerLabel(self)}は${getPlayerLabel(target)}の「${c ? c.name : cardId}」を奪った！`);
             }
             updateHandDisplay();
             break;
         }
 
         case 'LIFESTEAL_DAMAGE': {
-            await dealDamageTo(opponent, params.amount, self);
+            await dealDamageTo(target, params.amount, self);
             const ratio = params.healRatio != null ? params.healRatio : 1;
             const healAmount = Math.floor(params.amount * ratio);
             if (healAmount > 0) healPlayer(self, healAmount);
@@ -118,35 +118,35 @@ async function applyCardEffect(effectId, params, self, opponent) {
             if (area && area.effectId === 'RANDOM_BURST_BOOST_AURA') max += (area.params.amount || 0);
             const amount = Math.floor(Math.random() * (max - params.min + 1)) + params.min;
             updateDisplay(`🎲 ランダムダメージ判定：${amount}`);
-            await dealDamageTo(opponent, amount, self);
+            await dealDamageTo(target, amount, self);
             break;
         }
 
         case 'PIERCE_DAMAGE': {
             // 軽減(damageReduction)・反射(reflectShield)を無視する直接ダメージ
-            const charId = opponent === myPlayer ? "my-character" : "opponent-character";
-            const statusId = opponent === myPlayer ? "my-status" : "opponent-status";
-            applyDamage(opponent, params.amount, charId, statusId);
+            const charId = target === myPlayer ? "my-character" : "target-character";
+            const statusId = target === myPlayer ? "my-status" : "target-status";
+            applyDamage(target, params.amount, charId, statusId);
             updateDisplay(`🗡️ 軽減・反射を貫通するダメージ！`);
-            await checkTrapTriggers('selfTakesDamage', opponent, self);
-            await checkTrapTriggers('opponentAttacks', opponent, self);
+            await checkTrapTriggers('selfTakesDamage', target, self);
+            await checkTrapTriggers('opponentAttacks', target, self);
             break;
         }
 
         case 'UNBLOCKABLE_DAMAGE': {
             // 軽減・反射に加え、無効化の対象にもならない直接ダメージ
             // （呼び出し元は無効化チェーンを経由させずここへ直接効果を適用する想定）
-            const charId = opponent === myPlayer ? "my-character" : "opponent-character";
-            const statusId = opponent === myPlayer ? "my-status" : "opponent-status";
-            applyDamage(opponent, params.amount, charId, statusId);
+            const charId = target === myPlayer ? "my-character" : "target-character";
+            const statusId = target === myPlayer ? "my-status" : "target-status";
+            applyDamage(target, params.amount, charId, statusId);
             updateDisplay(`💥 一切の防御を許さないダメージ！`);
             break;
         }
 
         case 'SELF_DAMAGE_BURST': {
-            await dealDamageTo(opponent, params.amount, self);
-            const charId = self === myPlayer ? "my-character" : "opponent-character";
-            const statusId = self === myPlayer ? "my-status" : "opponent-status";
+            await dealDamageTo(target, params.amount, self);
+            const charId = self === myPlayer ? "my-character" : "target-character";
+            const statusId = self === myPlayer ? "my-status" : "target-status";
             applyDamage(self, params.selfDamage, charId, statusId);
             updateDisplay(`⚠️ 制御できない力の反動で、自分も${params.selfDamage}ダメージを受けた。`);
             await checkTrapTriggers('selfTakesDamage', self, null);
@@ -171,12 +171,12 @@ async function applyCardEffect(effectId, params, self, opponent) {
         case 'DISCARD_THEN_DRAW':
             // カード効果「相手の手札を1枚捨てさせ、1枚ドローする」：
             // 捨てるのは相手（対象）、ドローするのは発動者（self）。
-            await discardCardsFromHand(opponent, params.n);
+            await discardCardsFromHand(target, params.n);
             await drawCard(self, params.n);
             break;
 
         case 'DISCARD_CHOICE':
-            await discardChoice(self, opponent, params.n);
+            await discardChoice(self, target, params.n);
             break;
 
         default:
