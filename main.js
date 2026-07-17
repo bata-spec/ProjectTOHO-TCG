@@ -6,6 +6,45 @@ function onDataLoaded() {
     const builderScreen = document.getElementById('deckbuilder-screen');
     if (modeScreen) modeScreen.style.display = "block";
     if (builderScreen) builderScreen.style.display = "none";
+
+    const usernameInput = document.getElementById('username-input');
+    if (usernameInput) usernameInput.value = myUsername;
+
+    updateAudioButtons();
+}
+
+// --- チュートリアル対戦 ---
+// 博麗霊夢のコンセプトデッキ・AI（弱め）を自動で設定して、そのまま対戦を始める。
+// 通常のデッキ構築画面は経由しない（初心者がまず何もわからず詰まらないようにするため）。
+function startTutorialBattle() {
+    gameMode = 'single';
+    aiDifficulty = 'easy';
+    selectedCharacterId = '101'; // 博麗霊夢
+    deckSelection = buildConceptDeckSelection('101');
+    deck = buildDeckArray();
+    shuffleDeck(deck);
+
+    const modeScreen = document.getElementById('mode-select-screen');
+    const battleScreen = document.getElementById('battle-screen');
+    if (modeScreen) modeScreen.style.display = "none";
+    if (battleScreen) battleScreen.style.display = "block";
+
+    initBattle().then(() => {
+        showTutorialTips();
+    });
+}
+
+function showTutorialTips() {
+    const tips = [
+        '📘 チュートリアル対戦です。あなたは「博麗霊夢」を操作します。相手は弱めのAIです。',
+        '📘 キャラクターの下にある数字が HP（体力） と コスト（オド） です。HPが0になったら負けです。',
+        '📘 オドはターン開始時に上限まで回復します。スペルや能力の発動にはこのオドを使います。',
+        '📘 手札の[スペル]はタップするとすぐ発動します。[カウンタースペル]はタップすると場に伏せておき、条件を満たすと自動で発動します。',
+        '📘 素材カードやキーカードを使うと、条件を満たした時にキャラクターが覚醒（真の姿）できます。',
+        '📘 やれることを全部やったら「ターンエンド」で相手の番に移ります。',
+        '📘 わからなくなったら、いつでも画面上の「📖 遊び方」でルールを見返せます。それでは対戦開始！',
+    ];
+    tips.forEach(t => updateDisplay(t));
 }
 
 function summonCharacter(player, cardId, charElementId, statusElementId) {
@@ -103,18 +142,22 @@ async function initBattle() {
         const p1Deck = buildDeckArrayFrom(player1Build.deckSelection);
         shuffleDeck(p1Deck);
         resetPlayerForBattle(myPlayer, p1Deck, player1Build.characterId, CONTROLLER_TYPES.HUMAN, "my-character", "my-status");
+        myPlayer.username = '';
 
         const p2Deck = buildDeckArrayFrom(player2Build.deckSelection);
         shuffleDeck(p2Deck);
         resetPlayerForBattle(opponent, p2Deck, player2Build.characterId, CONTROLLER_TYPES.HUMAN, "opponent-character", "opponent-status");
+        opponent.username = '';
     } else {
         // --- シングルプレイ：自分 vs AI（相手デッキは毎回ランダム生成） ---
         resetPlayerForBattle(myPlayer, deck.slice(), selectedCharacterId, CONTROLLER_TYPES.HUMAN, "my-character", "my-status");
+        myPlayer.username = myUsername;
 
         const opponentCharacterId = pickRandomOpponentCharacter();
         const opponentDeck = buildRandomOpponentDeck(opponentCharacterId);
         shuffleDeck(opponentDeck);
         resetPlayerForBattle(opponent, opponentDeck, opponentCharacterId, CONTROLLER_TYPES.AI, "opponent-character", "opponent-status");
+        opponent.username = 'CPU';
     }
 
     // 自分が選んだキャラのテーマ曲があればそれを、無ければ汎用の戦闘BGMを流す

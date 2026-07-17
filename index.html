@@ -8,17 +8,35 @@
 <body>
     <h1>TCG System</h1>
     <div id="audio-controls">
-        <button id="sfx-toggle-btn" onclick="toggleSfx()">🔊 SE</button>
-        <button id="bgm-toggle-btn" onclick="toggleBgm()">🎵 BGM</button>
+        <label id="sfx-volume-label" for="sfx-volume-slider">🔊 SE</label>
+        <input type="range" id="sfx-volume-slider" min="0" max="100" value="80" oninput="setSfxVolume(this.value)">
+        <label id="bgm-volume-label" for="bgm-volume-slider">🎵 BGM</label>
+        <input type="range" id="bgm-volume-slider" min="0" max="100" value="40" oninput="setBgmVolume(this.value)">
     </div>
 
     <div id="mode-select-screen" style="display:none;">
         <h2>モードを選択してください</h2>
+        <div class="username-row">
+            <label for="username-input">ユーザー名：</label>
+            <input type="text" id="username-input" placeholder="表示名（任意）" maxlength="12"
+                onchange="saveUsername(this.value.trim()); myUsername = this.value.trim();">
+        </div>
+        <div class="ai-difficulty-row">
+            <label for="ai-difficulty-select">AIの強さ：</label>
+            <select id="ai-difficulty-select">
+                <option value="easy">弱い</option>
+                <option value="normal" selected>普通</option>
+                <option value="hard">強い</option>
+            </select>
+        </div>
         <button onclick="selectGameMode('single')">AI対戦</button>
         <button onclick="selectGameMode('local2p')">ローカル2人対戦（1台の端末で交互にプレイ）</button>
         <button onclick="goToNetworkLobby()">ネット対戦（無料・合言葉で接続）</button>
         <br>
         <button onclick="openRulesPanel()">📖 遊び方・ルール説明</button>
+        <button onclick="openStatsPanel()">📊 戦績</button>
+        <button onclick="goToGalleryScreen()">📚 カード図鑑</button>
+        <button onclick="startTutorialBattle()">🎓 チュートリアル対戦</button>
     </div>
 
     <div id="network-lobby-screen" style="display:none;">
@@ -166,6 +184,26 @@
         <div id="hand-area">手札: </div>
     </div>
 
+    <div id="gallery-screen" style="display:none;">
+        <div class="deckbuilder-topbar">
+            <button class="link-btn" onclick="leaveGalleryScreen()">← モード選択に戻る</button>
+        </div>
+        <h2>カード図鑑</h2>
+        <div class="gallery-filter-row">
+            <label for="gallery-type-filter">種類：</label>
+            <select id="gallery-type-filter" onchange="renderGalleryScreen()">
+                <option value="all">すべて</option>
+                <option value="キャラクター">キャラクター</option>
+                <option value="スペル">スペル</option>
+                <option value="カウンタースペル">カウンタースペル</option>
+                <option value="素材">素材</option>
+                <option value="キー">キー</option>
+                <option value="エリア">エリア</option>
+            </select>
+        </div>
+        <div id="gallery-grid"></div>
+    </div>
+
     <div id="card-detail-panel" style="display:none;">
         <div id="card-detail-header">
             <h3>カード詳細</h3>
@@ -219,6 +257,19 @@
                 <li>画面上部の🔊SE／🎵BGMボタンで、効果音・BGMをそれぞれオン/オフできます。</li>
             </ul>
         </div>
+    </div>
+
+    <div id="stats-panel" style="display:none;">
+        <div id="card-detail-header">
+            <h3>戦績（この端末での記録）</h3>
+            <button id="card-detail-close" onclick="closeStatsPanel()">✕</button>
+        </div>
+        <div id="stats-content"></div>
+        <button onclick="resetStats()" class="danger-btn">戦績を消去する</button>
+        <p class="stats-note">
+            この記録はブラウザ内だけに保存されています。他の人の端末や、別のブラウザからは見えません。
+            AI対戦・ネット対戦の結果のみ記録します（ローカル2人対戦はどちらの成績か区別できないため対象外です）。
+        </p>
     </div>
 
     <div id="modal-backdrop" style="display:none;"></div>

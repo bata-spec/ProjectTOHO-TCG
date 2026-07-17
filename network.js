@@ -213,7 +213,7 @@ function confirmNetworkBuildStep() {
         return;
     }
 
-    const myBuild = { characterId: selectedCharacterId, deckSelection: { ...deckSelection } };
+    const myBuild = { characterId: selectedCharacterId, deckSelection: { ...deckSelection }, username: myUsername || '' };
 
     firebaseDb.ref(`rooms/${networkRoomCode}/${networkRole}Ready`).set(myBuild).then(() => {
         showNetworkWaitingScreen();
@@ -259,10 +259,12 @@ function hostBeginNetworkBattle(hostBuild, guestBuild) {
     const hostDeck = buildDeckArrayFrom(hostBuild.deckSelection);
     shuffleDeck(hostDeck);
     resetPlayerForBattle(myPlayer, hostDeck, hostBuild.characterId, CONTROLLER_TYPES.HUMAN, "my-character", "my-status");
+    myPlayer.username = hostBuild.username || 'ホスト';
 
     const guestDeck = buildDeckArrayFrom(guestBuild.deckSelection);
     shuffleDeck(guestDeck);
     resetPlayerForBattle(opponent, guestDeck, guestBuild.characterId, CONTROLLER_TYPES.NETWORK, "opponent-character", "opponent-status");
+    opponent.username = guestBuild.username || 'ゲスト';
 
     goToNetworkBattleScreen();
 

@@ -13,12 +13,60 @@ h2 { font-size: 1.05em; margin-top: 1em; }
 
 #audio-controls {
     display: flex;
+    align-items: center;
     gap: 6px;
     margin: -6px 0 8px;
+    flex-wrap: wrap;
 }
-#audio-controls button {
+#audio-controls label {
     font-size: 0.75em;
-    padding: 4px 10px;
+    white-space: nowrap;
+}
+#audio-controls input[type="range"] {
+    width: 80px;
+}
+.ai-difficulty-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 8px 0;
+}
+.username-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 8px 0;
+}
+.username-row input { flex: 1; max-width: 200px; }
+
+.gallery-filter-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 8px 0;
+}
+#gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+    gap: 8px;
+    margin-top: 8px;
+}
+.gallery-item {
+    cursor: pointer;
+    text-align: center;
+}
+.gallery-thumb {
+    width: 100%;
+    aspect-ratio: 5 / 7;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #555;
+}
+.gallery-item-name {
+    font-size: 0.65em;
+    color: #ccc;
+    margin-top: 2px;
+    line-height: 1.1;
 }
 
 /* 二次創作クレジット表記 */
@@ -131,6 +179,15 @@ button:disabled {
     object-fit: cover;
     border-radius: 3px;
     cursor: pointer;
+    flex-shrink: 0;
+}
+.fav-btn {
+    background: transparent;
+    border: none;
+    color: #f5c542;
+    font-size: 1.1em;
+    padding: 0 2px;
+    margin: 0;
     flex-shrink: 0;
 }
 .deck-select-label {
@@ -411,6 +468,44 @@ button:disabled {
 #rules-content ul, #rules-content ol {
     padding-left: 1.3em;
     margin: 4px 0;
+}
+
+#stats-panel {
+    position: fixed;
+    inset: 5vh 4vw;
+    z-index: 50;
+    padding: 12px;
+    background: #1c1f2e;
+    border: 2px solid #4a5578;
+    border-radius: 10px;
+    overflow-y: auto;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+}
+.stats-summary {
+    font-size: 0.95em;
+    font-weight: bold;
+    margin: 8px 0 14px;
+}
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85em;
+}
+.stats-table th, .stats-table td {
+    border-bottom: 1px solid #444;
+    padding: 6px 4px;
+    text-align: center;
+}
+.stats-table th { color: #d8bfff; }
+.stats-note {
+    font-size: 0.7em;
+    color: #999;
+    margin-top: 14px;
+    line-height: 1.5;
+}
+.danger-btn {
+    background: #6b2020;
+    margin-top: 10px;
 }
 
 /* --- モーダル背景・アクション確認プロンプト（無効化するか等の選択、対象選択の決定ボタンなど） --- */

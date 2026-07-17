@@ -5,8 +5,36 @@
 // まだファイルが無い間は何も鳴らさず、エラーも出さずに静かに無視する。
 
 let audioCtx = null;
-let sfxEnabled = true;
-let bgmEnabled = true;
+
+// 音量は0〜100（％）。0ならミュットと同じ扱いになる。この端末のブラウザに保存される。
+const AUDIO_VOLUME_STORAGE_KEY = 'walpurgis_tcg_audio_volume';
+
+function loadAudioVolumes() {
+    try {
+        const raw = localStorage.getItem(AUDIO_VOLUME_STORAGE_KEY);
+        if (!raw) return { sfx: 80, bgm: 40 };
+        const parsed = JSON.parse(raw);
+        return {
+            sfx: Number.isFinite(parsed.sfx) ? parsed.sfx : 80,
+            bgm: Number.isFinite(parsed.bgm) ? parsed.bgm : 40,
+        };
+    } catch (e) {
+        return { sfx: 80, bgm: 40 };
+    }
+}
+
+function saveAudioVolumes() {
+    try {
+        localStorage.setItem(AUDIO_VOLUME_STORAGE_KEY, JSON.stringify({ sfx: sfxVolume, bgm: bgmVolume }));
+    } catch (e) { /* 保存できなくても致命的ではないので無視する */ }
+}
+
+const _savedAudioVolumes = loadAudioVolumes();
+let sfxVolume = _savedAudioVolumes.sfx; // 0〜100
+let bgmVolume = _savedAudioVolumes.bgm; // 0〜100
+let sfxEnabled = sfxVolume > 0;
+let bgmEnabled = bgmVolume > 0;
+
 let currentBgm = null;
 let currentBgmKey = null;
 
@@ -33,7 +61,8 @@ function playTone(freq, duration, type, startDelay, gainPeak) {
     osc.type = type || 'sine';
     osc.frequency.setValueAtTime(freq, t0);
 
-    const peak = gainPeak != null ? gainPeak : 0.18;
+    const basePeak = gainPeak != null ? gainPeak : 0.18;
+    const peak = Math.max(0.0001, basePeak * (sfxVolume / 100));
     gain.gain.setValueAtTime(0.0001, t0);
     gain.gain.exponentialRampToValueAtTime(peak, t0 + 0.015);
     gain.gain.exponentialRampToValueAtTime(0.0001, t0 + duration);
@@ -101,13 +130,19 @@ function playSE(name) {
 let duckTimeoutId = null;
 function duckBgm() {
     if (!currentBgm) return;
-    if (currentBgm._baseVolume == null) currentBgm._baseVolume = currentBgm.volume;
+    if (currentBgm._baseVolume == null || !isFinite(currentBgm._baseVolume)) {
+        currentBgm._baseVolume = isFinite(currentBgm.volume) ? currentBgm.volume : 0.4;
+    }
 
     currentBgm.volume = currentBgm._baseVolume * 0.35;
 
     if (duckTimeoutId) clearTimeout(duckTimeoutId);
     duckTimeoutId = setTimeout(() => {
-        if (currentBgm) currentBgm.volume = currentBgm._baseVolume;
+        // 450ms待つ間にBGMの曲が切り替わっている可能性があるため、
+        // その場合（_baseVolumeが無い新しいAudioに差し替わっている）は何もしない
+        if (currentBgm && currentBgm._baseVolume != null && isFinite(currentBgm._baseVolume)) {
+            currentBgm.volume = currentBgm._baseVolume;
+        }
         duckTimeoutId = null;
     }, 450);
 }
@@ -137,7 +172,7 @@ function playBGM(key) {
 
     const audio = new Audio(src);
     audio.loop = true;
-    audio.volume = 0.4;
+    audio.volume = bgmVolume / 100;
     audio.onerror = () => { /* ファイル未設置の間は静かに無視する */ };
     audio.play().catch(() => { /* 自動再生ブロック等は無視。次のタップ操作後に再度呼ばれれば鳴る */ });
 
@@ -190,32 +225,47 @@ function playCharacterBGM(motif) {
 
     const audio = new Audio(src);
     audio.loop = true;
-    audio.volume = 0.4;
+    audio.volume = bgmVolume / 100;
     audio.onerror = () => { /* 音源未設置の間は静かに無視する */ };
     audio.play().catch(() => { /* 自動再生ブロック等は無視 */ });
 
     currentBgm = audio;
 }
 
-function toggleSfx() {
-    sfxEnabled = !sfxEnabled;
+function setSfxVolume(value) {
+    sfxVolume = Math.max(0, Math.min(100, Number(value) || 0));
+    sfxEnabled = sfxVolume > 0;
+    saveAudioVolumes();
     updateAudioButtons();
 }
 
-function toggleBgm() {
-    bgmEnabled = !bgmEnabled;
-    if (!bgmEnabled) {
-        stopBGM();
-    } else if (lastBgmRequest) {
+function setBgmVolume(value) {
+    bgmVolume = Math.max(0, Math.min(100, Number(value) || 0));
+    const wasEnabled = bgmEnabled;
+    bgmEnabled = bgmVolume > 0;
+    saveAudioVolumes();
+
+    if (currentBgm) {
+        currentBgm.volume = bgmVolume / 100;
+    }
+    if (!wasEnabled && bgmEnabled && lastBgmRequest) {
+        // 0%から音量を上げた時、それまで鳴らそうとしていた曲を鳴らし直す
         if (lastBgmRequest.type === 'generic') playBGM(lastBgmRequest.arg);
         else if (lastBgmRequest.type === 'character') playCharacterBGM(lastBgmRequest.arg);
+    } else if (!bgmEnabled) {
+        stopBGM();
     }
     updateAudioButtons();
 }
 
 function updateAudioButtons() {
-    const sfxBtn = document.getElementById('sfx-toggle-btn');
-    const bgmBtn = document.getElementById('bgm-toggle-btn');
-    if (sfxBtn) sfxBtn.innerText = sfxEnabled ? '🔊 SE' : '🔇 SE';
-    if (bgmBtn) bgmBtn.innerText = bgmEnabled ? '🎵 BGM' : '🎵 BGM(OFF)';
+    const sfxSlider = document.getElementById('sfx-volume-slider');
+    const bgmSlider = document.getElementById('bgm-volume-slider');
+    if (sfxSlider && Number(sfxSlider.value) !== sfxVolume) sfxSlider.value = sfxVolume;
+    if (bgmSlider && Number(bgmSlider.value) !== bgmVolume) bgmSlider.value = bgmVolume;
+
+    const sfxLabel = document.getElementById('sfx-volume-label');
+    const bgmLabel = document.getElementById('bgm-volume-label');
+    if (sfxLabel) sfxLabel.innerText = `🔊 SE ${sfxVolume}`;
+    if (bgmLabel) bgmLabel.innerText = `🎵 BGM ${bgmVolume}`;
 }

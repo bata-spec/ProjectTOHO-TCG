@@ -57,7 +57,11 @@ async function aiPlayTurn(player) {
     }
 
     updateDisplay(`${getPlayerLabel(player)}（AI）のターンを終了します。`);
-    setTimeout(() => endTurn(), 500);
+    setTimeout(() => {
+        endTurn().catch(e => {
+            updateDisplay(`<span style="color:red">⚠️ ERROR: AIのターン終了処理で例外：${e && e.message ? e.message : e}</span>`);
+        });
+    }, 500);
 }
 
 // エリアカードを持っていて、コストが上限に達していて、まだ何も展開していなければ発動する簡易AI
@@ -93,13 +97,18 @@ function playAiMaterialsAndKey(player) {
             return (c.materials || []).every(matId => player.usedMaterials.includes(matId));
         });
         if (keyIndex !== -1) {
+            if (aiDifficulty === 'easy' && Math.random() < 0.4) {
+                // 弱いAIは、覚醒条件が揃っていてもたまに覚醒を見逃す
+                continue;
+            }
             useKeyCard(keyIndex);
             progressed = true;
         }
     }
 }
 
-// 使えるキャラクター能力（アクティブ・コスト以内・今ターン未使用）があれば1つ使う
+// 使えるキャラクター能力（アクティブ・コスト以内・今ターン未使用）があれば1つ使う。
+// 弱いAIはたまにサボり、強いAIはとどめが刺せる能力を優先する。
 async function playAiAbility(player) {
     if (player.abilitySealedTurns > 0) return;
     const baseCard = cardDatabase[player.currentCard];
@@ -107,17 +116,24 @@ async function playAiAbility(player) {
 
     player.usedAbilitiesThisTurn = player.usedAbilitiesThisTurn || {};
 
-    const index = baseCard.abilities.findIndex(a =>
+    const usable = baseCard.abilities.filter(a =>
         a.type === 'active' && getAbilityCostToPay(player, a) <= player.od && !player.usedAbilitiesThisTurn[a.abilityId]
     );
-    if (index === -1) return;
+    if (usable.length === 0) return;
 
-    const ability = baseCard.abilities[index];
+    if (aiDifficulty === 'easy' && Math.random() < 0.35) return; // 弱いAIは使える能力があってもたまにサボる
+
+    const defender = (player === myPlayer) ? opponent : myPlayer;
+    let ability = usable[0];
+    if (aiDifficulty === 'hard') {
+        const lethal = usable.find(a => estimateDamageAmount(a) >= defender.hp);
+        if (lethal) ability = lethal;
+    }
+
     payCost(player, getAbilityCostToPay(player, ability));
     player.usedAbilitiesThisTurn[ability.abilityId] = true;
     updateDisplay(`💫 ${getPlayerLabel(player)}（AI）が能力発動：${ability.text}`);
 
-    const defender = (player === myPlayer) ? opponent : myPlayer;
     await applyCardEffect(ability.effectId, ability.params, player, defender);
     await checkTrapTriggers('opponentUsesAbility', defender, player);
     refreshFieldDisplay(player);
@@ -138,18 +154,63 @@ async function playAllAffordableAiMagic(player) {
     }
 }
 
-// ダメージ系を優先し、その中では最もコストが高い（強力な）ものを選ぶ簡易評価
-function findBestAiMagicIndex(player) {
-    let bestIndex = -1;
-    let bestScore = -1;
+// カード/能力オブジェクトの効果パラメータから、与えるダメージのおおよその量を見積もる
+// （とどめが刺せるかどうかの判定に使う。ダメージ系でなければ0）
+function estimateDamageAmount(cardLike) {
+    const p = cardLike.params || {};
+    switch (cardLike.effectId) {
+        case 'DAMAGE_ALL_ENEMY':
+        case 'PIERCE_DAMAGE':
+        case 'UNBLOCKABLE_DAMAGE':
+        case 'LIFESTEAL_DAMAGE':
+        case 'SELF_DAMAGE_BURST':
+            return p.amount || 0;
+        case 'RANDOM_BURST':
+            return p.max || 0; // 最大値で判定（届く可能性があるなら狙いにいく）
+        default:
+            return 0;
+    }
+}
 
+// ダメージ系を優先し、その中では最もコストが高い（強力な）ものを選ぶ簡易評価。
+// 難易度によって判断の質を変える：
+// ・弱い　　：優先度を考えず、使えるカードからランダムに選ぶ
+// ・普通　　：ダメージ系を優先する簡易評価（元の挙動）
+// ・強い　　：上記に加えて「とどめが刺せるなら最優先」「コストが余ってるのにOD回復は使わない」を考慮する
+function findBestAiMagicIndex(player) {
+    const opponentPlayer = (player === myPlayer) ? opponent : myPlayer;
+
+    const affordable = [];
     player.hand.forEach((cardId, idx) => {
         const card = cardDatabase[cardId];
         if (!card || card.type !== 'スペル') return;
         if (getSpellCostToPay(player, card) > player.od) return;
+        affordable.push({ idx, card });
+    });
+    if (affordable.length === 0) return -1;
 
+    if (aiDifficulty === 'easy') {
+        const pick = affordable[Math.floor(Math.random() * affordable.length)];
+        return pick.idx;
+    }
+
+    if (aiDifficulty === 'hard') {
+        const lethal = affordable.find(({ card }) => estimateDamageAmount(card) >= opponentPlayer.hp);
+        if (lethal) return lethal.idx;
+    }
+
+    let bestIndex = -1;
+    let bestScore = -1;
+    affordable.forEach(({ idx, card }) => {
         const isDamage = ['DAMAGE_ALL_ENEMY', 'PIERCE_DAMAGE', 'UNBLOCKABLE_DAMAGE', 'RANDOM_BURST', 'LIFESTEAL_DAMAGE', 'SELF_DAMAGE_BURST'].includes(card.effectId);
-        const score = (isDamage ? 100 : 0) + card.cost;
+        let score = (isDamage ? 100 : 0) + card.cost;
+
+        if (aiDifficulty === 'hard') {
+            // オドがそれなりに残っているのにOD回復を使うのは無駄なので優先度を下げる
+            if (card.effectId === 'OD_BOOST' && player.od >= player.maxOd * 0.6) score -= 50;
+            // 手札破壊は、相手の手札が多いほど価値が上がる
+            if (card.effectId === 'DISCARD_OPPONENT') score += Math.min(opponentPlayer.hand.length, 5);
+        }
 
         if (score > bestScore) {
             bestScore = score;

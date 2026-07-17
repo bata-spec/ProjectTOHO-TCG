@@ -14,6 +14,11 @@ function selectGameMode(mode) {
     selectedCharacterId = null;
     deckSelection = {};
 
+    if (mode === 'single') {
+        const select = document.getElementById('ai-difficulty-select');
+        aiDifficulty = select ? select.value : 'normal';
+    }
+
     const modeScreen = document.getElementById('mode-select-screen');
     const builderScreen = document.getElementById('deckbuilder-screen');
     if (modeScreen) modeScreen.style.display = "none";
@@ -242,6 +247,37 @@ function checkAwakeningWarning() {
 
 const TYPE_ORDER = ["スペル", "カウンタースペル", "エリア", "素材", "キー"];
 
+// --- お気に入りカード（この端末のブラウザにだけ保存） ---
+const FAVORITES_STORAGE_KEY = 'walpurgis_tcg_favorite_cards';
+
+function loadFavorites() {
+    try {
+        const raw = localStorage.getItem(FAVORITES_STORAGE_KEY);
+        return raw ? new Set(JSON.parse(raw)) : new Set();
+    } catch (e) {
+        return new Set();
+    }
+}
+
+function saveFavorites(set) {
+    try {
+        localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify([...set]));
+    } catch (e) { /* 保存できなくても致命的ではないので無視する */ }
+}
+
+let favoriteCardIds = loadFavorites();
+
+function isFavoriteCard(cardId) {
+    return favoriteCardIds.has(cardId);
+}
+
+function toggleFavoriteCard(cardId) {
+    if (favoriteCardIds.has(cardId)) favoriteCardIds.delete(cardId);
+    else favoriteCardIds.add(cardId);
+    saveFavorites(favoriteCardIds);
+    renderDeckSelect();
+}
+
 function getSortedDeckCards() {
     const cards = Object.values(cardDatabase).filter(c => TYPE_ORDER.includes(c.type));
 
@@ -269,6 +305,9 @@ function getSortedDeckCards() {
                 return a.cost - b.cost;
             });
     }
+
+    // 並び順は保ったまま、お気に入り登録済みのカードだけ先頭にまとめる
+    cards.sort((a, b) => (isFavoriteCard(b.id) ? 1 : 0) - (isFavoriteCard(a.id) ? 1 : 0));
     return cards;
 }
 
@@ -282,6 +321,12 @@ function renderDeckSelect() {
 
         const row = document.createElement("div");
         row.className = "deck-select-row";
+
+        const favBtn = document.createElement("button");
+        favBtn.className = "fav-btn";
+        favBtn.innerText = isFavoriteCard(card.id) ? "★" : "☆";
+        favBtn.title = "お気に入りに登録/解除";
+        favBtn.onclick = () => toggleFavoriteCard(card.id);
 
         const img = document.createElement("img");
         img.className = "deck-select-thumb";
@@ -315,6 +360,7 @@ function renderDeckSelect() {
         stepper.appendChild(qtyValue);
         stepper.appendChild(plusBtn);
 
+        row.appendChild(favBtn);
         row.appendChild(img);
         row.appendChild(label);
         row.appendChild(stepper);
@@ -484,12 +530,17 @@ function renderSavedDeckList() {
         loadBtn.innerText = '読み込む';
         loadBtn.onclick = () => loadSavedDeck(index);
 
+        const renameBtn = document.createElement('button');
+        renameBtn.innerText = '名前変更';
+        renameBtn.onclick = () => renameSavedDeck(index);
+
         const deleteBtn = document.createElement('button');
         deleteBtn.innerText = '削除';
         deleteBtn.onclick = () => deleteSavedDeck(index);
 
         row.appendChild(label);
         row.appendChild(loadBtn);
+        row.appendChild(renameBtn);
         row.appendChild(deleteBtn);
         container.appendChild(row);
     });
@@ -519,4 +570,29 @@ function deleteSavedDeck(index) {
     saveSavedDecksList(list);
     renderSavedDeckList();
     updateDisplay(`🗑️ デッキ「${entry.name}」を削除しました。`);
+}
+
+function renameSavedDeck(index) {
+    const list = loadSavedDecks();
+    const entry = list[index];
+    if (!entry) return;
+
+    const newName = window.prompt('新しいデッキ名を入力してください', entry.name);
+    if (newName === null) return; // キャンセル
+    const trimmed = newName.trim();
+    if (!trimmed) {
+        updateDisplay('❌ デッキ名を入力してください。');
+        return;
+    }
+    if (trimmed === entry.name) return;
+    if (list.some((d, i) => i !== index && d.name === trimmed)) {
+        updateDisplay(`❌ 「${trimmed}」という名前のデッキは既にあります。`);
+        return;
+    }
+
+    const oldName = entry.name;
+    entry.name = trimmed;
+    saveSavedDecksList(list);
+    renderSavedDeckList();
+    updateDisplay(`✏️ デッキ「${oldName}」を「${trimmed}」に名前変更しました。`);
 }

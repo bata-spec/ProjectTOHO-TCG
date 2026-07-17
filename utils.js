@@ -42,10 +42,156 @@ function getPlayerLabel(player) {
     if (gameMode === 'local2p') {
         return player === myPlayer ? 'プレイヤー1' : 'プレイヤー2';
     }
+    if (gameMode === 'network') {
+        // 「自分/相手」は表示している端末ごとに意味が変わってしまい、ログを同期すると
+        // 主語がねじれて見えるため、ネット対戦ではどちらの画面でも同じ意味になる
+        // キャラクター名を主語として使う。
+        const card = cardDatabase[player.currentCard];
+        return card ? card.name : (player === myPlayer ? '自分' : '相手');
+    }
     return player === myPlayer ? '自分' : '相手';
 }
 
 // 画像読み込み失敗時にカード裏面へフォールバックする共通ハンドラ
+// --- 戦績（この端末・このブラウザだけの記録。ローカル保存なので他の人とは共有されない） ---
+const STATS_STORAGE_KEY = 'walpurgis_tcg_stats';
+
+function loadStats() {
+    try {
+        const raw = localStorage.getItem(STATS_STORAGE_KEY);
+        return raw ? JSON.parse(raw) : { totalGames: 0, wins: 0, losses: 0, byCharacter: {} };
+    } catch (e) {
+        return { totalGames: 0, wins: 0, losses: 0, byCharacter: {} };
+    }
+}
+
+function saveStats(stats) {
+    try {
+        localStorage.setItem(STATS_STORAGE_KEY, JSON.stringify(stats));
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+
+// 対戦の結果を記録する。ローカル2人対戦は「どちらの成績か」が曖昧になるため記録しない。
+function recordGameResult(won, characterMotif) {
+    if (gameMode !== 'single' && gameMode !== 'network') return;
+
+    const stats = loadStats();
+    stats.totalGames++;
+    if (won) stats.wins++; else stats.losses++;
+
+    if (characterMotif) {
+        if (!stats.byCharacter[characterMotif]) {
+            stats.byCharacter[characterMotif] = { games: 0, wins: 0, losses: 0 };
+        }
+        const c = stats.byCharacter[characterMotif];
+        c.games++;
+        if (won) c.wins++; else c.losses++;
+    }
+
+    saveStats(stats);
+}
+
+function resetStats() {
+    if (!window.confirm('戦績を全て消去します。よろしいですか？')) return;
+    saveStats({ totalGames: 0, wins: 0, losses: 0, byCharacter: {} });
+    renderStatsPanel();
+}
+
+function openStatsPanel() {
+    renderStatsPanel();
+    const panel = document.getElementById('stats-panel');
+    if (panel) panel.style.display = "block";
+}
+
+function closeStatsPanel() {
+    const panel = document.getElementById('stats-panel');
+    if (panel) panel.style.display = "none";
+}
+
+function renderStatsPanel() {
+    const content = document.getElementById('stats-content');
+    if (!content) return;
+
+    const stats = loadStats();
+    const winRate = stats.totalGames > 0 ? Math.round((stats.wins / stats.totalGames) * 100) : 0;
+
+    let html = `
+        <p class="stats-summary">
+            対戦数：${stats.totalGames}戦　勝ち：${stats.wins}　負け：${stats.losses}　勝率：${winRate}%
+        </p>
+    `;
+
+    const entries = Object.entries(stats.byCharacter).sort((a, b) => b[1].games - a[1].games);
+    if (entries.length === 0) {
+        html += `<p>まだ記録がありません（AI対戦・ネット対戦の結果がここに記録されます）。</p>`;
+    } else {
+        html += `<table class="stats-table"><tr><th>キャラ</th><th>対戦数</th><th>勝ち</th><th>負け</th><th>勝率</th></tr>`;
+        entries.forEach(([motif, c]) => {
+            const rate = c.games > 0 ? Math.round((c.wins / c.games) * 100) : 0;
+            html += `<tr><td>${motif}</td><td>${c.games}</td><td>${c.wins}</td><td>${c.losses}</td><td>${rate}%</td></tr>`;
+        });
+        html += `</table>`;
+    }
+
+    content.innerHTML = html;
+}
+
+// --- カード図鑑（戦闘と関係なく、全カードを眺められる画面） ---
+function goToGalleryScreen() {
+    const modeScreen = document.getElementById('mode-select-screen');
+    const galleryScreen = document.getElementById('gallery-screen');
+    if (modeScreen) modeScreen.style.display = "none";
+    if (galleryScreen) galleryScreen.style.display = "block";
+    renderGalleryScreen();
+}
+
+function leaveGalleryScreen() {
+    const modeScreen = document.getElementById('mode-select-screen');
+    const galleryScreen = document.getElementById('gallery-screen');
+    if (galleryScreen) galleryScreen.style.display = "none";
+    if (modeScreen) modeScreen.style.display = "block";
+}
+
+function renderGalleryScreen() {
+    const grid = document.getElementById('gallery-grid');
+    if (!grid) return;
+    grid.innerHTML = "";
+
+    const filterSelect = document.getElementById('gallery-type-filter');
+    const filter = filterSelect ? filterSelect.value : 'all';
+
+    const cards = Object.values(cardDatabase).filter(c => {
+        const type = c.type || 'キャラクター';
+        return filter === 'all' || type === filter;
+    }).sort((a, b) => a.name.localeCompare(b.name, 'ja'));
+
+    if (cards.length === 0) {
+        grid.innerText = '該当するカードがありません。';
+        return;
+    }
+
+    cards.forEach(card => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        item.onclick = () => showCardDetail(card.id);
+
+        const img = document.createElement('img');
+        img.className = 'gallery-thumb';
+        setImageWithFallback(img, getCardArtPath(card));
+
+        const label = document.createElement('div');
+        label.className = 'gallery-item-name';
+        label.innerText = card.name;
+
+        item.appendChild(img);
+        item.appendChild(label);
+        grid.appendChild(item);
+    });
+}
+
 function setImageWithFallback(imgEl, path) {
     if (!imgEl) return;
     imgEl.onerror = () => {
@@ -63,7 +209,7 @@ function updateFieldDisplay(player, charElementId, statusElementId) {
 
     const originalCard = cardDatabase[player.currentCard];
     if (player.currentCard && originalCard) {
-        charArea.innerText = originalCard.name;
+        charArea.innerText = player.username ? `${originalCard.name}（${player.username}）` : originalCard.name;
         statusArea.innerText = `HP: ${player.hp}/${player.maxHp} / コスト: ${player.od}/${player.maxOd}`;
         if (artEl) {
             setImageWithFallback(artEl, getCardArtPath(originalCard));
@@ -309,6 +455,9 @@ function endGame(loserPlayer, reason) {
     const isMyLoss = (loserPlayer === myPlayer);
     playSE(isMyLoss ? 'defeat' : 'victory');
     playBGM(isMyLoss ? 'defeat' : 'victory');
+
+    const myBaseCard = cardDatabase[myPlayer.currentCard];
+    recordGameResult(!isMyLoss, myBaseCard ? myBaseCard.motif : null);
 
     updateDisplay(`🏁 GAME SET！${getPlayerLabel(loserPlayer)}の敗北（${reason}）`);
 
